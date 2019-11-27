@@ -1,6 +1,11 @@
 import {Task} from './Task.js';
+import {TaskComponent} from './TaskComponent.js';
 
-const task_1 = new Task('todo1');
-const task_2 = new Task('todo1');
+const div = document.createElement('div');
+document.body.appendChild(div);
 
-console.log(task_1, task_2);
+new TaskComponent(div, {
+    task: {
+        name: 'todo1'
+    }
+});
