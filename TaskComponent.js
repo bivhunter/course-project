@@ -20,5 +20,9 @@ export class TaskComponent {
         this.anchor.appendChild(this._elem);
     }
 
+    remove() {
+        this._elem.remove();
+    }
+
 
 }
