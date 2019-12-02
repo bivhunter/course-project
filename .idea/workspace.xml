@@ -15,7 +15,7 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Course Project Todo/index.html">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
               <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
@@ -24,7 +24,7 @@
         </entry>
       </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Course Project Todo/main.js">
+        <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
               <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
@@ -36,7 +36,7 @@
         </entry>
       </file>
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Course Project Todo/style.css">
+        <entry file="file://$PROJECT_DIR$/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
               <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
@@ -45,7 +45,7 @@
         </entry>
       </file>
       <file leaf-file-name="Task.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Course Project Todo/Task.js">
+        <entry file="file://$PROJECT_DIR$/Task.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
               <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
@@ -54,7 +54,7 @@
         </entry>
       </file>
       <file leaf-file-name="TaskComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Course Project Todo/TaskComponent.js">
+        <entry file="file://$PROJECT_DIR$/TaskComponent.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
               <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
@@ -63,7 +63,7 @@
         </entry>
       </file>
       <file leaf-file-name="TodoComponent.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../Course Project Todo/TodoComponent.js">
+        <entry file="file://$PROJECT_DIR$/TodoComponent.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
               <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
@@ -72,7 +72,7 @@
         </entry>
       </file>
       <file leaf-file-name="InputComponent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Course Project Todo/InputComponent.js">
+        <entry file="file://$PROJECT_DIR$/InputComponent.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="260">
               <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
@@ -94,13 +94,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../Course Project Todo/Task.js" />
-        <option value="$PROJECT_DIR$/../Course Project Todo/TaskComponent.js" />
-        <option value="$PROJECT_DIR$/../Course Project Todo/main.js" />
-        <option value="$PROJECT_DIR$/../Course Project Todo/index.html" />
-        <option value="$PROJECT_DIR$/../Course Project Todo/style.css" />
-        <option value="$PROJECT_DIR$/../Course Project Todo/TodoComponent.js" />
-        <option value="$PROJECT_DIR$/../Course Project Todo/InputComponent.js" />
+        <option value="$PROJECT_DIR$/Task.js" />
+        <option value="$PROJECT_DIR$/TaskComponent.js" />
+        <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/style.css" />
+        <option value="$PROJECT_DIR$/TodoComponent.js" />
+        <option value="$PROJECT_DIR$/InputComponent.js" />
         <option value="D:/Documents/@My Doc@/Dropbox/My/JavaScript/Course Andersen/9 lecture code/item.js" />
       </list>
     </option>
@@ -115,7 +115,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="960" />
+    <option name="x" value="968" />
     <option name="width" value="960" />
     <option name="height" value="1040" />
   </component>
@@ -141,7 +141,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="D:/Documents/@My Doc@/Dropbox/My/JavaScript/Course Andersen/9 lecture code/list.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -177,16 +177,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1574800561275</updated>
-      <workItem from="1574800566856" duration="7501000" />
+      <workItem from="1574800566856" duration="8058000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7501000" />
+    <option name="totallyTimeSpent" value="8058000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -214,14 +213,14 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../Course Project Todo/Task.js">
+    <entry file="file://$PROJECT_DIR$/Task.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Course Project Todo/main.js">
+    <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
@@ -231,21 +230,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Course Project Todo/style.css">
+    <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Course Project Todo/TaskComponent.js">
+    <entry file="file://$PROJECT_DIR$/TaskComponent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Course Project Todo/index.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
@@ -269,14 +268,14 @@
     <entry file="file://D:/Documents/@My Doc@/Dropbox/My/JavaScript/Course Andersen/9 lecture code/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Course Project Todo/InputComponent.js">
+    <entry file="file://$PROJECT_DIR$/InputComponent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Course Project Todo/TodoComponent.js">
+    <entry file="file://$PROJECT_DIR$/TodoComponent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
