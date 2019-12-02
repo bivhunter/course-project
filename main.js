@@ -1,16 +1,28 @@
-import {Task} from './Task.js';
-import {TaskComponent} from './TaskComponent.js';
+
+import {TaskComponent} from './components/TaskComponent.js';
+
+
+const generateId = () => String(Math.round(Date.now() * Math.random()));
 
 const div = document.createElement('div');
 div.classList.add('main');
 document.body.appendChild(div);
 
-const task_1 = new TaskComponent(div, {
-    task: {
-        name: 'todo1'
-    }
+const todo1 = new TaskComponent({
+    name: 'todo1',
+    id: generateId(),
 });
 
+const todo2 = document.createElement('my-component-task');
+todo2.props = {
+    name: 'todo2',
+    id: generateId(),
+};
+
+div.appendChild(todo1);
+div.appendChild(todo2);
+
+
 setTimeout(() => {
-    task_1.remove();
+    todo2.remove();
 }, 3000);

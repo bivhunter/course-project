@@ -6,3 +6,11 @@
     position: relative;
     outline: 1px blue groove;
 }
+
+my-component-task{
+    text-align: center;
+}
+
+my-component-task p{
+    margin: 0;
+}
