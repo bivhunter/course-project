@@ -1,4 +1,4 @@
-class EventBus {
+class EventService {
     constructor() {
         this.channels = {};
     }
@@ -30,4 +30,4 @@ class EventBus {
     }
 }
 
-export let eventBus = new EventBus();
+export let eventBus = new EventService();

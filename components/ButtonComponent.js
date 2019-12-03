@@ -1,3 +1,4 @@
+import {eventBus} from "../eventService.js";
 
 export class ButtonComponent extends HTMLElement{
     constructor(props) {
@@ -22,17 +23,18 @@ export class ButtonComponent extends HTMLElement{
     }
 
     disconnectedCallback() {
-        console.log('disconect elem')
+
     }
 
     onInit() {
         this.dataset.id = this.props.id;
+        this.addListeners();
     }
 
     addListeners() {
-       /* this.addEventListener('mouseOver', (event) => {
-            this.renderButton.bind(this);
-        });*/
+        this.addEventListener('click', (event) => {
+            eventBus.publish(`${this._props.name.toLowerCase()}Task`, this.props.id);
+        });
     }
 
     renderButton(){

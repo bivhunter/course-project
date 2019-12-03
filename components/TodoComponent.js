@@ -1,4 +1,4 @@
-import {eventBus} from "../eventBus.js";
+import {eventBus} from "../eventService.js";
 import {TaskListComponent} from "./TaskListComponent.js";
 
 export class TodoComponent extends HTMLElement{
@@ -9,6 +9,7 @@ export class TodoComponent extends HTMLElement{
     }
 
     connectedCallback() {
+
         eventBus.publish('todoConnected');
         eventBus.subscribe('responseSuccessful', (data) => {
             this._props.taskList = data;
@@ -17,12 +18,16 @@ export class TodoComponent extends HTMLElement{
     }
 
     onInit() {
+
+
         this.attachShadow({mode: 'open'});
     }
 
     render() {
+        const div = document.createElement('div');
         const taskList = new TaskListComponent(this._props);
-        this.shadowRoot.appendChild(taskList);
+        div.appendChild(taskList);
+        this.shadowRoot.appendChild(div);
     }
 
 }

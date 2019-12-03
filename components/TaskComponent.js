@@ -1,7 +1,16 @@
 import {ButtonComponent} from "./ButtonComponent.js";
+import {eventBus} from "../eventService.js";
 
 const template = document.createElement('template');
 template.innerHTML = `
+<style>
+    div:hover {
+        background: silver;
+    }
+    [data-completed="true"] {
+        background: aquamarine;    
+    }
+</style>
         <div>
         <p></p>
 </div>    
@@ -25,30 +34,44 @@ export class TaskComponent extends HTMLElement{
         return this._props;
     }
 
+    static get observedAttributes(){
+        return ['data-completed'];
+    }
+
     connectedCallback() {
        this.onInit();
        this.render();
     }
 
+    get
+
+
     disconnectedCallback() {
-        // браузер вызывает этот метод при удалении элемента из документа
-        // (может вызываться много раз, если элемент многократно добавляется/удаляется)
+       // console.log('task delete');
     }
 
     onInit() {
         this.dataset.id = this._props.id;
+
         this.addListeners();
     }
 
     addListeners() {
         this.addEventListener('mouseover', this.renderButton.bind(this));
         this.addEventListener('mouseout', this.removeButton.bind(this));
+
+        eventBus.subscribe('patchData', (id) => {
+            if(id === this._props.id) {
+                this.wrapper.dataset.completed = "true";
+                this._props.completed = true;
+            }
+        });
     }
 
     removeButton() {
-        console.dir(this._deleteButton);
-        this.shadowRoot.querySelector('div').removeChild(this._deleteButton);
-        this.shadowRoot.querySelector('div').removeChild(this._doneButton);
+        //console.dir(this._deleteButton);
+        this.wrapper.removeChild(this._deleteButton);
+        this.wrapper.removeChild(this._todoButton);
     }
 
     renderButton(){
@@ -60,16 +83,16 @@ export class TaskComponent extends HTMLElement{
             }
         );
 
-        this._doneButton = new ButtonComponent(
+        this._todoButton = new ButtonComponent(
             {
                 id: this.props.id,
-                name: 'Done'
+                name: 'Todo'
             }
         );
 
-        this.shadowRoot.querySelector('div').style.backgroundColor = "grey";
-        this.shadowRoot.querySelector('div').appendChild(this._doneButton);
-        this.shadowRoot.querySelector('div').appendChild(this._deleteButton);
+        //this.wrapper.style.backgroundColor = "grey";
+        this.wrapper.appendChild(this._todoButton);
+        this.wrapper.appendChild(this._deleteButton);
     }
 
     render() {
@@ -81,6 +104,8 @@ export class TaskComponent extends HTMLElement{
             console.log(this._anchor);
             this._anchor.appendChild(this);
         }
+        this.wrapper = this.shadowRoot.querySelector('div');
+        this.wrapper.dataset.completed = this._props.completed;
     }
 }
 
