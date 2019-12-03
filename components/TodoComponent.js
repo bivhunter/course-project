@@ -1,19 +1,30 @@
-export class TodoComponent {
-    constructor(anchor, props) {
-        this._anchor = anchor;
+import {eventBus} from "../eventBus.js";
+import {TaskListComponent} from "./TaskListComponent.js";
+
+export class TodoComponent extends HTMLElement{
+    constructor(props = {taskList: []}) {
+        super();
         this._props = props;
         this.onInit();
-        this.render();
+    }
+
+    connectedCallback() {
+        eventBus.publish('todoConnected');
+        eventBus.subscribe('responseSuccessful', (data) => {
+            this._props.taskList = data;
+            this.render();
+        });
     }
 
     onInit() {
-        const elem = document.createElement('div');
-        this._elem = elem;
-
+        this.attachShadow({mode: 'open'});
     }
 
     render() {
-        this._anchor.appendChild(this._elem);
+        const taskList = new TaskListComponent(this._props);
+        this.shadowRoot.appendChild(taskList);
     }
 
 }
+
+customElements.define('my-component-todo', TodoComponent);

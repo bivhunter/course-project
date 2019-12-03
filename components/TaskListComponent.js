@@ -7,7 +7,7 @@ export class TaskListComponent extends HTMLElement {
         this._props = props;
         this.onInit();
     }
-    
+
     onInit() {
         this.attachShadow({mode: 'open'});
     }
@@ -33,7 +33,6 @@ export class TaskListComponent extends HTMLElement {
         this.shadowRoot.appendChild(div);
 
     }
-
-
-
 }
+
+customElements.define('my-component-task-list', TaskListComponent);
