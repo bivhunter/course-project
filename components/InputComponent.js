@@ -1,20 +1,64 @@
-export class InputComponent{
+import {ButtonComponent} from "./ButtonComponent.js";
+import {eventBus} from "../eventService.js";
+
+const template = document.createElement('template');
+
+template.innerHTML = `
+    <style>
+        input{
+            width: 80%;
+        }
+        button {
+            width: 20%;
+        }
+    </style>
+    
+    <div>
+        <input type="text">
+    </div>
+`;
+
+export class InputComponent extends HTMLElement{
     constructor(anchor) {
-        this._anchor = anchor;
+        super();
+    }
+
+    connectedCallback() {
         this.onInit();
         this.render();
     }
 
     onInit() {
-        const elem = document.createElement('div');
+        this.attachShadow({mode : 'open'});
+        this.addListeners();
+    }
 
-        const input = document.createElement('input');
-        elem.appendChild(input);
+    addListeners() {
 
-        this._elem = elem;
+    }
+
+    addButtonListeners() {
+        this._button.addEventListener('click', (event) => {
+            eventBus.publish('addTask', this._input.value );
+            this._input.value = '';
+        });
     }
 
     render() {
-        this._anchor.appendChild(this._elem);
+        const tmpl = template.content.cloneNode(true);
+        this._input = tmpl.querySelector('input');
+        //ocus();
+        const div = tmpl.querySelector('div');
+
+        this._button = new ButtonComponent({
+            title: 'Add task'
+        });
+        this.addButtonListeners();
+
+
+        div.appendChild(this._button);
+        this.shadowRoot.appendChild(tmpl);
     }
 }
+
+customElements.define('my-component-input', InputComponent);

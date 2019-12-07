@@ -1,7 +1,7 @@
 import {eventBus} from "../eventService.js";
 
 export class ButtonComponent extends HTMLElement{
-    constructor(props) {
+    constructor(props = {}) {
         super();
         this.props = props;
         this.attachShadow({mode: "open"});
@@ -9,14 +9,23 @@ export class ButtonComponent extends HTMLElement{
 
     set props(value) {
         this._props = value;
+        this.dataset.title = this.props.title;
     }
 
     get props() {
         return this._props;
     }
 
+ /*   static get observedAttributes() {
+        return ['data-title'];
+    }
 
-
+    attributeChangedCallback(name, oldValue, newValue) {
+        if(this.button) {
+            this.button.textContent = newValue;
+        }
+    }
+*/
     connectedCallback() {
         this.onInit();
         this.render();
@@ -27,30 +36,15 @@ export class ButtonComponent extends HTMLElement{
     }
 
     onInit() {
-        this.dataset.id = this.props.id;
-        this.addListeners();
-    }
-
-    addListeners() {
-        this.addEventListener('click', (event) => {
-            eventBus.publish(`${this._props.name.toLowerCase()}Task`, this.props.id);
-        });
-    }
-
-    renderButton(){
 
     }
 
     render() {
         const button = document.createElement('button');
-        button.textContent = this.props.name;
+        button.textContent = this.props.title;
         this.shadowRoot.appendChild(button);
+        this.button = button;
     }
-
-    remove() {
-        //this._elem.remove();
-    }
-
 
 }
 

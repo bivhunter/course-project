@@ -1,5 +1,6 @@
 import {eventBus} from "../eventService.js";
 import {TaskListComponent} from "./TaskListComponent.js";
+import {InputComponent} from "./InputComponent.js";
 
 export class TodoComponent extends HTMLElement{
     constructor(props = {taskList: []}) {
@@ -9,12 +10,13 @@ export class TodoComponent extends HTMLElement{
     }
 
     connectedCallback() {
+        this.render();
 
         eventBus.publish('todoConnected');
-        eventBus.subscribe('responseSuccessful', (data) => {
+        /*eventBus.subscribe('responseSuccessful', (data) => {
             this._props.taskList = data;
             this.render();
-        });
+        });*/
     }
 
     onInit() {
@@ -25,8 +27,12 @@ export class TodoComponent extends HTMLElement{
 
     render() {
         const div = document.createElement('div');
-        const taskList = new TaskListComponent(this._props);
-        div.appendChild(taskList);
+        const taskList = new TaskListComponent();
+        const input = new InputComponent();
+
+
+        div.append(input, taskList);
+
         this.shadowRoot.appendChild(div);
     }
 

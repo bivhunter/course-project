@@ -13,38 +13,38 @@ class DataService {
     addListeners() {
         eventBus.subscribe('todoConnected', () => {
             this.getData()
-                .then((data) => {
-                    this.data = data;
-                    data.forEach((item) => {
-                        item.name = item.title;
-                    });
-                    console.log(data);
-                    eventBus.publish('responseSuccessful', data);
-                }).catch((error) => {
-                    console.log(error);
-            });
         });
 
-        eventBus.subscribe('deleteTask', (id) => {
-            this.lastTaskId = id;
-            this.data = this.data.filter((item) => {
-               item.id !== id;
-            });
-            this.deleteData();
+        eventBus.subscribe('deletedTask', (id) => {
+            this.deleteData(id);
         });
 
-        eventBus.subscribe('todoTask', (id) => {
-            this.lastTaskId = id;
-            this.putData();
+        eventBus.subscribe('changeTask', (task) => {
+            this.putData(task);
+        });
+
+        eventBus.subscribe('todoTask', (task) => {
+            task.completed = !task.completed;
+            this.putData(task);
+        });
+
+        eventBus.subscribe('addTask', (title) => {
+           const task = this.createTask(title);
+           this.addData(task);
         });
     }
 
-    putData() {
-        fetch(`${this.url}/${this.lastTaskId}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                completed: true
-            }),
+    createTask(title) {
+        return {
+            title: title,
+            completed: false
+        }
+    }
+
+    addData(task) {
+        fetch(this.url, {
+            method: 'POST',
+            body: JSON.stringify(task),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
@@ -53,12 +53,38 @@ class DataService {
                 if (!response.ok) {
                     throw new Error("File not found");
                 }
-                eventBus.publish('patchData', this.lastTaskId);
+                console.log(response);
+                return response.json();
             })
+            .then((data) => {
+                this.data.unshift(data);
+                eventBus.publish('responseSuccessful', this.data);
+            });
+
+    }
+
+    putData(task) {
+        fetch( `${this.url}/${task.id}`, {
+            method: 'PUT',
+            body: JSON.stringify( task ),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        } )
+            .then( ( response ) => {
+                if ( !response.ok ) {
+                    throw new Error( "File not found" );
+                }
+                return response.json();
+
+            } )
+            .then(response => {
+                eventBus.publish('responseSuccessful', this.changeTask(response));
+            });
     }
 
     getData() {
-        return fetch(this.url)
+        fetch(this.url)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("File not found");
@@ -66,23 +92,41 @@ class DataService {
 
                 return response.json();
             })
+            .then((data) => {
+                this.data = data;
+                data.forEach((item) => {
+                    item.name = item.title;
+                });
+                eventBus.publish('responseSuccessful', data);
+            })
             .catch((error) => console.log(error));
-
     }
 
-    deleteData() {
-        return fetch(this.url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(this.data)
-        }).then((response) => {
-            if (!response.ok) {
-                throw new Error("File not found");
-            }
-            eventBus.publish('deleteData', this.lastTaskId);
-        })
+    deleteData( id ) {
+        fetch( `${this.url}/${id}`, {
+            method: 'DELETE',
+        } )
+            .then( ( response ) => {
+                if ( !response.ok ) {
+                    throw new Error( "File not found" );
+                }
+            } )
+            .then((data) => {
+                this.data = this.data.filter((item) => {
+                    return item.id !== id;
+                });
+                console.log(this.data);
+                eventBus.publish('responseSuccessful', this.data);
+            });
+    }
+
+    changeTask(task) {
+        return this.data.map((item) => {
+           if(task.id === item.id) {
+               return task;
+           }
+           return item;
+        });
     }
 }
 
