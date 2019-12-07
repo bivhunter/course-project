@@ -39,9 +39,21 @@ export class InputComponent extends HTMLElement{
 
     addButtonListeners() {
         this._button.addEventListener('click', (event) => {
-            eventBus.publish('addTask', this._input.value );
-            this._input.value = '';
+           this.addTask();
         });
+
+        this._input.addEventListener('keydown', (event) => {
+            console.log(event.key);
+            if (event.key === "Enter") {
+                this.addTask();
+            }
+
+        });
+    }
+
+    addTask() {
+        eventBus.publish('addTask', this._input.value );
+        this._input.value = '';
     }
 
     render() {

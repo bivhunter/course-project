@@ -2,38 +2,34 @@ import {TaskComponent} from "./TaskComponent.js";
 //import styles from "../css/TaskList.css";
 import {eventBus} from "../eventService.js";
 import {TextAreaComponent} from "./textAreaComponent.js";
+import {Component} from "./Component.js";
 
 const template = document.createElement('template');
 
 template.innerHTML = `
-    <style>
-    ul{
-    list-style-type: none;
-    }
-</style>
+    <div>
+    <ul></ul>
+</div>
 `;
 
-export class TaskListComponent extends HTMLElement {
+export class TaskListComponent extends Component {
     constructor(props = {taskList: []}){
-        super();
-        this._props = props;
+        super(props);
     }
 
     onInit() {
-        this.attachShadow({mode: 'open'});
-        this.addListeners();
+        this.template = template;
+        this.style = './css/task-list-component.css';
+
+        /*this.attachShadow({mode: 'open'});
+        this.addListeners();*/
     }
 
     addListeners() {
         this.addEventListener('click', this.clickListener.bind(this));
 
-
-       /* eventBus.subscribe('deleteData', (id) => {
-           this.removeTask(id);
-        });
-*/
         eventBus.subscribe('responseSuccessful', (data) => {
-            this._props.taskList = data;
+            this.props.taskList = data;
             this.renderList();
         });
 
@@ -42,21 +38,6 @@ export class TaskListComponent extends HTMLElement {
             this.editingLi.appendChild(new TaskComponent(task));
         });
 
-       /* eventBus.subscribe('patchData', (task) => {
-            this._props.taskList.map((item) => {
-               if(item.id === task.id) {
-                   return task;
-               }
-               return item;
-            });
-            console.log(this._props.taskList, task);
-            this.patchTask(task);
-        });*/
-
-       /* eventBus.subscribe('addData', (task) => {
-           this._props.taskList.push(task);
-           this.addTask(task, 'afterbegin');
-        });*/
     }
 
     clickListener(event) {
@@ -79,35 +60,22 @@ export class TaskListComponent extends HTMLElement {
             return item.tagName === "LI";
         });
 
-
-
         this.textArea = new TextAreaComponent(task.props);
         task.remove();
         this.editingLi.appendChild(this.textArea);
         this.textArea.focus();
-
-    }
-
-    connectedCallback() {
-        this.onInit();
-        this.render();
     }
 
     render() {
-        const div = document.createElement('div');
-        this.ul = document.createElement('ul');
-
+        //const div = this.template.querySelector('div');
+        this.ul = this.template.querySelector('ul');
         this.renderList();
-
-        div.appendChild(this.ul);
-        const tmpl = template.content.cloneNode(true);
-        tmpl.appendChild(div);
-        this.shadowRoot.appendChild(tmpl);
+       // this.template.appendChild(div);
     }
 
     renderList() {
         this.ul.innerHTML = '';
-        this._props.taskList.forEach((task) => {
+        this.props.taskList.forEach((task) => {
             this.addTask(task);
         });
     }
@@ -118,22 +86,6 @@ export class TaskListComponent extends HTMLElement {
         li.appendChild(taskComponent);
         this.ul.appendChild(li);
     }
-
-   /* patchTask(task) {
-        const taskComponent = this.shadowRoot.querySelector(`my-component-task[data-id="${task.id}"]`);
-        taskComponent.props = task;
-    }
-
-    removeTask(id) {
-        this._props.taskList = this._props.taskList.filter((item) => {
-            return item.id !== id;
-        });
-
-        const tmp = this.shadowRoot.querySelector(`my-component-task[data-id="${id}"]`);
-        if(tmp) {
-            tmp.parentNode.remove();
-        }
-    }*/
 }
 
 customElements.define('my-component-task-list', TaskListComponent);

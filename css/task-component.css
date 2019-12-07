@@ -1,0 +1,35 @@
+div {
+    height: 100%;
+}
+.button-wrapper {
+    margin: auto;
+    display: table-cell;
+    height: 60px;
+    width: 70px;
+    vertical-align: middle;
+}
+
+.left-column{
+    float: left;
+    width: 80%;
+
+}
+
+.right-column{
+    float: right;
+    width: 20%;
+}
+
+td {
+    text-align: center;
+    vertical-align: center;
+}
+table{
+    margin: auto;
+}
+
+p {
+    margin: 10px;
+    padding: 0;
+}
+

@@ -47,9 +47,7 @@ export class TextAreaComponent extends HTMLElement{
 
     addButtonListeners() {
         this._saveButton.addEventListener('click', (event) => {
-            console.dir('click save button');
-            this.props.title = this.textarea.value;
-            eventBus.publish(`changeTask`, this.props);
+            this.saveTask();
         });
 
         this._cancelButton.addEventListener('click', (event) => {
@@ -63,11 +61,25 @@ export class TextAreaComponent extends HTMLElement{
            //console.log('mouseleave', e.target);
             eventBus.publish(`cancelEditing`, this.props);
         }, true);
+
+        this.textarea.addEventListener('keydown', (event) => {
+            console.log(event.key);
+            if (event.key === "Enter") {
+                event.preventDefault();
+                this.saveTask();
+            }
+
+        });
+    }
+
+    saveTask() {
+        this.props.title = this.textarea.value;
+        eventBus.publish(`changeTask`, this.props);
     }
 
     renderButton(){
         this._saveButton = new ButtonComponent({ title: 'Save'});
-        this._cancelButton = new ButtonComponent({ title: 'cancel' });
+        this._cancelButton = new ButtonComponent({ title: 'Cancel' });
         this.wrapper.appendChild(this._saveButton);
         this.wrapper.appendChild(this._cancelButton);
         this.addButtonListeners();

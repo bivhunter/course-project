@@ -1,4 +1,5 @@
 import {dataService} from "./dataService.js";
+import {counterService} from "./CounterService.js";
 import {TaskComponent} from './components/TaskComponent.js';
 import {TodoComponent} from "./components/TodoComponent.js";
 //import styles from "./css/TaskList.css";

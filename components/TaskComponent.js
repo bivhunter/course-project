@@ -1,47 +1,34 @@
 import {ButtonComponent} from "./ButtonComponent.js";
 import {eventBus} from "../eventService.js";
+import {Component} from "./Component.js";
 
 const template = document.createElement('template');
 template.innerHTML = `
-<style>
-    div:hover {
-        background: silver;
-    }
-    
-    :host([data-completed="true"]) {
-      background: aquamarine; 
-      display: block;
-      border: 1px solid red;
-    }
-    
-</style>
-        <div>
-        <p></p>
-</div>    
+        <div class="left-column">
+            <p></p>
+        </div>
+        <div class="right-column">
+        <table>
+        <tr><td class="done-button"></td></tr>
+        <tr><td class="delete-button"></td></tr>
+        </table>
+</div></div>    
     `;
 
-export class TaskComponent extends HTMLElement{
-    constructor(props = {
-        id: '',
-        title: 'New task'
-    }) {
-        super();
-        this.props = props;
-        this.attachShadow({mode: "open"});
+export class TaskComponent extends Component{
+    constructor(props = {}) {
+        super(props);
     }
 
-    set props(value) {
-        this._props = value;
-        this.setDataAttribute()
+    onInit() {
+        this.template = template;
+        this.style = './css/task-component.css';
+        this.setDataAttribute();
     }
 
     setDataAttribute(){
         this.dataset.id = this._props.id;
         this.dataset.completed = this._props.completed;
-    }
-
-    get props() {
-        return this._props;
     }
 
    /* static get observedAttributes(){
@@ -54,15 +41,6 @@ export class TaskComponent extends HTMLElement{
         }
     }*/
 
-    connectedCallback() {
-       this.onInit();
-       this.render();
-    }
-
-    onInit() {
-        this.addListeners();
-    }
-
     addListeners() {
         this.addEventListener('mouseover', () => {
             this.renderButton();
@@ -73,7 +51,6 @@ export class TaskComponent extends HTMLElement{
         this.addEventListener('click', (event) => {
           //  this.clickListener(event);
         });
-
     }
 
     clickListener(event) {
@@ -95,30 +72,29 @@ export class TaskComponent extends HTMLElement{
     }
 
     removeButton() {
-        this.wrapper.removeChild(this._deleteButton);
-        this.wrapper.removeChild(this._todoButton);
-    }
-
-    renderButton(){
-        this._deleteButton = new ButtonComponent({ title: 'Delete'});
-        const title = (this.dataset.completed === 'true') ? 'Not Todo' : 'Todo';
-        this._todoButton = new ButtonComponent({ title: title });
-
-        this.wrapper.appendChild(this._todoButton);
-        this.wrapper.appendChild(this._deleteButton);
+        this.deleteButton.removeChild(this._deleteButton);
+        this.doneButton.removeChild(this._todoButton);
     }
 
     render() {
-        const temp = template.content.cloneNode(true);
+        this.template.querySelector('p').textContent = this._props.title;
 
-        temp.querySelector('p').textContent = this._props.title;
-        this.shadowRoot.appendChild(temp);
-       /* if(this._anchor) {
-            console.log(this._anchor);
-            this._anchor.appendChild(this);
-        }*/
-        this.wrapper = this.shadowRoot.querySelector('div');
+        this.leftColumn = this.template.querySelector('.left-column');
+        this.doneButton = this.template.querySelector('.done-button');
+        this.deleteButton = this.template.querySelector('.delete-button');
+    }
 
+    renderButton(){
+        this._deleteButton = new ButtonComponent({ title: 'Delete', classStyle: "red"});
+
+        if(this.props.completed === 'true') {
+            this._todoButton = new ButtonComponent({ title: 'Not todo', classStyle: 'blue' });
+        } else {
+            this._todoButton = new ButtonComponent({ title: 'Todo', classStyle: 'green' });
+        }
+
+        this.doneButton.appendChild(this._todoButton);
+        this.deleteButton.appendChild(this._deleteButton);
     }
 }
 

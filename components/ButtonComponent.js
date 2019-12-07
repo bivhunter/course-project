@@ -1,4 +1,10 @@
 import {eventBus} from "../eventService.js";
+const template = document.createElement('template');
+
+template.innerHTML = `
+    
+`;
+
 
 export class ButtonComponent extends HTMLElement{
     constructor(props = {}) {
@@ -29,6 +35,15 @@ export class ButtonComponent extends HTMLElement{
     connectedCallback() {
         this.onInit();
         this.render();
+
+    }
+
+    getStyle() {
+        const linkElem = document.createElement('link');
+        linkElem.setAttribute('rel', 'stylesheet');
+        linkElem.setAttribute('type', 'text/css');
+        linkElem.setAttribute('href', './css/button-component.css');
+        this.linkElem = linkElem;
     }
 
     disconnectedCallback() {
@@ -36,13 +51,18 @@ export class ButtonComponent extends HTMLElement{
     }
 
     onInit() {
-
+        this.getStyle();
     }
 
     render() {
+        const tmpl = template.content.cloneNode(true);
         const button = document.createElement('button');
+        button.classList.add(this.props.classStyle);
         button.textContent = this.props.title;
-        this.shadowRoot.appendChild(button);
+        tmpl.append(button);
+        this.shadowRoot.appendChild(this.linkElem);
+        //console.log(this.shadowRoot);
+        this.shadowRoot.append(tmpl);
         this.button = button;
     }
 

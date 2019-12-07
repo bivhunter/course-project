@@ -8,9 +8,11 @@ class DataService {
 
     onInit(){
         this.addListeners();
+        this.filterStatus = 'all'
     }
 
     addListeners() {
+        this.addFilterListeners();
         eventBus.subscribe('todoConnected', () => {
             this.getData()
         });
@@ -33,6 +35,49 @@ class DataService {
            this.addData(task);
         });
     }
+
+    addFilterListeners() {
+        eventBus.subscribe('allFilter', () => {
+            this.filterStatus = 'all';
+            this.updateComponents();
+        });
+
+        eventBus.subscribe('doneFilter', () => {
+            this.filterStatus = 'done';
+            this.updateComponents()
+        });
+
+        eventBus.subscribe('notDoneFilter', () => {
+            this.filterStatus = 'notDone';
+            this.updateComponents()
+        });
+
+    }
+
+    updateComponents() {
+        eventBus.publish('changedData', this.data);
+        eventBus.publish('responseSuccessful', this.filterData());
+    }
+
+    filterData() {
+        let filteredData;
+        switch (this.filterStatus) {
+            case 'all':
+                filteredData = this.data;
+                break;
+            case 'done':
+                filteredData = this.data.filter((item) => {
+                    return item.completed;
+                });
+                break;
+            case 'notDone':
+                filteredData = this.data.filter((item) => {
+                    return !item.completed;
+                });
+        }
+        return filteredData;
+    }
+
 
     createTask(title) {
         return {
@@ -58,7 +103,7 @@ class DataService {
             })
             .then((data) => {
                 this.data.unshift(data);
-                eventBus.publish('responseSuccessful', this.data);
+                this.updateComponents();
             });
 
     }
@@ -79,8 +124,9 @@ class DataService {
 
             } )
             .then(response => {
-                eventBus.publish('responseSuccessful', this.changeTask(response));
-            });
+                this.changeTask(response);
+                this.updateComponents();
+    });
     }
 
     getData() {
@@ -94,10 +140,7 @@ class DataService {
             })
             .then((data) => {
                 this.data = data;
-                data.forEach((item) => {
-                    item.name = item.title;
-                });
-                eventBus.publish('responseSuccessful', data);
+                this.updateComponents();
             })
             .catch((error) => console.log(error));
     }
@@ -115,13 +158,12 @@ class DataService {
                 this.data = this.data.filter((item) => {
                     return item.id !== id;
                 });
-                console.log(this.data);
-                eventBus.publish('responseSuccessful', this.data);
+                this.updateComponents();
             });
     }
 
     changeTask(task) {
-        return this.data.map((item) => {
+       this.data.map((item) => {
            if(task.id === item.id) {
                return task;
            }

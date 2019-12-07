@@ -1,0 +1,36 @@
+button{
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.red{
+    background-color: white;
+    color: black;
+    border: 2px solid red; /* Green */
+}
+
+.red:hover {
+    background-color: red; /* Green */
+    color: white;
+}
+
+.blue{
+    background-color: white;
+    color: black;
+    border: 2px solid blue; /* Green */
+}
+
+.blue:hover {
+    background-color: blue; /* Green */
+    color: white;
+}
+
+.green{
+    background-color: white;
+    color: black;
+    border: 2px solid green; /* Green */
+}
+
+.green:hover {
+    background-color: green; /* Green */
+    color: white;
+}
