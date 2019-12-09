@@ -1,71 +1,37 @@
 import {eventBus} from "../eventService.js";
+import {Component} from "./Component.js";
 const template = document.createElement('template');
 
 template.innerHTML = `
-    
+    <style>
+        @import './css/button-component.css';
+    </style>
 `;
 
 
-export class ButtonComponent extends HTMLElement{
+export class ButtonComponent extends Component{
     constructor(props = {}) {
-        super();
-        this.props = props;
-        this.attachShadow({mode: "open"});
-    }
-
-    set props(value) {
-        this._props = value;
-        this.dataset.title = this.props.title;
-    }
-
-    get props() {
-        return this._props;
-    }
-
- /*   static get observedAttributes() {
-        return ['data-title'];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        if(this.button) {
-            this.button.textContent = newValue;
-        }
-    }
-*/
-    connectedCallback() {
-        this.onInit();
-        this.render();
-
-    }
-
-    getStyle() {
-        const linkElem = document.createElement('link');
-        linkElem.setAttribute('rel', 'stylesheet');
-        linkElem.setAttribute('type', 'text/css');
-        linkElem.setAttribute('href', './css/button-component.css');
-        this.linkElem = linkElem;
-    }
-
-    disconnectedCallback() {
-
+        super(props);
+        this.template = template;
     }
 
     onInit() {
-        this.getStyle();
-    }
-
-    render() {
-        const tmpl = template.content.cloneNode(true);
+        this.setDataAttribute();
         const button = document.createElement('button');
         button.classList.add(this.props.classStyle);
         button.textContent = this.props.title;
-        tmpl.append(button);
-        this.shadowRoot.appendChild(this.linkElem);
-        //console.log(this.shadowRoot);
-        this.shadowRoot.append(tmpl);
         this.button = button;
     }
 
+    addListeners(){}
+
+    setDataAttribute() {
+        this.dataset.title = this.props.title;
+    }
+
+    render() {
+        this.shadowRoot.append(this.button);
+    }
 }
 
 customElements.define("my-component-button", ButtonComponent);

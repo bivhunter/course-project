@@ -1,4 +1,4 @@
-class EventService {
+export class EventService {
     constructor() {
         this.channels = {};
     }

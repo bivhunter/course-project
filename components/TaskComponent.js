@@ -4,42 +4,34 @@ import {Component} from "./Component.js";
 
 const template = document.createElement('template');
 template.innerHTML = `
+        <style>
+            @import './css/task-component.css';
+        </style>
         <div class="left-column">
             <p></p>
         </div>
-        <div class="right-column">
-        <table>
-        <tr><td class="done-button"></td></tr>
-        <tr><td class="delete-button"></td></tr>
-        </table>
-</div></div>    
+            <div class="right-column">
+                <table>
+                    <tr><td class="done-button-wrapper"></td></tr>
+                    <tr><td class="delete-button-wrapper"></td></tr>
+                </table>
+            </div>
     `;
 
 export class TaskComponent extends Component{
     constructor(props = {}) {
         super(props);
+        this.template = template;
     }
 
     onInit() {
-        this.template = template;
-        this.style = './css/task-component.css';
         this.setDataAttribute();
     }
 
     setDataAttribute(){
-        this.dataset.id = this._props.id;
-        this.dataset.completed = this._props.completed;
+        this.dataset.id = this.props.task.id;
+        this.dataset.completed = this.props.task.completed;
     }
-
-   /* static get observedAttributes(){
-        return ['data-completed'];
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        if(this._todoButton) {
-            this._todoButton.dataset.title = (newValue === "true") ? 'no Todo' : "Todo";
-        }
-    }*/
 
     addListeners() {
         this.addEventListener('mouseover', () => {
@@ -62,39 +54,40 @@ export class TaskComponent extends Component{
     }
 
     addButtonListeners() {
-        this._deleteButton.addEventListener('click', (event) => {
-            eventBus.publish(`deletedTask`, this.props.id);
+        this.deleteButton.addEventListener('click', (event) => {
+            eventBus.publish(`deletedTask`, this.props.task.id);
         });
 
-        this._todoButton.addEventListener('click', (event) => {
-            eventBus.publish(`todoTask`, this.props);
+        this.doneButton.addEventListener('click', (event) => {
+            eventBus.publish(`todoTask`, this.props.task);
         });
     }
 
     removeButton() {
-        this.deleteButton.removeChild(this._deleteButton);
-        this.doneButton.removeChild(this._todoButton);
+        this.deleteButtonWrapper.removeChild(this.deleteButton);
+        this.doneButtonWrapper.removeChild(this.doneButton);
     }
 
     render() {
-        this.template.querySelector('p').textContent = this._props.title;
+        this.shadowRoot.querySelector('p').textContent = this.props.task.title;
 
-        this.leftColumn = this.template.querySelector('.left-column');
-        this.doneButton = this.template.querySelector('.done-button');
-        this.deleteButton = this.template.querySelector('.delete-button');
+       // this.leftColumn = this.shadowRoot.querySelector('.left-column');
+        this.doneButtonWrapper = this.shadowRoot.querySelector('.done-button-wrapper');
+        this.deleteButtonWrapper = this.shadowRoot.querySelector('.delete-button-wrapper');
+        this.shadowRoot.appendChild(this.template);
     }
 
     renderButton(){
-        this._deleteButton = new ButtonComponent({ title: 'Delete', classStyle: "red"});
+        this.deleteButton = new ButtonComponent({ title: 'Delete', classStyle: "delete-button"});
 
-        if(this.props.completed === 'true') {
-            this._todoButton = new ButtonComponent({ title: 'Not todo', classStyle: 'blue' });
+        if(this.props.task.completed) {
+            this.doneButton = new ButtonComponent({ title: 'Not todo', classStyle: 'not-todo-button' });
         } else {
-            this._todoButton = new ButtonComponent({ title: 'Todo', classStyle: 'green' });
+            this.doneButton = new ButtonComponent({ title: 'Todo', classStyle: 'todo-button' });
         }
 
-        this.doneButton.appendChild(this._todoButton);
-        this.deleteButton.appendChild(this._deleteButton);
+        this.doneButtonWrapper.appendChild(this.doneButton);
+        this.deleteButtonWrapper.appendChild(this.deleteButton);
     }
 }
 

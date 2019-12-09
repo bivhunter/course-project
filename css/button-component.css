@@ -1,36 +1,45 @@
 button{
-    transition-duration: 0.4s;
+    transition-duration: 0.6s;
     cursor: pointer;
 }
-.red{
+.delete-button, .cancel-button{
     background-color: white;
     color: black;
     border: 2px solid red; /* Green */
 }
 
-.red:hover {
+.delete-button:hover, .cancel-button:hover {
     background-color: red; /* Green */
     color: white;
 }
 
-.blue{
+.not-todo-button{
     background-color: white;
     color: black;
     border: 2px solid blue; /* Green */
 }
 
-.blue:hover {
+.not-todo-button:hover {
     background-color: blue; /* Green */
     color: white;
 }
 
-.green{
+
+
+.todo-button, .save-button{
     background-color: white;
     color: black;
     border: 2px solid green; /* Green */
 }
 
-.green:hover {
+.todo-button:hover, .save-button:hover {
     background-color: green; /* Green */
     color: white;
 }
+
+
+
+
+
+
+

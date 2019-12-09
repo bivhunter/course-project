@@ -3,7 +3,6 @@ import {eventBus} from "./eventService.js";
 class CounterService {
     constructor() {
         this.onInit();
-        console.log('create counter');
     }
 
     onInit() {
@@ -12,7 +11,6 @@ class CounterService {
 
     addListeners() {
         eventBus.subscribe("changedData", (data) => {
-            console.log('CounterService', data);
             const res = this.countTasks(data);
             eventBus.publish('countedTasks', res);
         })

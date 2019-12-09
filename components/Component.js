@@ -1,17 +1,21 @@
+const defaultTemplate = document.createElement('template');
+
+
+
 export class Component extends HTMLElement {
     constructor(props){
         super();
+        this.attachShadow({mode: 'open'});
         this.props = props;
+        this.template = defaultTemplate;
+        this.onInit();
     }
 
     connectedCallback() {
-        this.onInit();
-        this.attachShadow({mode: 'open'});
+
+
         this.addListeners();
         this.render();
-        this.renderTemplate();
-
-
     }
 
 
@@ -29,31 +33,28 @@ export class Component extends HTMLElement {
 
 
     set template(template) {
-        if(!this._template) {
-            this._template = template.content.cloneNode( true );
-        }
+        this._template = template.content.cloneNode( true );
+        this.shadowRoot.appendChild(this._template);
     }
 
     get template() {
         return this._template;
     }
 
-    set style(url) {
+    /*set styleUrl(url) {
         const linkElem = document.createElement('link');
         linkElem.setAttribute('rel', 'stylesheet');
         linkElem.setAttribute('type', 'text/css');
         linkElem.setAttribute('href', url);
+        this.shadowRoot.append(linkElem);
         this._style = linkElem;
     }
 
     get style() {
         return this._style;
     }
+*/
 
-    renderTemplate() {
-        this.template.append(this.style);
-        this.shadowRoot.appendChild(this.template);
-    }
 
 
 

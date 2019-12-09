@@ -1,4 +1,4 @@
-
+import {Component} from "./Component.js";
 import {ButtonComponent} from "./ButtonComponent.js";
 import {eventBus} from "../eventService.js";
 ///import {TaskComponent} from "./TaskComponent";
@@ -6,64 +6,44 @@ import {eventBus} from "../eventService.js";
 const template = document.createElement('template');
 template.innerHTML = `
 <style>
-    div {
-        outline: blue 1px groove;
-    }
+   @import "./css/textarea-component.css";
 </style>
-        <div>
-        <textarea autofocus></textarea>
-</div>    
+        <div class="left-column">
+            <textarea ></textarea>
+        </div>
+        <div class="right-column">
+             <table>
+                <tr><td class="save-button-wrapper"></td></tr>
+                <tr><td class="cancel-button-wrapper"></td></tr>
+             </table>
+        </div>    
     `;
 
-export class TextAreaComponent extends HTMLElement{
+export class TextAreaComponent extends Component{
     constructor(props) {
-        super();
-        this.props = props;
-    }
-
-    connectedCallback() {
-        this.onInit();
-        this.render();
-        this.renderButton();
+        super(props);
+        this.template = template;
+        this.initElements();
     }
 
     onInit() {
-        this.attachShadow({mode: 'open'});
-       //this.addListeners();
+
     }
 
-    render() {
-        const temp = template.content.cloneNode(true);
-        this.textarea = temp.querySelector('textarea');
-        this.textarea.value = this.props.title;
-
-        this.shadowRoot.appendChild(temp);
-        /* if(this._anchor) {
-             console.log(this._anchor);
-             this._anchor.appendChild(this);
-         }*/
-        this.wrapper = this.shadowRoot.querySelector('div');
+    focus() {
+        this.textarea.focus();
     }
 
-    addButtonListeners() {
-        this._saveButton.addEventListener('click', (event) => {
-            this.saveTask();
-        });
-
-        this._cancelButton.addEventListener('click', (event) => {
-            eventBus.publish(`cancelEditing`, this.props);
-        });
-
-        this.wrapper.addEventListener('mouseleave', (e) => {
-            if(e.target.tagName !== "DIV") {
+    addListeners() {
+        this.addEventListener('mouseleave', (e) => {
+            if(e.target.tagName !== this.tagName) {
                 return;
             }
-           //console.log('mouseleave', e.target);
-            eventBus.publish(`cancelEditing`, this.props);
+            eventBus.publish(`cancelEditing`, this.props.task);
         }, true);
 
         this.textarea.addEventListener('keydown', (event) => {
-            console.log(event.key);
+           // console.log(event.key);
             if (event.key === "Enter") {
                 event.preventDefault();
                 this.saveTask();
@@ -72,18 +52,45 @@ export class TextAreaComponent extends HTMLElement{
         });
     }
 
-    saveTask() {
-        this.props.title = this.textarea.value;
-        eventBus.publish(`changeTask`, this.props);
+    initElements() {
+        this.textarea = this.shadowRoot.querySelector('textarea');
+        this.textarea.value = this.props.task.title;
+        this.dataset.completed = this.props.task.completed;
+    }
+
+    render() {
+        this.saveButtonWrapper = this.shadowRoot.querySelector('.save-button-wrapper');
+        this.cancelButtonWrapper = this.shadowRoot.querySelector('.cancel-button-wrapper');
+        this.renderButton();
     }
 
     renderButton(){
-        this._saveButton = new ButtonComponent({ title: 'Save'});
-        this._cancelButton = new ButtonComponent({ title: 'Cancel' });
-        this.wrapper.appendChild(this._saveButton);
-        this.wrapper.appendChild(this._cancelButton);
+        this.saveButton = new ButtonComponent({ title: 'Save', classStyle: 'save-button'});
+        this.cancelButton = new ButtonComponent({ title: 'Cancel', classStyle: 'cancel-button' });
+        this.saveButtonWrapper.appendChild(this.saveButton);
+        this.cancelButtonWrapper.appendChild(this.cancelButton);
         this.addButtonListeners();
     }
+
+    addButtonListeners() {
+        this.saveButton.addEventListener('click', (event) => {
+            this.saveTask();
+        });
+
+        this.cancelButton.addEventListener('click', (event) => {
+            eventBus.publish(`cancelEditing`, this.props.task);
+        });
+
+
+    }
+
+    saveTask() {
+        this.props.task.title = this.textarea.value;
+        eventBus.publish(`changeTask`, this.props.task);
+
+    }
+
+
 
 }
 

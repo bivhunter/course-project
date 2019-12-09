@@ -1,13 +1,37 @@
 div {
     height: 100%;
 }
-.button-wrapper {
+
+/*.button-wrapper {
     margin: auto;
     display: table-cell;
     height: 60px;
     width: 70px;
     vertical-align: middle;
+}*/
+/*:host{
+    height: 100%;
+    width: 100%;
+    display: block;
 }
+
+:host([data-completed = "true"]){
+    background: #81FFD6;
+}
+
+:host(:hover[data-completed = "true"]){
+    background: #68E8BD;
+}
+
+:host([data-completed = "false"]){
+    background: #EBE0FF;
+}
+
+:host(:hover[data-completed = "false"]){
+    background: #DBD0F0;
+}*/
+
+
 
 .left-column{
     float: left;
