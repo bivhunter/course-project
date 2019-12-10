@@ -1,8 +1,9 @@
-import {eventBus} from "../eventService.js";
+import {eventBus} from "../services/eventService.js";
 import {TaskListComponent} from "./TaskListComponent.js";
 import {InputComponent} from "./InputComponent.js";
 import {FilterComponent} from "./FilterComponent.js";
 import {CounterComponent} from "./CounterComponent.js";
+import {Component} from "./Component.js";
 
 const template = document.createElement('template');
 
@@ -28,43 +29,51 @@ template.innerHTML = `
     <div class="right-column"></div>
 `;
 
-export class TodoComponent extends HTMLElement{
-    constructor(props = {taskList: []}) {
-        super();
-        this._props = props;
-        this.onInit();
+export class TodoComponent extends Component{
+    constructor(props) {
+        super(props);
+        //this.eventService = props.eventService;
+        //this.actionService = props.actionService;
+        console.log(template, 'todo constructor')
+        this.template = template;
+       // this.onInit();
     }
 
-    connectedCallback() {
+   /* connectedCallback() {
         this.render();
 
-        eventBus.publish('todoConnected');
-        /*eventBus.subscribe('responseSuccessful', (data) => {
+        /!*eventBus.publish('todoConnected');
+        eventBus.subscribe('responseSuccessful', (data) => {
             this._props.taskList = data;
             this.render();
-        });*/
-    }
+        });*!/
+    }*/
 
     onInit() {
-        this.attachShadow({mode: 'open'});
+        this.eventService.subscribe('stateChanged', (state) => {
+            this.taskList.props = {
+                ...this.taskList.props,
+                taskList: state.todoView
+            };
+            console.log(this.taskList);
+        });
     }
 
     render() {
 
-        const tmpl = template.content.cloneNode(true);
-        const leftColumn = tmpl.querySelector('.left-column');
-        const rightColumn = tmpl.querySelector('.right-column');
+        const leftColumn = this.shadowRoot.querySelector('.left-column');
+        const rightColumn = this.shadowRoot.querySelector('.right-column');
+        console.log(this.shadowRoot)
+        this.taskList = new TaskListComponent({...this.props, anchor: leftColumn});
+        const input = new InputComponent({actionService: this.actionService});
+        const filter = new FilterComponent({actionService: this.actionService});
+        const counter = new CounterComponent({actionService: this.actionService});
 
-        const taskList = new TaskListComponent();
-        const input = new InputComponent();
-        const filter = new FilterComponent();
-        const counter = new CounterComponent();
 
 
         leftColumn.append(input, filter, taskList);
         rightColumn.appendChild(counter);
 
-        this.shadowRoot.appendChild(tmpl);
     }
 
 }

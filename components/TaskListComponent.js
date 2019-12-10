@@ -1,6 +1,6 @@
 import {TaskComponent} from "./TaskComponent.js";
 //import styles from "../css/TaskList.css";
-import {eventBus} from "../eventService.js";
+import {eventBus} from "../services/eventService.js";
 import {TextAreaComponent} from "./textAreaComponent.js";
 import {Component} from "./Component.js";
 
@@ -16,7 +16,7 @@ template.innerHTML = `
 `;
 
 export class TaskListComponent extends Component {
-    constructor(props = {taskList: []}){
+    constructor(props){
         super(props);
         this.template = template;
     }
@@ -29,10 +29,10 @@ export class TaskListComponent extends Component {
     addListeners() {
         this.addEventListener('click', this.clickListener.bind(this));
 
-        eventBus.subscribe('responseSuccessful', (data) => {
+       /* eventBus.subscribe('responseSuccessful', (data) => {
             this.props.taskList = data;
             this.renderList();
-        });
+        });*/
 
         eventBus.subscribe('cancelEditing', (task) => {
             this.editingLi.innerHTML = "";
@@ -79,6 +79,7 @@ export class TaskListComponent extends Component {
     }
 
     renderList() {
+        console.log(this.shadowRoot)
         this.ul.innerHTML = '';
         this.props.taskList.forEach((task) => {
             this.addTask(task);

@@ -1,6 +1,6 @@
 import {Component} from "./Component.js";
 import {ButtonComponent} from "./ButtonComponent.js";
-import {eventBus} from "../eventService.js";
+import {eventBus} from "../services/eventService.js";
 ///import {TaskComponent} from "./TaskComponent";
 
 const template = document.createElement('template');

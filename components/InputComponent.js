@@ -1,5 +1,5 @@
 import {ButtonComponent} from "./ButtonComponent.js";
-import {eventBus} from "../eventService.js";
+import {eventBus} from "../services/eventService.js";
 
 const template = document.createElement('template');
 
@@ -19,8 +19,9 @@ template.innerHTML = `
 `;
 
 export class InputComponent extends HTMLElement{
-    constructor(anchor) {
+    constructor(props) {
         super();
+        this.props = props;
     }
 
     connectedCallback() {
@@ -52,7 +53,8 @@ export class InputComponent extends HTMLElement{
     }
 
     addTask() {
-        eventBus.publish('addTask', this._input.value );
+        this.props.actionService.dispatch('addTask', this._input.value);
+        //eventBus.publish('addTask', this._input.value );
         this._input.value = '';
     }
 

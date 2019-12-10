@@ -1,20 +1,23 @@
-import {eventBus} from "../eventService.js";
-import {EventService} from "../eventService.js";
+import {eventBus} from "../services/eventService.js";
 
-class Store{
-    constructor(reducers){
-        this.reducers = reducers;
+
+export class Store{
+    constructor(props){
+        this.reducers = props.reducers;
+        this.eventService = props.eventService;
         this.state = {
-            todo: [],
-        }
-        this.events = new EventService();
+            todoList: [],
+            todoView: []
+        };
+
     }
 
-    publish(actionType, payload) {
+    dispatch(actionType, payload) {
         if(this.reducers[actionType]) {
             this.state = this.reducers[actionType](payload, this.state);
         }
-        this.events.publish('change', this.state);
+        console.log('state');
+        this.eventService.publish('stateChanged', this.state);
     }
 
 }

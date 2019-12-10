@@ -1,15 +1,20 @@
 import {eventBus} from "./eventService.js";
+import {EventService} from "./eventService.js";
 
 class DataService {
     constructor(url) {
         this.url = url;
+        this.eventService = new EventService();
         this.onInit();
+
     }
 
     onInit(){
         this.addListeners();
         this.filterStatus = 'all'
     }
+
+
 
     addListeners() {
         this.addFilterListeners();

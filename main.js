@@ -1,15 +1,36 @@
-import {dataService} from "./dataService.js";
-import {counterService} from "./CounterService.js";
+import {counterService} from "./services/CounterService.js";
 import {TaskComponent} from './components/TaskComponent.js';
+import {EventService} from "./services/eventService.js";
 import {TodoComponent} from "./components/TodoComponent.js";
+import {RequestService} from "./services/requestService.js";
+import {ActionServices} from "./services/actionService.js";
+import {createReducers} from "./store/reducers.js";
+import {Store} from "./store/store.js";
 //import styles from "./css/TaskList.css";
 
-
-
+const url = 'https://jsonplaceholder.typicode.com/todos/';
+const requestService = new RequestService(url);
+const eventService = new EventService();
 const div = document.createElement('div');
-div.classList.add('main');
 document.body.appendChild(div);
-div.appendChild(new TodoComponent());
+
+
+const redusers = createReducers();
+const store = new Store({redusers, eventService });
+const actionService = new ActionServices({requestService, store});
+const todoComponent = new TodoComponent({
+    eventService,
+    actionService,
+    anchor: div,
+    todoView: ['No tasks'],
+});
+
+
+//const div = document.createElement('div');
+div.classList.add('main');
+
+
+div.appendChild(todoComponent);
 
 
 

@@ -1,5 +1,5 @@
 import {ButtonComponent} from "./ButtonComponent.js";
-import {eventBus} from "../eventService.js";
+import {eventBus} from "../services/eventService.js";
 import {Component} from "./Component.js";
 
 const template = document.createElement('template');

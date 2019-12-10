@@ -6,16 +6,21 @@ export class Component extends HTMLElement {
     constructor(props){
         super();
         this.attachShadow({mode: 'open'});
-        this.props = props;
-        this.template = defaultTemplate;
+        this._template = defaultTemplate;
+
+        this.actionService = props.actionService;
+        this.eventService = props.eventService;
+
+        this._props = props;
         this.onInit();
+        this.props.anchor.appendChild(this);
+
+        // this.render();
     }
 
     connectedCallback() {
-
-
-        this.addListeners();
         this.render();
+       // this.addListeners();
     }
 
 
@@ -24,7 +29,12 @@ export class Component extends HTMLElement {
     }
 
     set props(value) {
-        this._props = value;
+        this._props = {
+            ...this.props,
+            ...value
+        };
+        console.log(this, this._props);
+        this.render();
     }
 
     get props() {
@@ -34,6 +44,7 @@ export class Component extends HTMLElement {
 
     set template(template) {
         this._template = template.content.cloneNode( true );
+        console.log(this._template, template, 'template')
         this.shadowRoot.appendChild(this._template);
     }
 
