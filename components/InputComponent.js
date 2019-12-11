@@ -1,4 +1,5 @@
 import {ButtonComponent} from "./ButtonComponent.js";
+import {Component} from "./Component.js";
 import {eventBus} from "../services/eventService.js";
 
 const template = document.createElement('template');
@@ -18,60 +19,50 @@ template.innerHTML = `
     </div>
 `;
 
-export class InputComponent extends HTMLElement{
+export class InputComponent extends Component{
     constructor(props) {
-        super();
-        this.props = props;
-    }
-
-    connectedCallback() {
-        this.onInit();
-        this.render();
+        super(props);
     }
 
     onInit() {
-        this.attachShadow({mode : 'open'});
-        this.addListeners();
+        this.template = template;
+       this.render();
+    }
+
+    connectedCallback() {
+     //  this.addListeners();
     }
 
     addListeners() {
-
-    }
-
-    addButtonListeners() {
-        this._button.addEventListener('click', (event) => {
-           this.addTask();
+        this.button.addEventListener('click', (event) => {
+            this.addTask();
         });
 
-        this._input.addEventListener('keydown', (event) => {
-            console.log(event.key);
+        this.input.addEventListener('keydown', (event) => {
             if (event.key === "Enter") {
                 this.addTask();
             }
 
         });
     }
-
+  
     addTask() {
-        this.props.actionService.dispatch('addTask', this._input.value);
-        //eventBus.publish('addTask', this._input.value );
-        this._input.value = '';
+        if(!this.input.value) {
+            return;
+        }
+        this.props.actionService.dispatch('addTask', this.input.value);
+        //eventBus.publish('addTask', this.input.value );
+        this.input.value = '';
     }
 
     render() {
-        const tmpl = template.content.cloneNode(true);
-        this._input = tmpl.querySelector('input');
-        //ocus();
-        const div = tmpl.querySelector('div');
+        console.log('render')
+        this.anchor.appendChild(this);
+        this.input = this.shadowRoot.querySelector('input');
+        const div = this.shadowRoot.querySelector('div');
+        this.button = new ButtonComponent({ title: 'Add task', anchor: div, classStyle: 'add-button' });
 
-        this._button = new ButtonComponent({
-            title: 'Add task'
-        });
-        this.addButtonListeners();
-
-
-        div.appendChild(this._button);
-        this.shadowRoot.appendChild(tmpl);
+        this.addListeners();
     }
 }
 

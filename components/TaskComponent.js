@@ -21,10 +21,12 @@ template.innerHTML = `
 export class TaskComponent extends Component{
     constructor(props = {}) {
         super(props);
-        this.template = template;
+
     }
 
     onInit() {
+        this.template = template;
+        this.render();
         this.setDataAttribute();
     }
 
@@ -69,15 +71,18 @@ export class TaskComponent extends Component{
     }
 
     render() {
+        this.anchor.appendChild(this);
         this.shadowRoot.querySelector('p').textContent = this.props.task.title;
 
        // this.leftColumn = this.shadowRoot.querySelector('.left-column');
-        this.doneButtonWrapper = this.shadowRoot.querySelector('.done-button-wrapper');
-        this.deleteButtonWrapper = this.shadowRoot.querySelector('.delete-button-wrapper');
-        this.shadowRoot.appendChild(this.template);
+
+
     }
 
     renderButton(){
+        this.doneButtonWrapper = this.shadowRoot.querySelector('.done-button-wrapper');
+        this.deleteButtonWrapper = this.shadowRoot.querySelector('.delete-button-wrapper');
+
         this.deleteButton = new ButtonComponent({ title: 'Delete', classStyle: "delete-button"});
 
         if(this.props.task.completed) {

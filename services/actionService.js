@@ -10,6 +10,7 @@ export class ActionServices {
     }
 
     onInit() {
+        console.log('init actionService');
         this.dispatch('initApplication', '');
     }
 
@@ -19,17 +20,19 @@ export class ActionServices {
                 title: title,
                 completed: false,
             }),
-            'initApplication': () => this.getTaskList
+            'initApplication': () => this.getTaskList()
         }
     }
 
     dispatch(action, payload) {
         if(this.handlers[action]) {
+            console.log('dispatch actionService', action, payload);
             this.handlers[action](payload);
         }
     }
 
     getTaskList() {
+        console.log('getTaskList')
         this.requestService.get()
             .then(data => this.store.dispatch('INIT_STATE', data));
     }

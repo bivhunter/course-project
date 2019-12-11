@@ -25,55 +25,64 @@ template.innerHTML = `
     }
     
 </style>
-    <div class="left-column"></div>
+    <div class="header"><h1>Todo Application</h1></div>
+    <div class="left-column">
+        <div class="input-wrapper"></div>
+        <div class="filter-wrapper"></div>
+        <div class="todo-list-wrapper"></div>
+    </div>
     <div class="right-column"></div>
 `;
 
 export class TodoComponent extends Component{
     constructor(props) {
         super(props);
-        //this.eventService = props.eventService;
-        //this.actionService = props.actionService;
-        console.log(template, 'todo constructor')
-        this.template = template;
-       // this.onInit();
     }
 
-   /* connectedCallback() {
-        this.render();
-
-        /!*eventBus.publish('todoConnected');
-        eventBus.subscribe('responseSuccessful', (data) => {
-            this._props.taskList = data;
-            this.render();
-        });*!/
-    }*/
+    set state(value) {
+        this._state = {...value};
+    }
 
     onInit() {
-        this.eventService.subscribe('stateChanged', (state) => {
-            this.taskList.props = {
-                ...this.taskList.props,
-                taskList: state.todoView
-            };
-            console.log(this.taskList);
-        });
+        this.template = template;
+        this.render();
+    }
+
+
+    connectedCallback() {
+      // addEventListener();
     }
 
     render() {
-
-        const leftColumn = this.shadowRoot.querySelector('.left-column');
+        this.anchor.appendChild(this);
+       // const leftColumn = this.shadowRoot.querySelector('.left-column');
         const rightColumn = this.shadowRoot.querySelector('.right-column');
-        console.log(this.shadowRoot)
-        this.taskList = new TaskListComponent({...this.props, anchor: leftColumn});
-        const input = new InputComponent({actionService: this.actionService});
-        const filter = new FilterComponent({actionService: this.actionService});
-        const counter = new CounterComponent({actionService: this.actionService});
+        const todoListWrapper = this.shadowRoot.querySelector('.todo-list-wrapper');
+        const inputWrapper = this.shadowRoot.querySelector('.input-wrapper');
+        const filterWrapper = this.shadowRoot.querySelector('.filter-wrapper');
+        //console.log(this.shadowRoot);
+
+        const input = new InputComponent({...this.props, anchor: inputWrapper});
+        this.taskList = new TaskListComponent({...this.props, anchor: todoListWrapper});
+
+        //this.filter = new FilterComponent({...this.props, anchor: filterWrapper});
+        //this.counter = new CounterComponent({...this.props, anchor: rightColumn});
+
+        this.addListeners();
+    }
 
 
 
-        leftColumn.append(input, filter, taskList);
-        rightColumn.appendChild(counter);
-
+    addListeners(){
+        this.eventService.subscribe('stateChanged', (state) => {
+            this.state = state;
+            console.log(state)
+            this.sendState([
+                this.taskList,
+                //this.filter,
+                //this.counter,
+            ], state);
+        });
     }
 
 }

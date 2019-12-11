@@ -1,40 +1,55 @@
-const defaultTemplate = document.createElement('template');
-
+const template = document.createElement('template');
+template.innerHTML ="default template";
 
 
 export class Component extends HTMLElement {
     constructor(props){
         super();
         this.attachShadow({mode: 'open'});
-        this._template = defaultTemplate;
+        //this.template = template;
 
         this.actionService = props.actionService;
         this.eventService = props.eventService;
+        this.anchor = props.anchor;
 
-        this._props = props;
+        this.props = props;
         this.onInit();
-        this.props.anchor.appendChild(this);
+        //this.state = props.state;
+
+
+
+        //this.props.anchor.appendChild(this);
 
         // this.render();
     }
 
     connectedCallback() {
-        this.render();
-       // this.addListeners();
+        // this.render();
+       //this.addListeners();
     }
 
 
     onInit() {
-
+      //  console.log('init ', this);
     }
+
+    set state(value) {
+        this._state = {...value};
+        this.render();
+    }
+
+    get state() {
+        return this._state;
+    }
+
 
     set props(value) {
         this._props = {
             ...this.props,
             ...value
         };
-        console.log(this, this._props);
-        this.render();
+       // console.log(this, this._props);
+
     }
 
     get props() {
@@ -44,12 +59,16 @@ export class Component extends HTMLElement {
 
     set template(template) {
         this._template = template.content.cloneNode( true );
-        console.log(this._template, template, 'template')
+       // console.log('template', this._template, template )
         this.shadowRoot.appendChild(this._template);
     }
 
     get template() {
         return this._template;
+    }
+
+    sendState(componentList, state) {
+        componentList.forEach((component) => component.state = state);
     }
 
     /*set styleUrl(url) {

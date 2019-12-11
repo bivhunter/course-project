@@ -1,6 +1,7 @@
 export class RequestService{
     constructor(url) {
         this.url = url;
+        console.log('init requestService');
     }
 
     post(task) {
@@ -20,6 +21,7 @@ export class RequestService{
     }
 
     get() {
+        console.log('get');
         return fetch(this.url)
             .then((response) => {
                 if (!response.ok) {

@@ -9,6 +9,7 @@ export class Store{
             todoList: [],
             todoView: []
         };
+        console.log('init store');
 
     }
 

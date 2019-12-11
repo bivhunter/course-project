@@ -1,6 +1,6 @@
 export function createReducers() {
     return {
-        'INIT_STORE' : (payLoad, state) => {
+        'INIT_STATE' : (payLoad, state) => {
             return {
                 ...state,
                 todoList: [...payLoad],
@@ -11,7 +11,7 @@ export function createReducers() {
             return {
                 ...state,
                 todoList: [payLoad, ...state.todoList],
-                todoView: [...state.todoView],
+                todoView: [payLoad, ...state.todoView],
             }
         },
         removeItem: (payLoad, state) => {

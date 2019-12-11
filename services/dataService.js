@@ -3,6 +3,7 @@ import {EventService} from "./eventService.js";
 
 class DataService {
     constructor(url) {
+        console.log('init dataService');
         this.url = url;
         this.eventService = new EventService();
         this.onInit();

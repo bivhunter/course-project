@@ -15,14 +15,16 @@ const div = document.createElement('div');
 document.body.appendChild(div);
 
 
-const redusers = createReducers();
-const store = new Store({redusers, eventService });
+const reducers = createReducers();
+console.log(reducers)
+const store = new Store({reducers, eventService });
 const actionService = new ActionServices({requestService, store});
+
 const todoComponent = new TodoComponent({
     eventService,
     actionService,
     anchor: div,
-    todoView: ['No tasks'],
+    state: {todoView: [{title: 'No tasks'}]},
 });
 
 

@@ -18,10 +18,11 @@ template.innerHTML = `
 export class TaskListComponent extends Component {
     constructor(props){
         super(props);
-        this.template = template;
+        //this.template = template;
     }
 
     onInit() {
+        this.template = template;
         /*this.attachShadow({mode: 'open'});
         this.addListeners();*/
     }
@@ -73,25 +74,23 @@ export class TaskListComponent extends Component {
     }
 
     render() {
+        this.anchor.appendChild(this);
         this.ul = this.shadowRoot.querySelector('ul');
         this.renderList();
 
     }
 
     renderList() {
-        console.log(this.shadowRoot)
+        //console.log(this.shadowRoot)
         this.ul.innerHTML = '';
-        this.props.taskList.forEach((task) => {
+        this.state.todoView.forEach((task) => {
             this.addTask(task);
         });
     }
 
     addTask(task) {
         const li = document.createElement('li');
-        const taskComponent = new TaskComponent({
-            task: task,
-        });
-        li.appendChild(taskComponent);
+        const taskComponent = new TaskComponent({...this.props, anchor: li, task: task});
         this.ul.appendChild(li);
     }
 }

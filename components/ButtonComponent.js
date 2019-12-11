@@ -10,17 +10,14 @@ template.innerHTML = `
 
 
 export class ButtonComponent extends Component{
-    constructor(props = {}) {
+    constructor(props) {
         super(props);
-        this.template = template;
     }
 
     onInit() {
+        this.template = template;
+        this.render();
         this.setDataAttribute();
-        const button = document.createElement('button');
-        button.classList.add(this.props.classStyle);
-        button.textContent = this.props.title;
-        this.button = button;
     }
 
     addListeners(){}
@@ -30,7 +27,12 @@ export class ButtonComponent extends Component{
     }
 
     render() {
-        this.shadowRoot.append(this.button);
+        const button = document.createElement('button');
+        console.log(this.props)
+        button.classList.add(this.props.classStyle);
+        button.textContent = this.props.title;
+        this.shadowRoot.appendChild(button);
+        this.anchor.appendChild(this);
     }
 }
 
