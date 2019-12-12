@@ -14,10 +14,10 @@ export class Store{
     }
 
     dispatch(actionType, payload) {
+
         if(this.reducers[actionType]) {
             this.state = this.reducers[actionType](payload, this.state);
         }
-        console.log('state');
         this.eventService.publish('stateChanged', this.state);
     }
 

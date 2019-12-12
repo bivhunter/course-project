@@ -28,7 +28,7 @@ export class ButtonComponent extends Component{
 
     render() {
         const button = document.createElement('button');
-        console.log(this.props)
+        //console.log(this.props)
         button.classList.add(this.props.classStyle);
         button.textContent = this.props.title;
         this.shadowRoot.appendChild(button);

@@ -14,13 +14,28 @@ export function createReducers() {
                 todoView: [payLoad, ...state.todoView],
             }
         },
-        removeItem: (payLoad, state) => {
+        'DELETE_TODO': (payLoad, state) => {
             return {
                 ...state,
-                todo: [
-                    ...state.slice(0, payLoad.id),
-                    ...state.slice(payLoad.id + 1, state.todo.length)
-                ]
+                todoList: [...state.todoList.filter((item) => item.id !== payLoad)],
+                todoView: [...state.todoView.filter((item) => item.id !== payLoad)],
+            }
+        },
+        'CHANGE_TODO': (payload, state) => {
+            return {
+                ...state,
+                todoList: [...state.todoList.map((item) => {
+                    if(item.id === payload.id) {
+                        return payload;
+                    }
+                    return item;
+                })],
+                todoView: [...state.todoView.map((item) => {
+                    if(item.id === payload.id) {
+                        return payload;
+                    }
+                    return item;
+                })],
             }
         }
 

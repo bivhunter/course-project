@@ -41,6 +41,7 @@ export class TodoComponent extends Component{
 
     set state(value) {
         this._state = {...value};
+        this.props.state = this._state;
     }
 
     onInit() {
@@ -76,7 +77,7 @@ export class TodoComponent extends Component{
     addListeners(){
         this.eventService.subscribe('stateChanged', (state) => {
             this.state = state;
-            console.log(state)
+            //console.log(state)
             this.sendState([
                 this.taskList,
                 //this.filter,

@@ -31,4 +31,33 @@ export class RequestService{
             });
     }
 
+    delete(id) {
+       return fetch( `${this.url}/${id}`, {
+            method: 'DELETE',
+        } )
+            .then( ( response ) => {
+                if ( !response.ok ) {
+                    throw new Error( "File not found" );
+                }
+            } );
+    }
+
+    put(task) {
+        return fetch( `${this.url}/${task.id}`, {
+            method: 'PUT',
+            body: JSON.stringify( task ),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        } )
+            .then( ( response ) => {
+                if ( !response.ok ) {
+                    throw new Error( "File not found" );
+                }
+                return response.json();
+            } );
+
+    }
+
+
 }

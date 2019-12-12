@@ -43,25 +43,25 @@ export class TaskComponent extends Component{
 
         this.addEventListener('mouseout', this.removeButton.bind(this));
         this.addEventListener('click', (event) => {
-          //  this.clickListener(event);
+            return this.clickListener(event);
         });
     }
 
     clickListener(event) {
-        console.log(event.composedPath());
         if(event.target.tagName !== "MY-COMPONENT-TASK") {
             return;
         }
-        console.log('click', event.target);
+        this.actionService.dispatch(`startEditTask`, this.props.task);
     }
 
     addButtonListeners() {
         this.deleteButton.addEventListener('click', (event) => {
-            eventBus.publish(`deletedTask`, this.props.task.id);
+            console.log(this.props)
+            this.actionService.dispatch(`deletedTask`, this.props.task.id);
         });
 
         this.doneButton.addEventListener('click', (event) => {
-            eventBus.publish(`todoTask`, this.props.task);
+            this.actionService.dispatch(`doneTask`, this.props.task);
         });
     }
 
@@ -74,6 +74,8 @@ export class TaskComponent extends Component{
         this.anchor.appendChild(this);
         this.shadowRoot.querySelector('p').textContent = this.props.task.title;
 
+        this.addListeners();
+
        // this.leftColumn = this.shadowRoot.querySelector('.left-column');
 
 
@@ -83,16 +85,26 @@ export class TaskComponent extends Component{
         this.doneButtonWrapper = this.shadowRoot.querySelector('.done-button-wrapper');
         this.deleteButtonWrapper = this.shadowRoot.querySelector('.delete-button-wrapper');
 
-        this.deleteButton = new ButtonComponent({ title: 'Delete', classStyle: "delete-button"});
+        this.deleteButton = new ButtonComponent({
+            title: 'Delete',
+            classStyle: "delete-button",
+            anchor: this.deleteButtonWrapper
+        });
 
         if(this.props.task.completed) {
-            this.doneButton = new ButtonComponent({ title: 'Not todo', classStyle: 'not-todo-button' });
+            this.doneButton = new ButtonComponent({
+                title: 'Not todo',
+                classStyle: 'not-todo-button',
+                anchor: this.doneButtonWrapper
+            });
         } else {
-            this.doneButton = new ButtonComponent({ title: 'Todo', classStyle: 'todo-button' });
+            this.doneButton = new ButtonComponent({
+                title: 'Todo',
+                classStyle: 'todo-button',
+                anchor: this.doneButtonWrapper
+            });
         }
 
-        this.doneButtonWrapper.appendChild(this.doneButton);
-        this.deleteButtonWrapper.appendChild(this.deleteButton);
     }
 }
 

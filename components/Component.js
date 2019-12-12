@@ -35,6 +35,7 @@ export class Component extends HTMLElement {
 
     set state(value) {
         this._state = {...value};
+        this.props.state = this._state;
         this.render();
     }
 
