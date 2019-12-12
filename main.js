@@ -1,11 +1,27 @@
-import {counterService} from "./services/CounterService.js";
-import {TaskComponent} from './components/TaskComponent.js';
-import {EventService} from "./services/eventService.js";
-import {TodoComponent} from "./components/TodoComponent.js";
-import {RequestService} from "./services/requestService.js";
-import {ActionServices} from "./services/actionService.js";
-import {createReducers} from "./store/reducers.js";
-import {Store} from "./store/store.js";
+import {
+    counterService
+} from "./services/CounterService.js";
+import {
+    TaskComponent
+} from './components/TaskComponent.js';
+import {
+    EventService
+} from "./services/eventService.js";
+import {
+    TodoComponent
+} from "./components/TodoComponent.js";
+import {
+    RequestService
+} from "./services/requestService.js";
+import {
+    ActionServices
+} from "./services/actionService.js";
+import {
+    createReducers
+} from "./store/reducers.js";
+import {
+    Store
+} from "./store/store.js";
 //import styles from "./css/TaskList.css";
 
 const url = 'https://jsonplaceholder.typicode.com/todos/';
@@ -17,14 +33,24 @@ document.body.appendChild(div);
 
 const reducers = createReducers();
 console.log(reducers)
-const store = new Store({reducers, eventService });
-const actionService = new ActionServices({requestService, store});
+const store = new Store({
+    reducers,
+    eventService
+});
+const actionService = new ActionServices({
+    requestService,
+    store
+});
 
 const todoComponent = new TodoComponent({
     eventService,
     actionService,
     anchor: div,
-    state: {todoView: [{title: 'No tasks'}]},
+    state: {
+        todoView: [{
+            title: 'No tasks'
+        }]
+    },
 });
 
 
