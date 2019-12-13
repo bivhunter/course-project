@@ -1,6 +1,12 @@
-import {Component} from "./Component.js";
-import {ButtonComponent} from "./ButtonComponent.js";
-import {eventBus} from "../services/eventService.js";
+import {
+    Component
+} from "./Component.js";
+import {
+    ButtonComponent
+} from "./ButtonComponent.js";
+import {
+    eventBus
+} from "../services/eventService.js";
 ///import {TaskComponent} from "./TaskComponent";
 
 const template = document.createElement('template');
@@ -19,7 +25,7 @@ template.innerHTML = `
         </div>    
     `;
 
-export class TextAreaComponent extends Component{
+export class TextAreaComponent extends Component {
     constructor(props) {
         super(props);
         this.template = template;
@@ -36,14 +42,14 @@ export class TextAreaComponent extends Component{
 
     addListeners() {
         this.addEventListener('mouseleave', (e) => {
-            if(e.target.tagName !== this.tagName) {
+            if (e.target.tagName !== this.tagName) {
                 return;
             }
             eventBus.publish(`cancelEditing`, this.props.task);
         }, true);
 
         this.textarea.addEventListener('keydown', (event) => {
-           // console.log(event.key);
+            // console.log(event.key);
             if (event.key === "Enter") {
                 event.preventDefault();
                 this.saveTask();
@@ -64,9 +70,15 @@ export class TextAreaComponent extends Component{
         this.renderButton();
     }
 
-    renderButton(){
-        this.saveButton = new ButtonComponent({ title: 'Save', classStyle: 'save-button'});
-        this.cancelButton = new ButtonComponent({ title: 'Cancel', classStyle: 'cancel-button' });
+    renderButton() {
+        this.saveButton = new ButtonComponent({
+            title: 'Save',
+            classStyle: 'save-button'
+        });
+        this.cancelButton = new ButtonComponent({
+            title: 'Cancel',
+            classStyle: 'cancel-button'
+        });
         this.saveButtonWrapper.appendChild(this.saveButton);
         this.cancelButtonWrapper.appendChild(this.cancelButton);
         this.addButtonListeners();
