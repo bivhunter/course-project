@@ -65,8 +65,7 @@ export class TodoComponent extends Component{
 
         const input = new InputComponent({...this.props, anchor: inputWrapper});
         this.taskList = new TaskListComponent({...this.props, anchor: todoListWrapper});
-
-        //this.filter = new FilterComponent({...this.props, anchor: filterWrapper});
+        this.filter = new FilterComponent( { ...this.props, anchor: filterWrapper } );
         //this.counter = new CounterComponent({...this.props, anchor: rightColumn});
 
         this.addListeners();

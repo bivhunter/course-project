@@ -31,7 +31,10 @@ export class ActionServices {
             'endEditTask': (task) => {
             delete task.editing;
             this.changeTaskLocal({...task});
-        },
+            },
+            'allFilter': () => this.tasksFilter('allTasks'),
+            'doneFilter': () => this.tasksFilter('doneTasks'),
+            'notDoneFilter': () => this.tasksFilter('notDoneTasks'),
         }
     }
 
@@ -67,11 +70,15 @@ export class ActionServices {
     changeTask(task) {
          console.log('changeTask', task)
        this.requestService.put(task)
-           .then((task) => this.store.dispatch('CHANGE_TODO', task))
+           .then((task) => this.store.dispatch('CHANGE_TODO', task));
     }
 
     changeTaskLocal(task) {
             this.store.dispatch('CHANGE_TODO', task);
+    }
+
+    tasksFilter(method) {
+        this.store.dispatch('FILTER', method);
     }
 
 

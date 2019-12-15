@@ -1,62 +1,60 @@
-
+import {Component} from "./Component.js";
 import {ButtonComponent} from "./ButtonComponent.js";
 import {eventBus} from "../services/eventService.js";
+import {filterTemplate} from "../templates/filter-template.js";
 
-const template = document.createElement('template');
-template.innerHTML = `
-<style>
-    div {
-        outline: blue 1px groove;
-    }
-</style>
-        <div>
-        
-</div>    
-    `;
-
-export class FilterComponent extends HTMLElement {
+export class FilterComponent extends Component {
     constructor( props ) {
-        super();
+        super(props);
     }
 
     connectedCallback() {
-        this.onInit();
-        this.render();
-        this.renderButton();
+
     }
 
     onInit() {
-        this.attachShadow({mode: 'open'});
+        this.template = filterTemplate;
+        this.render();
         //this.addListeners();
     }
 
     render() {
-        const temp = template.content.cloneNode(true);
-        this.shadowRoot.appendChild(temp);
-        this.wrapper = this.shadowRoot.querySelector('div');
-    }
+        this.anchor.appendChild(this);
+        this.allButtonWrapper = this.shadowRoot.querySelector('.all-wrapper');
+        this.doneButtonWrapper = this.shadowRoot.querySelector('.done-wrapper');
+        this.notDoneButtonWrapper = this.shadowRoot.querySelector('.not-done-wrapper');
 
-    renderButton(){
-        this._allTasks = new ButtonComponent({ title: 'All'});
-        this._doneTasks = new ButtonComponent({ title: 'Done' });
-        this._notDoneTasks = new ButtonComponent({ title: 'Not Done' });
-        this.wrapper.appendChild(this._allTasks);
-        this.wrapper.appendChild(this._doneTasks);
-        this.wrapper.appendChild(this._notDoneTasks);
+        this.allTasks = new ButtonComponent({
+            title: 'All',
+            classStyle: "all-filter-button",
+            anchor: this.allButtonWrapper
+        });
+
+        this.doneTasks = new ButtonComponent({
+            title: 'Done',
+            classStyle: "done-filter-button",
+            anchor: this.doneButtonWrapper
+        });
+
+        this.notDoneTasks = new ButtonComponent({
+            title: 'Not Done',
+            classStyle: "not-done-filter-button",
+            anchor: this.notDoneButtonWrapper
+        });
         this.addButtonListeners();
     }
 
     addButtonListeners() {
-        this._allTasks.addEventListener('click', (event) => {
-            eventBus.publish(`allFilter`, this.props);
+        this.allTasks.addEventListener('click', (event) => {
+            this.actionService.dispatch(`allFilter`, this.props);
         });
 
-        this._doneTasks.addEventListener('click', (event) => {
-            eventBus.publish(`doneFilter`, this.props);
+        this.doneTasks.addEventListener('click', (event) => {
+            this.actionService.dispatch(`doneFilter`, this.props);
         });
 
-        this._notDoneTasks.addEventListener('click', (event) => {
-            eventBus.publish(`notDoneFilter`, this.props);
+        this.notDoneTasks.addEventListener('click', (event) => {
+            this.actionService.dispatch(`notDoneFilter`, this.props);
         });
 
     }
