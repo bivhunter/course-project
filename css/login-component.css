@@ -16,14 +16,14 @@ h1{
 }
 
 input:hover{
-	background: #E7CCAC
+	background: #E7CCAC;
 }
 input:focus{
 	outline: 3px #B99E7E groove;
 	border: 3px #B99E7E groove;
 }
 
-input::-webkit-autofill{
+input:-webkit-autofill{
 	background: #E7CCAC
 }
 

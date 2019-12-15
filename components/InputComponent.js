@@ -1,23 +1,7 @@
 import {ButtonComponent} from "./ButtonComponent.js";
 import {Component} from "./Component.js";
-import {eventBus} from "../services/eventService.js";
+import {inputTemplate} from "../templates/input-template.js";
 
-const template = document.createElement('template');
-
-template.innerHTML = `
-    <style>
-        input{
-            width: 80%;
-        }
-        button {
-            width: 20%;
-        }
-    </style>
-    
-    <div>
-        <input type="text">
-    </div>
-`;
 
 export class InputComponent extends Component{
     constructor(props) {
@@ -25,7 +9,7 @@ export class InputComponent extends Component{
     }
 
     onInit() {
-        this.template = template;
+        this.template = inputTemplate;
        this.render();
     }
 
@@ -38,7 +22,7 @@ export class InputComponent extends Component{
             this.addTask();
         });
 
-        this.input.addEventListener('keydown', (event) => {
+        this.textarea.addEventListener('keydown', (event) => {
             if (event.key === "Enter") {
                 this.addTask();
             }
@@ -47,20 +31,19 @@ export class InputComponent extends Component{
     }
   
     addTask() {
-        if(!this.input.value) {
+        if(!this.textarea.value) {
             return;
         }
-        this.props.actionService.dispatch('addTask', this.input.value);
-        //eventBus.publish('addTask', this.input.value );
-        this.input.value = '';
+        this.props.actionService.dispatch('addTask', this.textarea.value);
+        //eventBus.publish('addTask', this.textarea.value );
+        this.textarea.value = '';
     }
 
     render() {
-        console.log('render')
         this.anchor.appendChild(this);
-        this.input = this.shadowRoot.querySelector('input');
-        const div = this.shadowRoot.querySelector('div');
-        this.button = new ButtonComponent({ title: 'Add task', anchor: div, classStyle: 'add-button' });
+        this.textarea = this.shadowRoot.querySelector('textarea');
+        const buttonWrapper = this.shadowRoot.querySelector('.right-column');
+        this.button = new ButtonComponent({ title: 'Add task', anchor: buttonWrapper, classStyle: 'add-button' });
 
         this.addListeners();
     }
