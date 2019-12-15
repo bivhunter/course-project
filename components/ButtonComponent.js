@@ -27,12 +27,13 @@ export class ButtonComponent extends Component{
     }
 
     render() {
+        this.anchor.appendChild(this);
         const button = document.createElement('button');
         //console.log(this.props)
         button.classList.add(this.props.classStyle);
         button.textContent = this.props.title;
         this.shadowRoot.appendChild(button);
-        this.anchor.appendChild(this);
+
     }
 }
 

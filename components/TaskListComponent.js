@@ -75,6 +75,7 @@ export class TaskListComponent extends Component {
 
     render() {
         this.anchor.appendChild(this);
+
         this.ul = this.shadowRoot.querySelector('ul');
         this.renderList();
 
@@ -90,7 +91,11 @@ export class TaskListComponent extends Component {
 
     addTask(task) {
         const li = document.createElement('li');
-        const taskComponent = new TaskComponent({...this.props, anchor: li, task: task});
+        if(task.editing) {
+            const taskComponent = new TextAreaComponent( { ...this.props, anchor: li, task: task } );
+        } else {
+            const taskComponent = new TaskComponent( { ...this.props, anchor: li, task: task } );
+        }
         this.ul.appendChild(li);
     }
 }

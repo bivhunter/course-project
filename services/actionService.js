@@ -24,6 +24,14 @@ export class ActionServices {
             'deletedTask': (id) => this.deleteTask(id),
             'doneTask': (task) => this.changeTask({...task, completed: !task.completed}),
             'startEditTask': (task) => this.changeTaskLocal({...task, editing: true}),
+            /*'cancelEditTask': (task) => {
+                delete task.editing;
+                this.changeTaskLocal({...task});
+            },*/
+            'endEditTask': (task) => {
+            delete task.editing;
+            this.changeTaskLocal({...task});
+        },
         }
     }
 

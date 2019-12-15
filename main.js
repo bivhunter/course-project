@@ -27,8 +27,7 @@ import {
 const url = 'https://jsonplaceholder.typicode.com/todos/';
 const requestService = new RequestService(url);
 const eventService = new EventService();
-const div = document.createElement('div');
-document.body.appendChild(div);
+const div = document.getElementById('app');
 
 
 const reducers = createReducers();
@@ -55,9 +54,6 @@ const todoComponent = new TodoComponent({
 
 
 //const div = document.createElement('div');
-div.classList.add('main');
-
-
 div.appendChild(todoComponent);
 
 

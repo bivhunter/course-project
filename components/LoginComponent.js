@@ -4,13 +4,22 @@ import {
 
 const template = document.createElement('template');
 template.innerHTML = `
-	<div class="form-wrapper">
-		<form name="login">
-			<input type="email" placeholder="Enter Email">
-			<input type="password" placeholder="Enter Password">
+	<<style>
+			@import url('./css/login-component.css');
+		</style>
+		<div class="form-wrapper">
 			
-		</form>
-	</div>
+				
+				<form name="login">
+					<h1>Login Form</h1>
+					<label for="email">Email</label>
+					<input type="email" name="email" placeholder="Enter Email">
+					<label for="password">Password</label>
+					<input type="password" name="password" placeholder="Enter Password">
+					<button type="submit">Sign In</button>
+				</form>
+			
+		</div>
 `
 
 export class LoginComponent extends Component {
