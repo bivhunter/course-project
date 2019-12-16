@@ -9,7 +9,6 @@ export class Store{
             todoList: [],
             todoView: []
         };
-        console.log('init store');
 
     }
 
@@ -18,6 +17,7 @@ export class Store{
         if(this.reducers[actionType]) {
             this.state = this.reducers[actionType](payload, this.state);
         }
+        console.log(this.state);
         this.eventService.publish('stateChanged', this.state);
     }
 

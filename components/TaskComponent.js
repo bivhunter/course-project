@@ -48,9 +48,11 @@ export class TaskComponent extends Component{
     }
 
     clickListener(event) {
-        if(event.target.tagName !== "MY-COMPONENT-TASK") {
+
+        if(event.composedPath()[0].tagName === "BUTTON") {
             return;
         }
+       //console.log(event.composedPath())
         this.actionService.dispatch(`startEditTask`, this.props.task);
     }
 

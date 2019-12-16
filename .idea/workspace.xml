@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7d4a19b-8519-4725-a016-4ef6829d6585" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/filter-template.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/FilterComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/FilterComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TodoComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TodoComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/actionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/actionService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/reducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TaskComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TaskComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,13 +63,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="FilterComponent.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="FilterComponent.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/FilterComponent.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="680">
+                <state relative-caret-position="1040">
                   <caret line="52" column="51" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="51" />
                   <folding>
                     <element signature="e#0#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TaskListComponent.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/components/TaskListComponent.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="151">
+                  <caret line="47" column="47" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="47" />
+                  <folding>
+                    <element signature="e#94#147#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -94,11 +103,20 @@
           <file leaf-file-name="TaskComponent.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/TaskComponent.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="640">
-                  <caret line="32" column="23" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+                <state relative-caret-position="100">
+                  <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
                   <folding>
                     <element signature="e#0#53#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="store.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/store/store.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="380">
+                  <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
                 </state>
               </provider>
             </entry>
@@ -142,11 +160,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="reducers.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="reducers.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/store/reducers.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="651">
-                  <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+                <state relative-caret-position="1040">
+                  <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
@@ -184,6 +202,7 @@
       <find>this.leftColumn</find>
       <find>addListeners</find>
       <find>input</find>
+      <find>filterView</find>
     </findStrings>
     <replaceStrings>
       <replace>this.wrapper</replace>
@@ -197,6 +216,7 @@
       <replace>deleteButton</replace>
       <replace>this.input</replace>
       <replace>textarea</replace>
+      <replace>applyFilter</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -230,13 +250,10 @@
         <option value="$PROJECT_DIR$/services/dataService.js" />
         <option value="$PROJECT_DIR$/components/Component.js" />
         <option value="$PROJECT_DIR$/services/requestService.js" />
-        <option value="$PROJECT_DIR$/components/TaskComponent.js" />
-        <option value="$PROJECT_DIR$/store/store.js" />
         <option value="$PROJECT_DIR$/components/LoginComponent.js" />
         <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/components/ButtonComponent.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/components/TaskListComponent.js" />
         <option value="$PROJECT_DIR$/css/textarea-component.css" />
         <option value="$PROJECT_DIR$/templates.js" />
         <option value="$PROJECT_DIR$/templates/templates.js" />
@@ -252,6 +269,9 @@
         <option value="$PROJECT_DIR$/components/TodoComponent.js" />
         <option value="$PROJECT_DIR$/services/actionService.js" />
         <option value="$PROJECT_DIR$/store/reducers.js" />
+        <option value="$PROJECT_DIR$/components/TaskListComponent.js" />
+        <option value="$PROJECT_DIR$/components/TaskComponent.js" />
+        <option value="$PROJECT_DIR$/store/store.js" />
       </list>
     </option>
   </component>
@@ -370,18 +390,18 @@
       <workItem from="1575742069941" duration="19330000" />
       <workItem from="1575797078516" duration="9792000" />
       <workItem from="1575823393962" duration="2423000" />
-      <workItem from="1575830636039" duration="71765000" />
+      <workItem from="1575830636039" duration="73574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206927000" />
+    <option name="totallyTimeSpent" value="208736000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="-158" y="122" width="474" height="919" id="Project" order="0" sideWeight="0.4983678" weight="0.24973656" />
+      <window_info active="true" content_ui="combo" x="-158" y="122" width="474" height="919" id="Project" order="0" sideWeight="0.4983678" visible="true" weight="0.24973656" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
@@ -681,23 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="62" lean-forward="true" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/TaskListComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-          <folding>
-            <element signature="e#94#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/requestService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1200">
@@ -740,16 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/TaskComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="32" column="23" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -789,7 +782,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/FilterComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
+        <state relative-caret-position="1040">
           <caret line="52" column="51" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="51" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
@@ -813,8 +806,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/store/reducers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        <state relative-caret-position="1040">
+          <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/TaskListComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="47" column="47" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="47" />
+          <folding>
+            <element signature="e#94#147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/TaskComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
         </state>
       </provider>
     </entry>
