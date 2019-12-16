@@ -18,6 +18,14 @@ export class FilterComponent extends Component {
         //this.addListeners();
     }
 
+    set state(value) {
+        this.props.state = {...value};
+    }
+
+    get state() {
+        return this._state;
+    }
+
     render() {
         this.anchor.appendChild(this);
         this.allButtonWrapper = this.shadowRoot.querySelector('.all-wrapper');

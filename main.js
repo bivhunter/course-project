@@ -23,24 +23,40 @@ import {
     Store
 } from "./store/store.js";
 //import styles from "./css/TaskList.css";
+import {RouteService} from "./services/routeService.js";
 
 const url = 'https://jsonplaceholder.typicode.com/todos/';
 const requestService = new RequestService(url);
 const eventService = new EventService();
-const div = document.getElementById('app');
-
+const application = document.getElementById('app');
 
 const reducers = createReducers();
-console.log(reducers)
 const store = new Store({
     reducers,
     eventService
 });
+
 const actionService = new ActionServices({
     requestService,
     store
 });
 
+window.addEventListener('hashchange ', (e) => {
+    alert('hashchange');
+});
+
+const router = new RouteService({
+    actionService,
+    eventService,
+    anchor: application,
+    state: {
+        route: 'todo',
+    }
+});
+
+window.onpopstate = (state) => console.log(state);
+
+/*
 const todoComponent = new TodoComponent({
     eventService,
     actionService,
@@ -48,13 +64,15 @@ const todoComponent = new TodoComponent({
     state: {
         todoView: [{
             title: 'No tasks'
-        }]
+        }],
+        countTasks: {all: 0, completed: 0, notCompleted: 0},
     },
 });
+*/
 
 
 //const div = document.createElement('div');
-div.appendChild(todoComponent);
+//div.appendChild(todoComponent);
 
 
 

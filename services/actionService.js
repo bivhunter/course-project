@@ -20,7 +20,7 @@ export class ActionServices {
                 title: title,
                 completed: false,
             }),
-            'initApplication': () => this.getTaskList(),
+            'initTodoComponent': () => this.getTaskList(),
             'deletedTask': (id) => this.deleteTask(id),
             'doneTask': (task) => this.changeTask({...task, completed: !task.completed}),
             'startEditTask': (task) => this.changeTaskLocal({...task, editing: true}),
@@ -51,7 +51,7 @@ export class ActionServices {
     getTaskList() {
        // console.log('getTaskList')
         this.requestService.get()
-            .then(data => this.store.dispatch('INIT_STATE', data));
+            .then(data => this.store.dispatch('INIT_TODO', data));
     }
 
 

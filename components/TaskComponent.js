@@ -8,7 +8,7 @@ import {
     Component
 } from "./Component.js";
 import {
-    taskComponent
+    taskTemplate
 } from "../templates/task-template.js";
 
 export class TaskComponent extends Component {
@@ -18,7 +18,7 @@ export class TaskComponent extends Component {
     }
 
     onInit() {
-        this.template = taskComponent;
+        this.template = taskTemplate;
         this.render();
         this.setDataAttribute();
     }

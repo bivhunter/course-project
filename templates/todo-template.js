@@ -1,5 +1,5 @@
 export const todoTemplate = document.createElement('template');
-todoTemplate = `
+todoTemplate.innerHTML = `
 
 <style>
     ul{

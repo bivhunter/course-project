@@ -1,5 +1,5 @@
 export const counterTemplate = document.createElement('template');
-counter.innerHTML = `
+counterTemplate.innerHTML = `
 <style>
     td {
         padding: 10px;

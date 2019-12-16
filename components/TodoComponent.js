@@ -18,7 +18,7 @@ import {
 } from "./Component.js";
 import {
     todoTemplate
-} from "../templates/todoTemplate";
+} from "../templates/todo-template.js";
 
 
 export class TodoComponent extends Component {
@@ -30,11 +30,14 @@ export class TodoComponent extends Component {
         this._state = { ...value
         };
         this.props.state = this._state;
+        this.applyChanges(value);
     }
 
     onInit() {
         this.template = todoTemplate;
-        this.render();
+        console.log('initTodoComponent')
+        this.actionService.dispatch('initTodoComponent');
+        //this.render();
     }
 
 
@@ -60,24 +63,32 @@ export class TodoComponent extends Component {
         this.filter = new FilterComponent({ ...this.props,
             anchor: filterWrapper
         });
-        //this.counter = new CounterComponent({...this.props, anchor: rightColumn});
+        this.counter = new CounterComponent({...this.props, anchor: rightColumn});
 
-        this.addListeners();
+       // this.addListeners();
     }
 
+    applyChanges(state) {
+        if(!this.isInit) {
+            this.isInit =true;
+            this.render();
+        }
+        this.taskList.state = {...state};
+        this.filter.state = {...state};
+        this.counter.state = {...state};
+    }
 
-
-    addListeners() {
+   /* addListeners() {
         this.eventService.subscribe('stateChanged', (state) => {
             this.state = state;
-            //console.log(state)
+           /!* //console.log(state)
             this.sendState([
                 this.taskList,
                 //this.filter,
                 //this.counter,
-            ], state);
+            ], state);*!/
         });
-    }
+    }*/
 
 }
 

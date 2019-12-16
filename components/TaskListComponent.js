@@ -12,7 +12,7 @@ import {
 } from "./Component.js";
 import {
     taskListTemplate
-} from "../templates/task-list-template";
+} from "../templates/task-list-template.js";
 
 export class TaskListComponent extends Component {
     constructor(props) {
@@ -22,6 +22,8 @@ export class TaskListComponent extends Component {
 
     onInit() {
         this.template = taskListTemplate;
+        console.log(this.props, 'tasklist props');
+        this.render();
         /*this.attachShadow({mode: 'open'});
         this.addListeners();*/
     }
@@ -87,7 +89,7 @@ export class TaskListComponent extends Component {
     renderList() {
         //console.log(this.shadowRoot)
         this.ul.innerHTML = '';
-        this.state.todoView.forEach((task) => {
+        this.props.state.todoView.forEach((task) => {
             this.addTask(task);
         });
     }

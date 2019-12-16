@@ -20,7 +20,7 @@ export class CounterComponent extends Component {
     }
 
     set state(value) {
-        this.props = { ...props,
+        this.props = { ...this.props,
             state: value
         };
         this._state = { ...value
@@ -41,9 +41,10 @@ export class CounterComponent extends Component {
     }
 
     applyChanges() {
-        this.allTasks.textContent = this.state.countTasks.all;
-        this.completedTasks.textContent = this.state.countTasks.completed;
-        this.notCompletedTasks.textContent = this.state.countTasks.notCompleted;
+        console.log(this.props)
+        this.allTasks.textContent = this.props.state.countTasks.all;
+        this.completedTasks.textContent = this.props.state.countTasks.completed;
+        this.notCompletedTasks.textContent = this.props.state.countTasks.notCompleted;
     }
 }
 

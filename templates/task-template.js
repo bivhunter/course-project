@@ -1,5 +1,5 @@
 export const taskTemplate = document.createElement('template');
-template.innerHTML = `
+taskTemplate.innerHTML = `
 <style>
 	div {
     height: 100%;

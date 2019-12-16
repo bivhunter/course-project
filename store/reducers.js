@@ -1,12 +1,13 @@
 export function createReducers() {
     return {
-        'INIT_STATE': (payLoad, state) => {
+        'INIT_TODO': (payLoad, state) => {
             return {
                 ...state,
                 todoList: [...payLoad],
                 todoView: [...payLoad],
                 filterMethod: "allTasks",
                 countTasks: calculateTasks([...payLoad]),
+                route: 'todo'
             }
         },
         'ADD_TODO': (payLoad, state) => {
@@ -66,10 +67,10 @@ function applyFilter(todoList, method) {
     }
 }
 
-function calculateTasks(taksList) {
+function calculateTasks(taskList) {
     const allTasksNumber = taskList.length;
-    const doneTasksNumber = 0;
-    const notDoneTasksNumber = 0;
+    let doneTasksNumber = 0;
+    let notDoneTasksNumber = 0;
 
     taskList.forEach((task) => {
         if (task.completed) {
