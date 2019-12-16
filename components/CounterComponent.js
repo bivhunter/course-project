@@ -1,60 +1,50 @@
-import {eventBus} from "../services/eventService.js";
+import {
+    eventBus
+} from "../services/eventService.js";
+import {
+    Component
+} from "./Component.js";
+import {
+    counterTemplate
+} from "../templates/counter-template.js";
 
-const template = document.createElement('template');
-template.innerHTML = `
-<style>
-    td {
-        padding: 10px;
-    }
-</style>
-        <div>
-        <table>
-        
-</table>
-        
-</div>    
-    `;
-
-export class CounterComponent extends HTMLElement{
-    constructor() {
-        super();
-    }
-
-    connectedCallback() {
-        this.onInit();
-        this.render();
+export class CounterComponent extends Component {
+    constructor(props) {
+        super(props);
     }
 
     onInit() {
-        this.attachShadow({mode: "open"});
-        this.addListeners();
+        this.template = counterTemplate;
+        this.render();
+        this.applyChanges();
     }
 
-    addListeners() {
-        eventBus.subscribe('countedTasks', (data) => {
-           this.changeInfo(data);
-        });
+    set state(value) {
+        this.props = { ...props,
+            state: value
+        };
+        this._state = { ...value
+        };
+        this.applyChanges();
     }
 
-    changeInfo(data) {
-        this.allCounter.innerHTML = `<td>All tasks</td><td> ${data.allNum}</td>`;
-        this.doneCounter.innerHTML = `<td>Completed tasks </td><td>${data.doneNum}</td>`;
-        this.notDoneCounter.innerHTML = `<td>Not completed tasks</td><td>${data.notDoneNum}</td>`;
+    get state() {
+        return this._state;
     }
 
     render() {
-        const temp = template.content.cloneNode(true);
-        this.allCounter = document.createElement('tr');
-        this.doneCounter = document.createElement('tr');
-        this.notDoneCounter = document.createElement('tr');
+        this.anchor.appendChild(this);
 
+        this.allTasks = this.shadowRoot.querySelector('.all-tasks');
+        this.completedTasks = this.shadowRoot.querySelector('.completed-tasks');
+        this.notCompletedTasks = this.shadowRoot.querySelector('.not-completed-tasks');
+    }
 
-        temp.append(this.allCounter, this.doneCounter,this.notDoneCounter );
-        this.shadowRoot.appendChild(temp);
-
-        this.wrapper = this.shadowRoot.querySelector('div');
-
+    applyChanges() {
+        this.allTasks.textContent = this.state.countTasks.all;
+        this.completedTasks.textContent = this.state.countTasks.completed;
+        this.notCompletedTasks.textContent = this.state.countTasks.notCompleted;
     }
 }
 
-customElements.define('my-component-counter', CounterComponent );
+customElements.define('my-component-counter', CounterComponent);

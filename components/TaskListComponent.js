@@ -1,28 +1,27 @@
-import {TaskComponent} from "./TaskComponent.js";
-//import styles from "../css/TaskList.css";
-import {eventBus} from "../services/eventService.js";
-import {TextAreaComponent} from "./textAreaComponent.js";
-import {Component} from "./Component.js";
-
-const template = document.createElement('template');
-
-template.innerHTML = `
-    <style>
-    @import "./css/task-list-component.css";
-</style>
-    <div>
-    <ul></ul>
-</div>
-`;
+import {
+    TaskComponent
+} from "./TaskComponent.js";
+import {
+    eventBus
+} from "../services/eventService.js";
+import {
+    TextAreaComponent
+} from "./textAreaComponent.js";
+import {
+    Component
+} from "./Component.js";
+import {
+    taskListTemplate
+} from "../templates/task-list-template";
 
 export class TaskListComponent extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         //this.template = template;
     }
 
     onInit() {
-        this.template = template;
+        this.template = taskListTemplate;
         /*this.attachShadow({mode: 'open'});
         this.addListeners();*/
     }
@@ -30,14 +29,16 @@ export class TaskListComponent extends Component {
     addListeners() {
         this.addEventListener('click', this.clickListener.bind(this));
 
-       /* eventBus.subscribe('responseSuccessful', (data) => {
-            this.props.taskList = data;
-            this.renderList();
-        });*/
+        /* eventBus.subscribe('responseSuccessful', (data) => {
+             this.props.taskList = data;
+             this.renderList();
+         });*/
 
         eventBus.subscribe('cancelEditing', (task) => {
             this.editingLi.innerHTML = "";
-            this.editingLi.appendChild(new TaskComponent({task: task}));
+            this.editingLi.appendChild(new TaskComponent({
+                task: task
+            }));
         });
 
     }
@@ -46,15 +47,15 @@ export class TaskListComponent extends Component {
         //console.log(event.target);
         //console.log(event.currentTarget);
         const targetList = event.composedPath();
-        if(targetList[0].tagName === "BUTTON") {
-           return;
+        if (targetList[0].tagName === "BUTTON") {
+            return;
         }
 
         const taskComponent = targetList.find((item) => {
             return item.tagName === "MY-COMPONENT-TASK";
         });
 
-        if(!taskComponent) {
+        if (!taskComponent) {
             return;
         }
 
@@ -62,7 +63,9 @@ export class TaskListComponent extends Component {
             return item.tagName === "LI";
         });
 
-        this.textArea = new TextAreaComponent({task: taskComponent.props.task});
+        this.textArea = new TextAreaComponent({
+            task: taskComponent.props.task
+        });
 
         requestAnimationFrame(() => {
             this.editingLi.replaceChild(this.textArea, taskComponent);
@@ -91,10 +94,16 @@ export class TaskListComponent extends Component {
 
     addTask(task) {
         const li = document.createElement('li');
-        if(task.editing) {
-            const taskComponent = new TextAreaComponent( { ...this.props, anchor: li, task: task } );
+        if (task.editing) {
+            const taskComponent = new TextAreaComponent({ ...this.props,
+                anchor: li,
+                task: task
+            });
         } else {
-            const taskComponent = new TaskComponent( { ...this.props, anchor: li, task: task } );
+            const taskComponent = new TaskComponent({ ...this.props,
+                anchor: li,
+                task: task
+            });
         }
         this.ul.appendChild(li);
     }

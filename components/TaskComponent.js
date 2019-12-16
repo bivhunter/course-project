@@ -1,36 +1,29 @@
-import {ButtonComponent} from "./ButtonComponent.js";
-import {eventBus} from "../services/eventService.js";
-import {Component} from "./Component.js";
+import {
+    ButtonComponent
+} from "./ButtonComponent.js";
+import {
+    eventBus
+} from "../services/eventService.js";
+import {
+    Component
+} from "./Component.js";
+import {
+    taskComponent
+} from "../templates/task-template.js";
 
-const template = document.createElement('template');
-template.innerHTML = `
-        <style>
-            @import './css/task-component.css';
-        </style>
-        <div class="left-column">
-            <p></p>
-        </div>
-            <div class="right-column">
-                <table>
-                    <tr><td class="done-button-wrapper"></td></tr>
-                    <tr><td class="delete-button-wrapper"></td></tr>
-                </table>
-            </div>
-    `;
-
-export class TaskComponent extends Component{
+export class TaskComponent extends Component {
     constructor(props = {}) {
         super(props);
 
     }
 
     onInit() {
-        this.template = template;
+        this.template = taskComponent;
         this.render();
         this.setDataAttribute();
     }
 
-    setDataAttribute(){
+    setDataAttribute() {
         this.dataset.id = this.props.task.id;
         this.dataset.completed = this.props.task.completed;
     }
@@ -52,7 +45,6 @@ export class TaskComponent extends Component{
         if(event.composedPath()[0].tagName === "BUTTON") {
             return;
         }
-       //console.log(event.composedPath())
         this.actionService.dispatch(`startEditTask`, this.props.task);
     }
 
@@ -78,12 +70,12 @@ export class TaskComponent extends Component{
 
         this.addListeners();
 
-       // this.leftColumn = this.shadowRoot.querySelector('.left-column');
+        // this.leftColumn = this.shadowRoot.querySelector('.left-column');
 
 
     }
 
-    renderButton(){
+    renderButton() {
         this.doneButtonWrapper = this.shadowRoot.querySelector('.done-button-wrapper');
         this.deleteButtonWrapper = this.shadowRoot.querySelector('.delete-button-wrapper');
 
@@ -93,7 +85,7 @@ export class TaskComponent extends Component{
             anchor: this.deleteButtonWrapper
         });
 
-        if(this.props.task.completed) {
+        if (this.props.task.completed) {
             this.doneButton = new ButtonComponent({
                 title: 'Not todo',
                 classStyle: 'not-todo-button',

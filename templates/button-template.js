@@ -1,4 +1,7 @@
-button{
+export const buttonTemplate = document.createElement('template');
+buttonTemplate.innerHTML = `
+	<style>
+	button{
     transition-duration: 0.6s;
     cursor: pointer;
 }
@@ -57,10 +60,6 @@ button{
     background-color: #B99E7E; 
     color: white;
 }
-
-
-
-
-
-
-
+	</style>
+	
+`

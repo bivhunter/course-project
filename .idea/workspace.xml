@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7d4a19b-8519-4725-a016-4ef6829d6585" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/button-template.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/counter-template.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/login-template.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/task-list-template.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/task-template.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/todo-template.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ButtonComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ButtonComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CounterComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CounterComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LoginComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LoginComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Task.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/TaskComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TaskComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TaskListComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TaskListComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TodoComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/TodoComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/button-component.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/button-component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/task-component.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/task-component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/reducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/reducers.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +38,8 @@
           <file leaf-file-name="TodoComponent.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/TodoComponent.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-9">
-                  <caret line="43" column="39" lean-forward="true" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+                <state relative-caret-position="-249">
+                  <caret line="31" column="39" lean-forward="true" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#53#0" expanded="true" />
                   </folding>
@@ -78,10 +92,10 @@
           <file leaf-file-name="TaskListComponent.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/TaskListComponent.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="151">
-                  <caret line="47" column="47" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="47" />
+                <state relative-caret-position="171">
+                  <caret line="48" column="47" lean-forward="true" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
                   <folding>
-                    <element signature="e#94#147#0" expanded="true" />
+                    <element signature="e#0#55#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -104,7 +118,7 @@
             <entry file="file://$PROJECT_DIR$/components/TaskComponent.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="100">
-                  <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+                  <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
                   <folding>
                     <element signature="e#0#53#0" expanded="true" />
                   </folding>
@@ -112,7 +126,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="store.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="store.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/store/store.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="380">
@@ -160,11 +174,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="reducers.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="reducers.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/store/reducers.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1040">
-                  <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+                <state relative-caret-position="100">
+                  <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CounterComponent.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/components/CounterComponent.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret column="8" selection-start-column="8" selection-end-column="8" />
                 </state>
               </provider>
             </entry>
@@ -390,12 +413,12 @@
       <workItem from="1575742069941" duration="19330000" />
       <workItem from="1575797078516" duration="9792000" />
       <workItem from="1575823393962" duration="2423000" />
-      <workItem from="1575830636039" duration="73574000" />
+      <workItem from="1575830636039" duration="74607000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208736000" />
+    <option name="totallyTimeSpent" value="209769000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -502,7 +525,7 @@
         <state relative-caret-position="1700">
           <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
           <folding>
-            <element signature="e#94#147#0" expanded="true" />
+            <element signature="e#0#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -602,13 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/CounterComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -772,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/TodoComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="43" column="39" lean-forward="true" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+        <state relative-caret-position="-249">
+          <caret line="31" column="39" lean-forward="true" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
           <folding>
             <element signature="e#0#53#0" expanded="true" />
           </folding>
@@ -804,19 +820,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/reducers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1040">
-          <caret line="52" column="25" lean-forward="true" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/TaskListComponent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="47" column="47" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="47" />
+        <state relative-caret-position="171">
+          <caret line="48" column="47" lean-forward="true" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
           <folding>
-            <element signature="e#94#147#0" expanded="true" />
+            <element signature="e#0#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -824,7 +833,7 @@
     <entry file="file://$PROJECT_DIR$/components/TaskComponent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="29" column="32" lean-forward="true" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
           <folding>
             <element signature="e#0#53#0" expanded="true" />
           </folding>
@@ -835,6 +844,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/CounterComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="8" selection-start-column="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/reducers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="39" lean-forward="true" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
         </state>
       </provider>
     </entry>
