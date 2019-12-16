@@ -1,26 +1,27 @@
-import {eventBus} from "../services/eventService.js";
-import {Component} from "./Component.js";
-const template = document.createElement('template');
+import {
+    eventBus
+} from "../services/eventService.js";
+import {
+    Component
+} from "./Component.js";
+import {
+    buttonTemplate
+} from "../templates/button-template.js";
 
-template.innerHTML = `
-    <style>
-        @import './css/button-component.css';
-    </style>
-`;
 
 
-export class ButtonComponent extends Component{
+export class ButtonComponent extends Component {
     constructor(props) {
         super(props);
     }
 
     onInit() {
-        this.template = template;
+        this.template = buttonTemplate;
         this.render();
         this.setDataAttribute();
     }
 
-    addListeners(){}
+    addListeners() {}
 
     setDataAttribute() {
         this.dataset.title = this.props.title;

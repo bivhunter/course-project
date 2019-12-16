@@ -1,31 +1,42 @@
 import {
 	Component
 } from "./Component.js";
-
-const template = document.createElement('template');
-template.innerHTML = `
-	<<style>
-			@import url('./css/login-component.css');
-		</style>
-		<div class="form-wrapper">
-			
-				
-				<form name="login">
-					<h1>Login Form</h1>
-					<label for="email">Email</label>
-					<input type="email" name="email" placeholder="Enter Email">
-					<label for="password">Password</label>
-					<input type="password" name="password" placeholder="Enter Password">
-					<button type="submit">Sign In</button>
-				</form>
-			
-		</div>
-`
+import {
+	loginTemplate
+}
+from "../templates/login-template.js";
 
 export class LoginComponent extends Component {
-	constructor() {
+	constructor(props) {
 
 	}
 
+	onInit() {
+		this.template = loginTemplate;
+		render();
+	}
 
+	render() {
+		this.anchor.appendChild(this);
+		this.emailInput = this.shadowRoot.querySelector('[name="email"]');
+		this.passwordInput = this.shadowRoot.querySelector('[name="password"]');
+		this.formElement = this.shadowRoot.querySelector('[name]="login"');
+
+		this.submitButton = new ButtonComponent({
+			title: 'Sign In',
+			classStyle: "submit-button",
+			anchor: this.formElement
+		});
+
+		this.addButtonListeners();
+	}
+
+	addButtonListeners() {
+		this.submitButton.addEventListener('click', () => {
+			this.serviceAction.dispatch('signIn', {
+				email: this.emailInput.value,
+				password: this.passwordInput.value
+			});
+		});
+	}
 }
