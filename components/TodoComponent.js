@@ -19,6 +19,7 @@ import {
 import {
     todoTemplate
 } from "../templates/todo-template.js";
+import {ButtonComponent} from "./ButtonComponent.js";
 
 
 export class TodoComponent extends Component {
@@ -52,6 +53,7 @@ export class TodoComponent extends Component {
         const todoListWrapper = this.shadowRoot.querySelector('.todo-list-wrapper');
         const inputWrapper = this.shadowRoot.querySelector('.input-wrapper');
         const filterWrapper = this.shadowRoot.querySelector('.filter-wrapper');
+        const signOutWrapper = this.shadowRoot.querySelector('.sign-out-wrapper');
         //console.log(this.shadowRoot);
 
         const input = new InputComponent({ ...this.props,
@@ -65,7 +67,12 @@ export class TodoComponent extends Component {
         });
         this.counter = new CounterComponent({...this.props, anchor: rightColumn});
 
-       // this.addListeners();
+        this.signOutButton = new ButtonComponent({
+            title: 'Sign Out',
+            classStyle: "sign-out-button",
+            anchor: signOutWrapper
+        });
+        this.addListeners();
     }
 
     applyChanges(state) {
@@ -78,17 +85,11 @@ export class TodoComponent extends Component {
         this.counter.state = {...state};
     }
 
-   /* addListeners() {
-        this.eventService.subscribe('stateChanged', (state) => {
-            this.state = state;
-           /!* //console.log(state)
-            this.sendState([
-                this.taskList,
-                //this.filter,
-                //this.counter,
-            ], state);*!/
-        });
-    }*/
+    addListeners() {
+        this.signOutButton.addEventListener('click', () => {
+            this.actionService.dispatch('signOut');
+        })
+    }
 
 }
 

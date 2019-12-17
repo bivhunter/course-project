@@ -54,11 +54,12 @@ input {
 }
 
 form{
+    width: 400px; 
+	/*height: 400px;*/
 	background: #FFE4C4;
 	display: block;
 	box-sizing: border-box;
-	width: 400px; 
-	height: 400px;
+	
 	margin: 10px auto 10px auto; 
 	padding: 50px; 
 	text-align: left;
@@ -72,16 +73,37 @@ form{
 	vertical-align: middle; */
 }
 
+.hide{
+    display: none;
+}
+
+table{
+    width: 100%;
+}
+
+td{
+    vertical-align: middle;
+}
+
 
 	</style>
 	<div class="form-wrapper">
 		<form name="login">
 			<h1>Login Form</h1>
+			<label for="username" class="hide username">User Name</label>
+			<input type="text"  class="hide" name="username"  placeholder="Enter User Name">
 			<label for="email">Email</label>
-			<input type="email" name="email" placeholder="Enter Email">
+			<input type="email" name="email" autocomplete="on" placeholder="Enter Email">
 			<label for="password">Password</label>
-			<input type="password" name="password" placeholder="Enter Password">
-			/*<button type="submit">Sign In</button>*/
+			<input type="password" name="password" autocomplete="on" placeholder="Enter Password">
+			
+			
+			<table>
+			    <tr>
+			        <td class="in-button"></td>
+			        <td class="up-button"></td>
+                </tr>
+            </table>
 		</form>
 	</div>
 `

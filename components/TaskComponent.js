@@ -24,7 +24,7 @@ export class TaskComponent extends Component {
     }
 
     setDataAttribute() {
-        this.dataset.id = this.props.task.id;
+        this.dataset._id = this.props.task._id;
         this.dataset.completed = this.props.task.completed;
     }
 
@@ -51,7 +51,7 @@ export class TaskComponent extends Component {
     addButtonListeners() {
         this.deleteButton.addEventListener('click', (event) => {
             console.log(this.props)
-            this.actionService.dispatch(`deletedTask`, this.props.task.id);
+            this.actionService.dispatch(`deletedTask`, this.props.task._id);
         });
 
         this.doneButton.addEventListener('click', (event) => {
@@ -66,7 +66,7 @@ export class TaskComponent extends Component {
 
     render() {
         this.anchor.appendChild(this);
-        this.shadowRoot.querySelector('p').textContent = this.props.task.title;
+        this.shadowRoot.querySelector('p').textContent = this.props.task.text;
 
         this.addListeners();
 

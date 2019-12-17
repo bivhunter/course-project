@@ -18,7 +18,10 @@ todoTemplate.innerHTML = `
     }
     
 </style>
-    <div class="header"><h1>Todo Application</h1></div>
+    <div class="header">
+        <h1>Todo Application</h1>
+        <div class="sign-out-wrapper"></div>
+        </div>
     <div class="left-column">
         <div class="input-wrapper"></div>
         <div class="filter-wrapper"></div>

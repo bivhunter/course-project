@@ -14,14 +14,14 @@ export class TextAreaComponent extends Component {
     }
 
     setDataAttribute(){
-        this.dataset.id = this.props.task.id;
+        this.dataset._id = this.props.task._id;
         this.dataset.completed = this.props.task.completed;
     }
 
     render() {
         this.anchor.appendChild(this);
         this.textarea = this.shadowRoot.querySelector('textarea');
-        this.textarea.value = this.props.task.title;
+        this.textarea.value = this.props.task.text;
 
         setTimeout(() => {
             this.textarea.focus();

@@ -30,7 +30,7 @@ export class Component extends HTMLElement {
 
 
     onInit() {
-      //  console.log('init ', this);
+        console.log('init ', this);
     }
 
     set state(value) {
@@ -91,4 +91,4 @@ export class Component extends HTMLElement {
 
 }
 
-//ustomElements.define('my-component-task-list', Component);
+//customElements.define('my-component-task-list', Component);

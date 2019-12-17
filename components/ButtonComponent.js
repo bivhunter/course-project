@@ -24,7 +24,7 @@ export class ButtonComponent extends Component {
     addListeners() {}
 
     setDataAttribute() {
-        this.dataset.title = this.props.title;
+        this.dataset.text = this.props.title;
     }
 
     render() {

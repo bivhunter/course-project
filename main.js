@@ -25,7 +25,7 @@ import {
 //import styles from "./css/TaskList.css";
 import {RouteService} from "./services/routeService.js";
 
-const url = 'https://jsonplaceholder.typicode.com/todos/';
+const url = 'https://todo-app-back.herokuapp.com';
 const requestService = new RequestService(url);
 const eventService = new EventService();
 const application = document.getElementById('app');
@@ -48,6 +48,7 @@ window.addEventListener('hashchange ', (e) => {
 const router = new RouteService({
     actionService,
     eventService,
+    requestService,
     anchor: application,
     state: {
         route: 'todo',

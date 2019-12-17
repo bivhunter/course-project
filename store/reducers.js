@@ -20,7 +20,7 @@ export function createReducers() {
             }
         },
         'DELETE_TODO': (payLoad, state) => {
-            const todoList = [...state.todoList.filter((item) => item.id !== payLoad)];
+            const todoList = [...state.todoList.filter((item) => item._id !== payLoad)];
             return {
                 ...state,
                 todoList: todoList,
@@ -30,7 +30,7 @@ export function createReducers() {
         },
         'CHANGE_TODO': (payload, state) => {
             const todoList = [...state.todoList.map((item) => {
-                if (item.id === payload.id) {
+                if (item._id === payload._id) {
                     return payload;
                 }
                 return item;
@@ -48,7 +48,21 @@ export function createReducers() {
                 filterMethod: method,
                 todoView: applyFilter(state.todoList, method),
             }
-        }
+        },
+        'SIGN_IN': (token, state) => {
+            return {
+                ...state,
+                token: token,
+                route: 'todo'
+            }
+        },
+        'SIGN_OUT': (payload, sate) => {
+            return {
+                ...sate,
+                route: 'login'
+            }
+    }
+
 
     }
 }

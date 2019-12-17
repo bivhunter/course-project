@@ -18,13 +18,28 @@ const routerConfig = {
 export class RouteService {
 	constructor(props) {
 		this.props = props;
+		this.requestService = props.requestService;
 		this.actionService = props.actionService;
+
 		this.anchor = props.anchor;
 		this.routerConfig = routerConfig;
 		this.eventService = props.eventService;
         this.state = props.state;
-        this.changeRoute(props.state.route);
+        this.onInit();
+
 		this.addListeners();
+	}
+
+	onInit() {
+        this.requestService.checkAuthorization(localStorage.getItem('token'))
+            .then((res) => {
+            	console.log(res);
+            	this.changeRoute('todo');
+            })
+            .catch((error) => {
+                console.log(error);
+            	this.changeRoute('login');
+            });
 	}
 
 	set state(value) {
@@ -45,6 +60,7 @@ export class RouteService {
 		}
 
 		if(!this.currentComponent){
+			console.log(this.currentRoute.component)
 			this.currentComponent = new this.currentRoute.component(this.props);
 		} else {
 			
@@ -52,7 +68,7 @@ export class RouteService {
 			this.currentComponent = new this.currentRoute.component(this.props);
 		}
 
-		window.history.pushState(this.currentRoute.route, '', this.currentRoute.url);
+		//window.history.pushState(this.currentRoute.route, '', this.currentRoute.url);
 	}
 
 	addListeners(){
