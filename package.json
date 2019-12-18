@@ -40,7 +40,9 @@
   },
   "dependencies": {
     "webpack-node-externals": "^1.7.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "webpack": "^4.41.3",
+    "webpack-dev-middleware": "^3.7.2"
   },
   "engines": {
     "node": "v10.16.0",
