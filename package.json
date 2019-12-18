@@ -39,6 +39,11 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
-    "webpack-node-externals": "^1.7.2"
+    "webpack-node-externals": "^1.7.2",
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "v10.16.0",
+    "npm": "6.9.0"
   }
 }
