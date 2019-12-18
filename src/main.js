@@ -1,29 +1,35 @@
+import './css/style.css';
 import {
     counterService
-} from "./services/CounterService.js";
+} from "./js/services/CounterService.js";
 import {
     TaskComponent
-} from './components/TaskComponent.js';
+} from './js/components/TaskComponent.js';
 import {
     EventService
-} from "./services/eventService.js";
+} from "./js/services/eventService.js";
 import {
     TodoComponent
-} from "./components/TodoComponent.js";
+} from "./js/components/TodoComponent.js";
 import {
     RequestService
-} from "./services/requestService.js";
+} from "./js/services/requestService.js";
 import {
     ActionServices
-} from "./services/actionService.js";
+} from "./js/services/actionService.js";
 import {
     createReducers
-} from "./store/reducers.js";
+} from "./js/store/reducers.js";
 import {
     Store
-} from "./store/store.js";
+} from "./js/store/store.js";
 //import styles from "./css/TaskList.css";
-import {RouteService} from "./services/routeService.js";
+import {RouteService} from "./js/services/routeService.js";
+
+if(typeof(module.hot) !== 'undefined') {
+    module.hot.accept() // eslint-disable-line no-undef
+}
+
 
 const url = 'https://todo-app-back.herokuapp.com';
 const requestService = new RequestService(url);
