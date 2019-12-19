@@ -1,9 +1,10 @@
-import {eventBus} from "../services/eventService.js";
+import {
+    createReducers
+} from "./js/store/reducers.js";
 
-
-export class Store{
-    constructor(props){
-        this.reducers = props.reducers;
+export class Store {
+    constructor(props) {
+        this.reducers = createReducers();
         this.eventService = props.eventService;
         this.state = {
             todoList: [],
@@ -14,7 +15,7 @@ export class Store{
 
     dispatch(actionType, payload) {
 
-        if(this.reducers[actionType]) {
+        if (this.reducers[actionType]) {
             this.state = this.reducers[actionType](payload, this.state);
         }
         console.log(this.state);

@@ -1,5 +1,9 @@
-import {TodoComponent} from "../components/TodoComponent.js";
-import {LoginComponent} from "../components/LoginComponent.js";
+import {
+	TodoComponent
+} from "../components/TodoComponent.js";
+import {
+	LoginComponent
+} from "../components/LoginComponent.js";
 
 const routerConfig = {
 	'login': {
@@ -24,46 +28,52 @@ export class RouteService {
 		this.anchor = props.anchor;
 		this.routerConfig = routerConfig;
 		this.eventService = props.eventService;
-        this.state = props.state;
-        this.onInit();
+		this.state = props.state;
+		this.onInit();
 
 		this.addListeners();
 	}
 
 	onInit() {
-        this.requestService.checkAuthorization(localStorage.getItem('token'))
-            .then((res) => {
-            	console.log(res);
-            	this.changeRoute('todo');
-            })
-            .catch((error) => {
-                console.log(error);
-            	this.changeRoute('login');
-            });
+		this.requestService.checkAuthorization(localStorage.getItem('token'))
+			.then((res) => {
+				console.log(res);
+				this.changeRoute('todo');
+			})
+			.catch((error) => {
+				console.log(error);
+				this.changeRoute('login');
+			});
 	}
 
 	set state(value) {
 		this._state = { ...this.state,
 			...value
 		};
-		
+
 	}
 
 	get state() {
 		return this._state;
 	}
 
+	getConstructor() {
+		return {
+			route: this.state.route
+		}
+	}
+
 	changeRoute(route) {
 		this.currentRoute = this.routerConfig[route];
-		if(!this.currentRoute) {
+		if (!this.currentRoute) {
 			return;
 		}
 
-		if(!this.currentComponent){
+		if (!this.currentComponent) {
 			console.log(this.currentRoute.component)
 			this.currentComponent = new this.currentRoute.component(this.props);
 		} else {
-			
+
 			this.anchor.innerHTML = '';
 			this.currentComponent = new this.currentRoute.component(this.props);
 		}
@@ -71,16 +81,17 @@ export class RouteService {
 		//window.history.pushState(this.currentRoute.route, '', this.currentRoute.url);
 	}
 
-	addListeners(){
-        this.eventService.subscribe('stateChanged', (state) => {
-            this.state = state;
-        	if(state.route === this.currentRoute.route) {
-        		this.currentComponent.state = {...state};
+	addListeners() {
+		this.eventService.subscribe('stateChanged', (state) => {
+			this.state = state;
+			if (state.route === this.currentRoute.route) {
+				this.currentComponent.state = { ...state
+				};
 			} else {
-                this.changeRoute(state.route);
-            }
-        });
-    }
+				this.changeRoute(state.route);
+			}
+		});
+	}
 
 
 }

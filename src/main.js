@@ -12,14 +12,15 @@ import {
     TodoComponent
 } from "./js/components/TodoComponent.js";
 import {
+    MainComponent
+} from "./js/components/MainComponent.js";
+import {
     RequestService
 } from "./js/services/requestService.js";
 import {
     ActionServices
 } from "./js/services/actionService.js";
-import {
-    createReducers
-} from "./js/store/reducers.js";
+
 import {
     Store
 } from "./js/store/store.js";
@@ -34,34 +35,38 @@ if(typeof(module.hot) !== 'undefined') {
 const url = 'https://todo-app-back.herokuapp.com';
 const requestService = new RequestService(url);
 const eventService = new EventService();
-const application = document.getElementById('app');
+//const application = document.getElementById('app');
 
-const reducers = createReducers();
 const store = new Store({
-    reducers,
     eventService
 });
-
 const actionService = new ActionServices({
     requestService,
     store
 });
 
-window.addEventListener('hashchange ', (e) => {
-    alert('hashchange');
-});
-
-const router = new RouteService({
+const routeService = new RouteService({
     actionService,
     eventService,
-    requestService,
-    anchor: application,
+    //requestService,
+    //anchor: document.body,
     state: {
-        route: 'todo',
+        route: 'login',
     }
 });
 
-window.onpopstate = (state) => console.log(state);
+const application = new MainComponent({
+    actionService,
+    eventService,
+    routeService
+
+    //requestService,
+    //anchor: document.body,
+    //state: {
+        //route: 'todo',
+    //}
+});
+
 
 /*
 const todoComponent = new TodoComponent({
