@@ -1,6 +1,6 @@
 import {
     createReducers
-} from "./js/store/reducers.js";
+} from "./reducers.js";
 
 export class Store {
     constructor(props) {
