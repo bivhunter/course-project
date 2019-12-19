@@ -1,17 +1,16 @@
-import {EventService} from "./eventService.js";
+import {eventService} from "./eventService.js";
+import {routeService} from "./routeService.js";
+import {requestService} from "./requestService.js";
+import {store} from "../store/Store.js";
 
-export class ActionServices {
-    constructor(props) {
-        this.store = props.store;
-        this.requestService = props.requestService;
-        //this.eventService = props.eventService;
+class ActionService{
+    constructor() {
         this.initHandlers();
         this.onInit();
     }
 
     onInit() {
         console.log('init actionService');
-        this.dispatch('initApplication', '');
     }
 
     initHandlers() {
@@ -22,7 +21,7 @@ export class ActionServices {
             }),
             'initTodoComponent': () => this.getTaskList(),
             //'applicationInit': () => this.checkAuthorization(),
-            'initApplication': () => this.store.dispatch('INIT_APP'),
+            'initApplication': () => this.initApplication(),
             'deletedTask': (id) => this.deleteTask(id),
             'doneTask': (task) => this.changeTask({...task, completed: !task.completed}),
             'startEditTask': (task) => this.changeTaskLocal({...task, editing: true}),
@@ -59,44 +58,44 @@ export class ActionServices {
 
     getTaskList() {
         //console.log('getTaskList')
-        this.requestService.get()
-            .then(data => this.store.dispatch('INIT_TODO', data));
+        requestService.get()
+            .then(data => store.dispatch('INIT_TODO', data));
     }
 
 
     addTask(task){
-        this.requestService.post(task)
+        requestService.post(task)
             .then(data => {
-                this.store.dispatch('ADD_TODO', data);
+                store.dispatch('ADD_TODO', data);
             })
             .catch(error => console.log(error));
     }
 
     deleteTask(id){
-        this.requestService.delete(id)
-            .then(() => this.store.dispatch('DELETE_TODO', id));
+        requestService.delete(id)
+            .then(() => store.dispatch('DELETE_TODO', id));
     }
 
     changeTask(task) {
          console.log('changeTask', task)
-       this.requestService.put(task)
-           .then((task) => this.store.dispatch('CHANGE_TODO', task));
+       requestService.put(task)
+           .then((task) => store.dispatch('CHANGE_TODO', task));
     }
 
     changeTaskLocal(task) {
-            this.store.dispatch('CHANGE_TODO', task);
+            store.dispatch('CHANGE_TODO', task);
     }
 
     tasksFilter(method) {
-        this.store.dispatch('FILTER', method);
+        store.dispatch('FILTER', method);
     }
 
     signIn(data) {
-        this.requestService.signIn(data)
+        requestService.signIn(data)
             .then(res => {
                 localStorage.setItem('token', res.token);
-                this.requestService.token = res.token;
-                this.store.dispatch('SIGN_IN', res.token);
+                requestService.token = res.token;
+                store.dispatch('SIGN_IN', res.token);
 
                 console.log(res.token)
 
@@ -107,16 +106,16 @@ export class ActionServices {
 
     signOut() {
         localStorage.removeItem('token');
-        this.store.dispatch('SIGN_OUT');
+        store.dispatch('SIGN_OUT');
     }
 
     signUp(data) {
         console.log(data)
-        this.requestService.signUp(data)
+        requestService.signUp(data)
             .then(res => {
                 localStorage.setItem('token', res.token);
-                this.requestService.token = res.token;
-                this.store.dispatch('SIGN_IN', res.token);
+                requestService.token = res.token;
+                store.dispatch('SIGN_IN', res.token);
 
                 console.log(res.error)
 
@@ -124,5 +123,28 @@ export class ActionServices {
             .catch(error => error.then((res) => console.log(res.error)));
     }
 
+    initApplication() {
+        let route = routeService.changeRoute('login');
+        requestService.checkAuthorization()
+            .then(() => {
+                route = routeService.changeRoute('todo');
+                store.dispatch('CHANGE_ROUTE', {
+                    route,
+                    message: {
+                        text : 'Logged in',
+                        status: true
+                    }});
+            })
+            .catch(() => {
+                store.dispatch('CHANGE_ROUTE', {
+                    route,
+                    message: {
+                        text : 'Login, Please',
+                        status: true
+                    }});
+            });
 
+    }
 }
+
+export const actionService = new ActionService();

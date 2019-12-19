@@ -4,6 +4,8 @@ import {
 import {
 	Component
 } from "./Component.js";
+import {actionService} from "../services/actionService.js";
+import {eventService} from "../services/eventService.js";
 
 export class MainComponent extends Component {
 	constructor(props) {

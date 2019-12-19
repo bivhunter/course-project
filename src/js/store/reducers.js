@@ -1,10 +1,7 @@
 export function createReducers() {
     return {
-        'INIT_APP' : (payload, state) => {
-            return {
-                ...state,
-                route: {name: 'login'}
-            }
+        'CHANGE_ROUTE' : (payload, state) => {
+            return { ...state, ...payload }
         },
         'INIT_TODO': (payLoad, state) => {
             return {

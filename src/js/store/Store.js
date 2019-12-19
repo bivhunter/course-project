@@ -1,11 +1,11 @@
 import {
     createReducers
 } from "./reducers.js";
+import { eventService } from "../services/eventService.js";
 
-export class Store {
-    constructor(props) {
+class Store {
+    constructor() {
         this.reducers = createReducers();
-        this.eventService = props.eventService;
         this.state = {
             todoList: [],
             todoView: []
@@ -19,7 +19,9 @@ export class Store {
             this.state = this.reducers[actionType](payload, this.state);
         }
         console.log(this.state);
-        this.eventService.publish('stateChanged', this.state);
+        eventService.publish('stateChanged', this.state);
     }
 
 }
+
+export const store = new Store();

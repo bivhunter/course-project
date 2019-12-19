@@ -1,20 +1,20 @@
-export class RequestService{
+class RequestService{
     constructor(url) {
         this.url = url;
         this.token = localStorage.getItem('token');
         console.log('init requestService');
     }
 
-    checkAuthorization(token) {
+    checkAuthorization() {
         return fetch(`${this.url}/me`, {
             method: 'GET',
             headers: {
-                'Authorization': token
+                'Authorization': this.token
             }
         })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error("File not found");
+                    throw response.json();
                 }
                 return response.json();
             });
@@ -118,6 +118,7 @@ export class RequestService{
                 return response.json();
             } );
     }
-
-
 }
+
+const url = 'https://todo-app-back.herokuapp.com';
+export const requestService = new RequestService(url);

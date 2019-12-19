@@ -1,4 +1,4 @@
-export class EventService {
+class EventService {
     constructor() {
         this.channels = {};
     }
@@ -30,4 +30,4 @@ export class EventService {
     }
 }
 
-export let eventBus = new EventService();
+export const eventService = new EventService();

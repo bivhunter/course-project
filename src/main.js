@@ -23,7 +23,7 @@ import {
 
 import {
     Store
-} from "./js/store/store.js";
+} from "./js/store/Store.js";
 //import styles from "./css/TaskList.css";
 import {RouteService} from "./js/services/routeService.js";
 
@@ -32,28 +32,8 @@ if(typeof(module.hot) !== 'undefined') {
 }
 
 
-const url = 'https://todo-app-back.herokuapp.com';
-const requestService = new RequestService(url);
-const eventService = new EventService();
+
 //const application = document.getElementById('app');
-
-const store = new Store({
-    eventService
-});
-const actionService = new ActionServices({
-    requestService,
-    store
-});
-
-const routeService = new RouteService({
-    actionService,
-    eventService,
-    //requestService,
-    //anchor: document.body,
-    state: {
-        route: 'login',
-    }
-});
 
 const application = new MainComponent({
     actionService,

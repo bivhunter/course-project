@@ -19,7 +19,7 @@ const routerConfig = {
 };
 
 
-export class RouteService {
+class RouteService {
 	constructor(props) {
 		this.props = props;
 		this.requestService = props.requestService;
@@ -65,20 +65,8 @@ export class RouteService {
 
 	changeRoute(route) {
 		this.currentRoute = this.routerConfig[route];
-		if (!this.currentRoute) {
-			return;
-		}
-
-		if (!this.currentComponent) {
-			console.log(this.currentRoute.component)
-			this.currentComponent = new this.currentRoute.component(this.props);
-		} else {
-
-			this.anchor.innerHTML = '';
-			this.currentComponent = new this.currentRoute.component(this.props);
-		}
-
-		//window.history.pushState(this.currentRoute.route, '', this.currentRoute.url);
+		window.history.pushState(this.currentRoute.route, '', this.currentRoute.url);
+		return this.currentRoute;
 	}
 
 	addListeners() {
@@ -95,3 +83,5 @@ export class RouteService {
 
 
 }
+
+export const routeService = new RouteService();
