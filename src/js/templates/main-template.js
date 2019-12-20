@@ -1,5 +1,5 @@
 export const mainTemplate = document.createElement('template');
-todoTemplate.innerHTML = `
+mainTemplate.innerHTML = `
 	<style>
 	.main  {
     width: 600px;

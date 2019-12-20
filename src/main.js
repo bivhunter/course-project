@@ -1,50 +1,20 @@
 import './css/style.css';
 import {
-    counterService
-} from "./js/services/CounterService.js";
-import {
-    TaskComponent
-} from './js/components/TaskComponent.js';
-import {
-    EventService
-} from "./js/services/eventService.js";
-import {
-    TodoComponent
-} from "./js/components/TodoComponent.js";
-import {
     MainComponent
 } from "./js/components/MainComponent.js";
-import {
-    RequestService
-} from "./js/services/requestService.js";
-import {
-    ActionServices
-} from "./js/services/actionService.js";
 
-import {
-    Store
-} from "./js/store/Store.js";
-//import styles from "./css/TaskList.css";
-import {RouteService} from "./js/services/routeService.js";
+
 
 if(typeof(module.hot) !== 'undefined') {
     module.hot.accept() // eslint-disable-line no-undef
 }
 
-
+console.log('init main.js')
 
 //const application = document.getElementById('app');
 
 const application = new MainComponent({
-    actionService,
-    eventService,
-    routeService
-
-    //requestService,
-    //anchor: document.body,
-    //state: {
-        //route: 'todo',
-    //}
+    anchor : document.body
 });
 
 

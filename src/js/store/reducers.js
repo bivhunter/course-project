@@ -10,7 +10,6 @@ export function createReducers() {
                 todoView: [...payLoad],
                 filterMethod: "allTasks",
                 countTasks: calculateTasks([...payLoad]),
-                route: 'todo'
             }
         },
         'ADD_TODO': (payLoad, state) => {

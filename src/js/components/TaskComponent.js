@@ -1,9 +1,7 @@
+import {actionService} from "../services/actionService.js";
 import {
     ButtonComponent
 } from "./ButtonComponent.js";
-import {
-    eventBus
-} from "../services/eventService.js";
 import {
     Component
 } from "./Component.js";
@@ -45,17 +43,17 @@ export class TaskComponent extends Component {
         if(event.composedPath()[0].tagName === "BUTTON") {
             return;
         }
-        this.actionService.dispatch(`startEditTask`, this.props.task);
+        actionService.dispatch(`startEditTask`, this.props.task);
     }
 
     addButtonListeners() {
         this.deleteButton.addEventListener('click', (event) => {
             console.log(this.props)
-            this.actionService.dispatch(`deletedTask`, this.props.task._id);
+            actionService.dispatch(`deletedTask`, this.props.task._id);
         });
 
         this.doneButton.addEventListener('click', (event) => {
-            this.actionService.dispatch(`doneTask`, this.props.task);
+            actionService.dispatch(`doneTask`, this.props.task);
         });
     }
 

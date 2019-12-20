@@ -19,9 +19,10 @@ class ActionService{
                 text: text,
                 completed: false,
             }),
-            'initTodoComponent': () => this.getTaskList(),
-            //'applicationInit': () => this.checkAuthorization(),
             'initApplication': () => this.initApplication(),
+            'initTodoComponent': () => this.getTaskList(),
+           // 'initLoginComponent': () => this.checkAuthorization(),
+
             'deletedTask': (id) => this.deleteTask(id),
             'doneTask': (task) => this.changeTask({...task, completed: !task.completed}),
             'startEditTask': (task) => this.changeTaskLocal({...task, editing: true}),
@@ -95,7 +96,13 @@ class ActionService{
             .then(res => {
                 localStorage.setItem('token', res.token);
                 requestService.token = res.token;
-                store.dispatch('SIGN_IN', res.token);
+                store.dispatch('CHANGE_ROUTE', {
+                    route: routeService.changeRoute('todo'),
+                    message: {
+                        text: 'Logged in',
+                        status: true
+                    }
+                });
 
                 console.log(res.token)
 
@@ -106,7 +113,14 @@ class ActionService{
 
     signOut() {
         localStorage.removeItem('token');
-        store.dispatch('SIGN_OUT');
+        const route = routeService.changeRoute('login');
+        store.dispatch('CHANGE_ROUTE', {
+            route,
+            message: {
+                text: 'Logged out',
+                status: true
+            }
+        });
     }
 
     signUp(data) {

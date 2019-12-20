@@ -1,9 +1,7 @@
 import {
     TaskComponent
 } from "./TaskComponent.js";
-import {
-    eventBus
-} from "../services/eventService.js";
+
 import {
     TextAreaComponent
 } from "./textAreaComponent.js";
@@ -35,13 +33,13 @@ export class TaskListComponent extends Component {
              this.props.taskList = data;
              this.renderList();
          });*/
-
+/*
         eventBus.subscribe('cancelEditing', (task) => {
             this.editingLi.innerHTML = "";
             this.editingLi.appendChild(new TaskComponent({
                 task: task
             }));
-        });
+        });*/
 
     }
 

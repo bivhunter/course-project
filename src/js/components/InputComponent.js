@@ -1,3 +1,4 @@
+import {actionService} from "../services/actionService.js";
 import {ButtonComponent} from "./ButtonComponent.js";
 import {Component} from "./Component.js";
 import {inputTemplate} from "../templates/input-template.js";
@@ -34,7 +35,7 @@ export class InputComponent extends Component{
         if(!this.textarea.value) {
             return;
         }
-        this.props.actionService.dispatch('addTask', this.textarea.value);
+        actionService.dispatch('addTask', this.textarea.value);
         //eventBus.publish('addTask', this.textarea.value );
         this.textarea.value = '';
     }

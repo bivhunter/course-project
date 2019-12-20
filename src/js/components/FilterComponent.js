@@ -1,6 +1,6 @@
+import {actionService} from "../services/actionService.js";
 import {Component} from "./Component.js";
 import {ButtonComponent} from "./ButtonComponent.js";
-import {eventBus} from "../services/eventService.js";
 import {filterTemplate} from "../templates/filter-template.js";
 
 export class FilterComponent extends Component {
@@ -54,15 +54,15 @@ export class FilterComponent extends Component {
 
     addButtonListeners() {
         this.allTasks.addEventListener('click', (event) => {
-            this.actionService.dispatch(`allFilter`, this.props);
+            actionService.dispatch(`allFilter`, this.props);
         });
 
         this.doneTasks.addEventListener('click', (event) => {
-            this.actionService.dispatch(`doneFilter`, this.props);
+            actionService.dispatch(`doneFilter`, this.props);
         });
 
         this.notDoneTasks.addEventListener('click', (event) => {
-            this.actionService.dispatch(`notDoneFilter`, this.props);
+            actionService.dispatch(`notDoneFilter`, this.props);
         });
 
     }

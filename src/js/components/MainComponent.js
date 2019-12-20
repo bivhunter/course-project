@@ -10,8 +10,6 @@ import {eventService} from "../services/eventService.js";
 export class MainComponent extends Component {
 	constructor(props) {
 		super(props);
-        this.currentRoute = {name: ''};
-		this.onInit();
 		this.render();
 		this.addListeners();
 	}
@@ -35,36 +33,30 @@ export class MainComponent extends Component {
 	}
 
 	addListeners() {
-        this.eventService.subscribe('stateChanged', (state) => {
+        eventService.subscribe('stateChanged', (state) => {
         	this.state = state;
-            if (state.route.name !== this.currentRoute.name) {
-                this.routeService.changeRoute(state.route.name);
-                if(this.currentComponent) {
-                	this.currentComponent.remove();
-					}
-                } else {
-                this.currentRoute = state.route;
-            	this.renderComponent();
+        	if(!(this.currentComponent instanceof state.route.component)) {
+                this.renderComponent();
+			} else {
+        		this.applyChanges();
 			}
         });
-        this.actionService.dispatch('initApplication');
+        actionService.dispatch('initApplication');
 	}
 
 	render() {
 		this.anchor.appendChild(this);
 		this.tooltipWrapper = this.shadowRoot.querySelector('.tooltip-wrapper');
-		this.appWrapper = this.shadowRoot.querySelector('.app-wrapper');
+		this.currentComponent = this.shadowRoot.querySelector('.app-wrapper');
+		this.mainWrapper = this.shadowRoot.querySelector('.main');
 	}
 
-
 	renderComponent() {
-        if (!this.currentComponent) {
-            this.currentComponent = new this.currentRoute.component({
+        this.currentComponent.remove();
+        this.currentComponent = new this.state.route.component({
 				...this.props,
-				anchor: this.appWrapper});
-        } else {
-        	this.applyChanges();
-		}
+				anchor: this.mainWrapper
+        });
 	}
 
 	applyChanges() {

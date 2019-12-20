@@ -1,6 +1,4 @@
-import {
-    eventBus
-} from "../services/eventService.js";
+
 import {
     Component
 } from "./Component.js";

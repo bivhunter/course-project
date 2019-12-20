@@ -6,6 +6,7 @@ import {
 }
 from "../templates/login-template.js";
 import {ButtonComponent} from "./ButtonComponent.js";
+import {actionService} from "../services/actionService.js";
 
 export class LoginComponent extends Component {
 	constructor(props) {
@@ -15,6 +16,7 @@ export class LoginComponent extends Component {
 	onInit() {
 		this.template = loginTemplate;
 		this.render();
+       // actionService.dispatch('initLoginComponent');
 	}
 
 	render() {
@@ -43,7 +45,7 @@ export class LoginComponent extends Component {
 
 	addButtonListeners() {
 		this.submitButton.addEventListener('click', () => {
-			this.actionService.dispatch('signIn', {
+			actionService.dispatch('signIn', {
 				email: this.emailInput.value,
 				password: this.passwordInput.value
 			});
@@ -59,7 +61,7 @@ export class LoginComponent extends Component {
 
                 this.registerMode = true;
             } else {
-                this.actionService.dispatch('signUp', {
+                actionService.dispatch('signUp', {
                     email: this.emailInput.value,
                     password: this.passwordInput.value,
 					username: this.userNameInput.value

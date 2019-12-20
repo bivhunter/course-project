@@ -1,7 +1,4 @@
 import {
-    eventBus
-} from "../services/eventService.js";
-import {
     TaskListComponent
 } from "./TaskListComponent.js";
 import {
@@ -20,7 +17,7 @@ import {
     todoTemplate
 } from "../templates/todo-template.js";
 import {ButtonComponent} from "./ButtonComponent.js";
-
+import {actionService} from "../services/actionService.js";
 
 export class TodoComponent extends Component {
     constructor(props) {
@@ -31,22 +28,24 @@ export class TodoComponent extends Component {
         this._state = { ...value
         };
         this.props.state = this._state;
-        this.applyChanges(value);
+        this.render();
+        this.addListeners();
     }
 
     onInit() {
         this.template = todoTemplate;
         console.log('initTodoComponent')
-        this.actionService.dispatch('initTodoComponent');
-        //this.render();
-    }
+        actionService.dispatch('initTodoComponent');
+       // this.render();
 
-
-    connectedCallback() {
-        // addEventListener();
     }
 
     render() {
+        if(this.isRendered) {
+            this.applyChanges(this.props.state);
+            return;
+        }
+        this.isRendered = true;
         this.anchor.appendChild(this);
         // const leftColumn = this.shadowRoot.querySelector('.left-column');
         const rightColumn = this.shadowRoot.querySelector('.right-column');
@@ -72,14 +71,10 @@ export class TodoComponent extends Component {
             classStyle: "sign-out-button",
             anchor: signOutWrapper
         });
-        this.addListeners();
+
     }
 
     applyChanges(state) {
-        if(!this.isInit) {
-            this.isInit =true;
-            this.render();
-        }
         this.taskList.state = {...state};
         this.filter.state = {...state};
         this.counter.state = {...state};
@@ -87,7 +82,7 @@ export class TodoComponent extends Component {
 
     addListeners() {
         this.signOutButton.addEventListener('click', () => {
-            this.actionService.dispatch('signOut');
+            actionService.dispatch('signOut');
         })
     }
 

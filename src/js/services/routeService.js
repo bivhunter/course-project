@@ -20,56 +20,31 @@ const routerConfig = {
 
 
 class RouteService {
-	constructor(props) {
-		this.props = props;
-		this.requestService = props.requestService;
-		this.actionService = props.actionService;
-
-		this.anchor = props.anchor;
+	constructor() {
 		this.routerConfig = routerConfig;
-		this.eventService = props.eventService;
-		this.state = props.state;
-		this.onInit();
+		//this.onInit();
 
-		this.addListeners();
+	//this.addListeners();
 	}
 
-	onInit() {
+	/*onInit() {
 		this.requestService.checkAuthorization(localStorage.getItem('token'))
 			.then((res) => {
 				console.log(res);
-				this.changeRoute('todo');
 			})
 			.catch((error) => {
 				console.log(error);
 				this.changeRoute('login');
 			});
-	}
-
-	set state(value) {
-		this._state = { ...this.state,
-			...value
-		};
-
-	}
-
-	get state() {
-		return this._state;
-	}
-
-	getConstructor() {
-		return {
-			route: this.state.route
-		}
-	}
+	}*/
 
 	changeRoute(route) {
 		this.currentRoute = this.routerConfig[route];
-		window.history.pushState(this.currentRoute.route, '', this.currentRoute.url);
+		window.history.replaceState(this.currentRoute.route, '', this.currentRoute.url);
 		return this.currentRoute;
 	}
 
-	addListeners() {
+	/*addListeners() {
 		this.eventService.subscribe('stateChanged', (state) => {
 			this.state = state;
 			if (state.route === this.currentRoute.route) {
@@ -79,7 +54,7 @@ class RouteService {
 				this.changeRoute(state.route);
 			}
 		});
-	}
+	}*/
 
 
 }
