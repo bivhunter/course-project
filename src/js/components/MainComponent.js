@@ -4,8 +4,12 @@ import {
 import {
 	Component
 } from "./Component.js";
-import {actionService} from "../services/actionService.js";
-import {eventService} from "../services/eventService.js";
+import {
+	actionService
+} from "../services/actionService.js";
+import {
+	eventService
+} from "../services/eventService.js";
 
 export class MainComponent extends Component {
 	constructor(props) {
@@ -14,16 +18,15 @@ export class MainComponent extends Component {
 		this.addListeners();
 	}
 
-    set state(value) {
-        this._state = { ...this.state,
-            ...value
-        };
-		this.props = {...this.props, state: this._state};
-    }
+	set state(value) {
+		this._state = { ...value
+		};
+		this.props.state = this._state;
+	}
 
-    get state() {
-        return this._state;
-    }
+	get state() {
+		return this._state;
+	}
 
 	onInit() {
 		this.template = mainTemplate;
@@ -33,34 +36,39 @@ export class MainComponent extends Component {
 	}
 
 	addListeners() {
-        eventService.subscribe('stateChanged', (state) => {
-        	this.state = state;
-        	if(!(this.currentComponent instanceof state.route.component)) {
-                this.renderComponent();
+		eventService.subscribe('stateChanged', (state) => {
+			this.state = state;
+			if (!(this.currentComponent instanceof this.state.route.component)) {
+				this.renderComponent();
 			} else {
-        		this.applyChanges();
+				this.applyChanges();
 			}
-        });
-        actionService.dispatch('initApplication');
+		});
+		actionService.dispatch('initApplication');
 	}
 
 	render() {
 		this.anchor.appendChild(this);
 		this.tooltipWrapper = this.shadowRoot.querySelector('.tooltip-wrapper');
+		this.tooltip = new TooltipComponent({
+			anchor: this.tooltipWrapper
+		});
+
 		this.currentComponent = this.shadowRoot.querySelector('.app-wrapper');
 		this.mainWrapper = this.shadowRoot.querySelector('.main');
 	}
 
 	renderComponent() {
-        this.currentComponent.remove();
-        this.currentComponent = new this.state.route.component({
-				...this.props,
-				anchor: this.mainWrapper
-        });
+		this.currentComponent.remove();
+		this.currentComponent = new this.state.route.component({
+			...this.props,
+			anchor: this.mainWrapper
+		});
 	}
 
 	applyChanges() {
-         this.currentComponent.state = {...this.state};
+		this.currentComponent.state = { ...this.state
+		};
 	}
 }
 
