@@ -1,7 +1,7 @@
 export class Component extends HTMLElement {
     constructor(props){
         super();
-        console.log(this, 'init');
+        //console.log(this, 'init');
         this.attachShadow({mode: 'open'});
         this.anchor = props.anchor;
         this.props = props;

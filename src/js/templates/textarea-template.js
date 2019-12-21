@@ -8,6 +8,7 @@ textareaTemplate.innerHTML = `
 }
 
 .right-column{
+    height: 100%;
     float: right;
     width: 20%;
 }
@@ -17,9 +18,18 @@ td {
     vertical-align: center;
 }
 table{
-    margin: auto;
+    height: 100%;
 }
 
+:host{
+    margin-top: 14px;
+    display: block;
+    height: 60px;
+    border-radius: 10px;
+    border: 3px #B99E7E groove;  
+    box-shadow:  -2px -2px 4px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
 
 .text-area{
     box-sizing: border-box;

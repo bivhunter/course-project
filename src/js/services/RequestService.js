@@ -83,7 +83,7 @@ class RequestService{
         } )
             .then( ( response ) => {
                 if ( !response.ok ) {
-                    throw new Error( "File not found" );
+                    throw response.json();
                 }
                 return response.json();
             } );

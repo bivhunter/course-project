@@ -21,7 +21,7 @@ td {
     vertical-align: center;
 }
 table{
-    margin: auto;
+    height: 100%;
 }
 
 p {
@@ -29,7 +29,38 @@ p {
     margin: 10px;
     padding: 0;
 }
+
+:host{
+    overflow: auto;
+    margin-top: 14px;
+    display: block;
+    height: 60px;
+    border-radius: 10px;
+    border: 3px #B99E7E groove;  
+    box-shadow:  -2px -2px 4px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+:host([data-completed = "true"]){
+    background: #81FFD6;
+}
+
+:host([data-completed = "true"]:hover){
+    background:#54D2A9;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+:host([data-completed = "false"]){
+    background: #FFC0A9;
+}
+
+:host([data-completed = "false"]:hover){
+    background:#EA755E;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
 </style>	
+
 <div class="left-column">
     <p></p>
 </div>

@@ -9,12 +9,10 @@ todoTemplate.innerHTML = `
     margin-left: 0;
         float: left;
         width: 70%;
-        outline: blue 1px groove;
     }
     .right-column{
         width: 30%;
         float: right;
-        outline: blue 1px groove;
     }
     h1{
         text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
