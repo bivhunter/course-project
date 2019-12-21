@@ -1,8 +1,3 @@
-
-const template = document.createElement('template');
-template.innerHTML ="default template";
-
-
 export class Component extends HTMLElement {
     constructor(props){
         super();

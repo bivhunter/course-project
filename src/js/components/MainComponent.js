@@ -1,15 +1,8 @@
-import {
-	mainTemplate
-} from "../templates/main-template.js";
-import {
-	Component
-} from "./Component.js";
-import {
-	actionService
-} from "../services/actionService.js";
-import {
-	eventService
-} from "../services/eventService.js";
+import { mainTemplate } from "../templates/main-template.js";
+import { Component } from "./Component.js";
+import { actionService } from "../services/ActionService.js";
+import { eventService } from "../services/EventService.js";
+import { TooltipComponent } from "./TooltipComponent.js";
 
 export class MainComponent extends Component {
 	constructor(props) {
@@ -37,6 +30,7 @@ export class MainComponent extends Component {
 
 	addListeners() {
 		eventService.subscribe('stateChanged', (state) => {
+			this.showTooltip(state.message);
 			this.state = state;
 			if (!(this.currentComponent instanceof this.state.route.component)) {
 				this.renderComponent();
@@ -64,6 +58,10 @@ export class MainComponent extends Component {
 			...this.props,
 			anchor: this.mainWrapper
 		});
+	}
+
+	showTooltip(message) {
+		this.tooltip.state = message;
 	}
 
 	applyChanges() {

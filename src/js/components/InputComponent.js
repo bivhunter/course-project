@@ -1,4 +1,4 @@
-import {actionService} from "../services/actionService.js";
+import {actionService} from "../services/ActionService.js";
 import {ButtonComponent} from "./ButtonComponent.js";
 import {Component} from "./Component.js";
 import {inputTemplate} from "../templates/input-template.js";

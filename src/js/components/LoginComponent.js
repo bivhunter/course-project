@@ -10,7 +10,7 @@ import {
 } from "./ButtonComponent.js";
 import {
 	actionService
-} from "../services/actionService.js";
+} from "../services/ActionService.js";
 
 export class LoginComponent extends Component {
 	constructor(props) {

@@ -4,7 +4,7 @@ import {
 
 import {
     TextAreaComponent
-} from "./textAreaComponent.js";
+} from "./TextAreaComponent.js";
 import {
     Component
 } from "./Component.js";

@@ -1,36 +1,39 @@
 export function createReducers() {
     return {
-        'CHANGE_ROUTE' : (payload, state) => {
-            return { ...state, ...payload }
+        'CHANGE_ROUTE' : (route, state, message) => {
+            return { ...state, ...route, ...message }
         },
-        'INIT_TODO': (payLoad, state) => {
+        'INIT_TODO': (payLoad, state, message) => {
             return {
                 ...state,
                 todoList: [...payLoad],
                 todoView: [...payLoad],
                 filterMethod: "allTasks",
                 countTasks: calculateTasks([...payLoad]),
+                message: message,
             }
         },
-        'ADD_TODO': (payLoad, state) => {
+        'ADD_TODO': (payLoad, state, message) => {
             const todoList = [payLoad, ...state.todoList];
             return {
                 ...state,
                 todoList: todoList,
                 todoView: applyFilter(todoList, state.filterMethod),
                 countTasks: calculateTasks(todoList),
+                message: message,
             }
         },
-        'DELETE_TODO': (payLoad, state) => {
+        'DELETE_TODO': (payLoad, state, message) => {
             const todoList = [...state.todoList.filter((item) => item._id !== payLoad)];
             return {
                 ...state,
                 todoList: todoList,
                 todoView: applyFilter(todoList, state.filterMethod),
                 countTasks: calculateTasks(todoList),
+                message: message
             }
         },
-        'CHANGE_TODO': (payload, state) => {
+        'CHANGE_TODO': (payload, state, message) => {
             const todoList = [...state.todoList.map((item) => {
                 if (item._id === payload._id) {
                     return payload;
@@ -42,13 +45,15 @@ export function createReducers() {
                 todoList: todoList,
                 todoView: applyFilter(todoList, state.filterMethod),
                 countTasks: calculateTasks(todoList),
+                message: message
             }
         },
-        'FILTER': (method, state) => {
+        'FILTER': (method, state, message) => {
             return {
                 ...state,
                 filterMethod: method,
                 todoView: applyFilter(state.todoList, method),
+                message: message
             }
         },
         'SIGN_IN': (token, state) => {
@@ -58,12 +63,18 @@ export function createReducers() {
                 route: 'todo'
             }
         },
-        'SIGN_OUT': (payload, sate) => {
+        'SIGN_OUT': (payload, state) => {
             return {
-                ...sate,
+                ...state,
                 route: 'login'
             }
-    }
+        },
+        'ERROR' : (payload, state, message) => {
+            return {
+                ...state,
+                message: message
+            }
+        }
 
 
     }

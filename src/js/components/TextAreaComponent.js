@@ -9,7 +9,7 @@ import {
 } from "../templates/textarea-template.js";
 import {
     actionService
-} from "../services/actionService.js";
+} from "../services/ActionService.js";
 
 export class TextAreaComponent extends Component {
     constructor(props) {

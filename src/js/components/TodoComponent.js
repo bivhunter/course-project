@@ -17,7 +17,7 @@ import {
     todoTemplate
 } from "../templates/todo-template.js";
 import {ButtonComponent} from "./ButtonComponent.js";
-import {actionService} from "../services/actionService.js";
+import {actionService} from "../services/ActionService.js";
 
 export class TodoComponent extends Component {
     constructor(props) {

@@ -31,8 +31,9 @@ class RequestService{
             }
         })
             .then((response) => {
+                console.log(response, 'response');
                 if (!response.ok) {
-                    throw new Error("File not found");
+                   throw response.json();
                 }
                 return response.json();
             });
@@ -43,12 +44,14 @@ class RequestService{
         return fetch(`${this.url}/todos`, {
             method: 'GET',
             headers: {
+                "Content-type": "application/json; charset=UTF-8",
                 'Authorization': this.token,
             }
         })
             .then((response) => {
+                console.log(response);
                 if (!response.ok) {
-                    throw new Error("File not found");
+                    throw new Error('error');
                 }
                 return response.json();
             });
@@ -97,7 +100,7 @@ class RequestService{
         } )
             .then( ( response ) => {
                 if ( !response.ok ) {
-                    throw new Error( "File not found" );
+                    throw response.json();
                 }
                 return response.json();
             } );

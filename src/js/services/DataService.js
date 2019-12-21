@@ -1,5 +1,5 @@
-import {eventBus} from "./eventService.js";
-import {EventService} from "./eventService.js";
+import {eventBus} from "./EventService.js";
+import {EventService} from "./EventService.js";
 
 class DataService {
     constructor(url) {

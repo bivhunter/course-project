@@ -11,6 +11,7 @@ inputTemplate.innerHTML = `
     .left-column{
         width: 80%;
         float: left;
+        border-radius: 10px;
         border: 3px #B99E7E groove;  
         box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         background: #FFE4C4;

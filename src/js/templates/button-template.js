@@ -4,6 +4,13 @@ buttonTemplate.innerHTML = `
 	button{
     transition-duration: 0.6s;
     cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+button:focus {
+    border: none;
 }
 .delete-button, .cancel-button, .not-done-filter-button{
     background-color: white;
@@ -40,6 +47,13 @@ buttonTemplate.innerHTML = `
     color: white;
 }
 
+.sign-out-button{
+    border: 3px #B99E7E groove;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    background-color: white;
+}
+
 .submit-button{
     font-size: 20px;
     height: 40px;
@@ -52,11 +66,9 @@ buttonTemplate.innerHTML = `
     box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     background-color: white;
     color: #715636;
-    color: #715636;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-.submit-button:hover {
+.submit-button:hover, .sign-out-button:hover {
     background-color: #B99E7E; 
     color: white;
 }

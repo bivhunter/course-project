@@ -1,4 +1,4 @@
-import {actionService} from "../services/actionService.js";
+import {actionService} from "../services/ActionService.js";
 import {Component} from "./Component.js";
 import {ButtonComponent} from "./ButtonComponent.js";
 import {filterTemplate} from "../templates/filter-template.js";
@@ -8,18 +8,16 @@ export class FilterComponent extends Component {
         super(props);
     }
 
-    connectedCallback() {
-
-    }
-
     onInit() {
         this.template = filterTemplate;
         this.render();
+        this.applyChanges();
         //this.addListeners();
     }
 
     set state(value) {
         this.props.state = {...value};
+        this.applyChanges();
     }
 
     get state() {
@@ -50,6 +48,24 @@ export class FilterComponent extends Component {
             anchor: this.notDoneButtonWrapper
         });
         this.addButtonListeners();
+    }
+
+    applyChanges() {
+        [this.allButtonWrapper, this.doneButtonWrapper, this.notDoneButtonWrapper]
+            .forEach((item) => {
+                item.dataset.select = "";
+            });
+        switch (this.props.state.filterMethod) {
+            case 'allTasks':
+                this.allButtonWrapper.dataset.select = "selected";
+                break;
+            case 'doneTasks':
+                this.doneButtonWrapper.dataset.select = "selected";
+                break;
+            case 'notDoneTasks':
+                this.notDoneButtonWrapper.dataset.select = "selected";
+                break;
+        }
     }
 
     addButtonListeners() {
