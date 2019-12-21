@@ -1,4 +1,3 @@
-//import {actionService} from "../services/actionService.js";
 
 const template = document.createElement('template');
 template.innerHTML ="default template";
@@ -9,20 +8,10 @@ export class Component extends HTMLElement {
         super();
         console.log(this, 'init');
         this.attachShadow({mode: 'open'});
-        //this.template = template;
-
-        //this.actionService = actionService;
         this.anchor = props.anchor;
-
         this.props = props;
         this.onInit();
         //this.state = props.state;
-
-
-
-
-        //this.props.anchor.appendChild(this);
-
         // this.render();
     }
 
@@ -37,7 +26,8 @@ export class Component extends HTMLElement {
     }
 
     set state(value) {
-        this._state = {...value};
+        this._state = { ...value
+        };
         this.props.state = this._state;
         this.render();
     }

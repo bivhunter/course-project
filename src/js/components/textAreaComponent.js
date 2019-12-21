@@ -1,7 +1,15 @@
-import { Component} from "./Component.js";
-import { ButtonComponent } from "./ButtonComponent.js";
-import {textareaTemplate} from "../templates/textarea-template.js";
-import {actionService} from "../services/actionService.js";
+import {
+    Component
+} from "./Component.js";
+import {
+    ButtonComponent
+} from "./ButtonComponent.js";
+import {
+    textareaTemplate
+} from "../templates/textarea-template.js";
+import {
+    actionService
+} from "../services/actionService.js";
 
 export class TextAreaComponent extends Component {
     constructor(props) {
@@ -14,7 +22,7 @@ export class TextAreaComponent extends Component {
         this.setDataAttribute();
     }
 
-    setDataAttribute(){
+    setDataAttribute() {
         this.dataset._id = this.props.task._id;
         this.dataset.completed = this.props.task.completed;
     }
@@ -57,8 +65,9 @@ export class TextAreaComponent extends Component {
         this.textarea.addEventListener('keydown', (event) => {
             if (event.key === "Enter") {
                 event.preventDefault();
-                actionService.dispatch(`endEditTask`,
-                    {...this.props.task, title: this.textarea.value});
+                actionService.dispatch(`endEditTask`, { ...this.props.task,
+                    text: this.textarea.value
+                });
             }
 
         });
@@ -66,8 +75,9 @@ export class TextAreaComponent extends Component {
 
     addButtonListeners() {
         this.saveButton.addEventListener('click', (event) => {
-            actionService.dispatch(`endEditTask`,
-                {...this.props.task, title: this.textarea.value});
+            actionService.dispatch(`endEditTask`, { ...this.props.task,
+                text: this.textarea.value
+            });
         });
 
         this.cancelButton.addEventListener('click', (event) => {

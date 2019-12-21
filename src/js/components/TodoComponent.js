@@ -34,7 +34,6 @@ export class TodoComponent extends Component {
 
     onInit() {
         this.template = todoTemplate;
-        console.log('initTodoComponent')
         actionService.dispatch('initTodoComponent');
        // this.render();
 

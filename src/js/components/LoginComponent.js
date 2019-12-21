@@ -5,18 +5,29 @@ import {
 	loginTemplate
 }
 from "../templates/login-template.js";
-import {ButtonComponent} from "./ButtonComponent.js";
-import {actionService} from "../services/actionService.js";
+import {
+	ButtonComponent
+} from "./ButtonComponent.js";
+import {
+	actionService
+} from "../services/actionService.js";
 
 export class LoginComponent extends Component {
 	constructor(props) {
 		super(props);
 	}
 
+
+	set state(value) {
+		this._state = { ...value
+		};
+		this.props.state = this._state;
+	}
+
 	onInit() {
 		this.template = loginTemplate;
 		this.render();
-       // actionService.dispatch('initLoginComponent');
+		// actionService.dispatch('initLoginComponent');
 	}
 
 	render() {
@@ -34,11 +45,11 @@ export class LoginComponent extends Component {
 			anchor: inButtonWrapper
 		});
 
-        this.registerButton = new ButtonComponent({
-            title: 'Sign Up',
-            classStyle: "submit-button",
-            anchor: outButtonWrapper
-        });
+		this.registerButton = new ButtonComponent({
+			title: 'Sign Up',
+			classStyle: "submit-button",
+			anchor: outButtonWrapper
+		});
 
 		this.addButtonListeners();
 	}
@@ -51,23 +62,23 @@ export class LoginComponent extends Component {
 			});
 		});
 
-        this.registerButton.addEventListener('click', () => {
-        	if(!this.registerMode) {
-                this.userNameInput = this.shadowRoot.querySelector( 'input[name="username"]' );
-                this.userNameInput.classList.toggle( 'hide' );
+		this.registerButton.addEventListener('click', () => {
+			if (!this.registerMode) {
+				this.userNameInput = this.shadowRoot.querySelector('input[name="username"]');
+				this.userNameInput.classList.toggle('hide');
 
-                const label = this.shadowRoot.querySelector( '.username' );
-                label.classList.toggle( 'hide' );
+				const label = this.shadowRoot.querySelector('.username');
+				label.classList.toggle('hide');
 
-                this.registerMode = true;
-            } else {
-                actionService.dispatch('signUp', {
-                    email: this.emailInput.value,
-                    password: this.passwordInput.value,
+				this.registerMode = true;
+			} else {
+				actionService.dispatch('signUp', {
+					email: this.emailInput.value,
+					password: this.passwordInput.value,
 					username: this.userNameInput.value
-                });
-            }
-        });
+				});
+			}
+		});
 	}
 
 

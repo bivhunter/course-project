@@ -1,9 +1,17 @@
-import {eventService} from "./eventService.js";
-import {routeService} from "./routeService.js";
-import {requestService} from "./requestService.js";
-import {store} from "../store/Store.js";
+import {
+    eventService
+} from "./eventService.js";
+import {
+    routeService
+} from "./routeService.js";
+import {
+    requestService
+} from "./requestService.js";
+import {
+    store
+} from "../store/Store.js";
 
-class ActionService{
+class ActionService {
     constructor() {
         this.initHandlers();
         this.onInit();
@@ -21,18 +29,23 @@ class ActionService{
             }),
             'initApplication': () => this.initApplication(),
             'initTodoComponent': () => this.getTaskList(),
-           // 'initLoginComponent': () => this.checkAuthorization(),
+            // 'initLoginComponent': () => this.checkAuthorization(),
 
             'deletedTask': (id) => this.deleteTask(id),
-            'doneTask': (task) => this.changeTask({...task, completed: !task.completed}),
-            'startEditTask': (task) => this.changeTaskLocal({...task, editing: true}),
+            'doneTask': (task) => this.changeTask({ ...task,
+                completed: !task.completed
+            }),
+            'startEditTask': (task) => this.changeTaskLocal({ ...task,
+                editing: true
+            }),
             /*'cancelEditTask': (task) => {
                 delete task.editing;
                 this.changeTaskLocal({...task});
             },*/
             'endEditTask': (task) => {
-            delete task.editing;
-            this.changeTaskLocal({...task});
+                delete task.editing;
+                this.changeTaskLocal({ ...task
+                });
             },
             'allFilter': () => this.tasksFilter('allTasks'),
             'doneFilter': () => this.tasksFilter('doneTasks'),
@@ -44,10 +57,10 @@ class ActionService{
     }
 
     dispatch(action, payload) {
-        if(this.handlers[action]) {
+        if (this.handlers[action]) {
             const start = performance.now();
 
-           // console.log('dispatch actionService', action, payload);
+            // console.log('dispatch actionService', action, payload);
             this.handlers[action](payload);
             console.log('handlers', performance.now() - start);
         }
@@ -64,7 +77,7 @@ class ActionService{
     }
 
 
-    addTask(task){
+    addTask(task) {
         requestService.post(task)
             .then(data => {
                 store.dispatch('ADD_TODO', data);
@@ -72,19 +85,19 @@ class ActionService{
             .catch(error => console.log(error));
     }
 
-    deleteTask(id){
+    deleteTask(id) {
         requestService.delete(id)
             .then(() => store.dispatch('DELETE_TODO', id));
     }
 
     changeTask(task) {
-         console.log('changeTask', task)
-       requestService.put(task)
-           .then((task) => store.dispatch('CHANGE_TODO', task));
+        console.log('changeTask', task)
+        requestService.put(task)
+            .then((task) => store.dispatch('CHANGE_TODO', task));
     }
 
     changeTaskLocal(task) {
-            store.dispatch('CHANGE_TODO', task);
+        store.dispatch('CHANGE_TODO', task);
     }
 
     tasksFilter(method) {
@@ -100,7 +113,7 @@ class ActionService{
                     route: routeService.changeRoute('todo'),
                     message: {
                         text: 'Logged in',
-                        status: true
+                        status: 'done'
                     }
                 });
 
@@ -118,7 +131,7 @@ class ActionService{
             route,
             message: {
                 text: 'Logged out',
-                status: true
+                status: 'done'
             }
         });
     }
@@ -145,17 +158,19 @@ class ActionService{
                 store.dispatch('CHANGE_ROUTE', {
                     route,
                     message: {
-                        text : 'Logged in',
+                        text: 'Logged in',
                         status: true
-                    }});
+                    }
+                });
             })
             .catch(() => {
                 store.dispatch('CHANGE_ROUTE', {
                     route,
                     message: {
-                        text : 'Login, Please',
+                        text: 'Login, Please',
                         status: true
-                    }});
+                    }
+                });
             });
 
     }

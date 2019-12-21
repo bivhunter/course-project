@@ -7,12 +7,12 @@ import {
 
 const routerConfig = {
 	'login': {
-		url: 'todo-app/login',
+		url: '/login',
 		component: LoginComponent,
 		route: 'login'
 	},
 	'todo': {
-		url: 'todo-app',
+		url: '/todo-app',
 		component: TodoComponent,
 		route: 'todo'
 	}
@@ -24,7 +24,7 @@ class RouteService {
 		this.routerConfig = routerConfig;
 		//this.onInit();
 
-	//this.addListeners();
+		//this.addListeners();
 	}
 
 	/*onInit() {
