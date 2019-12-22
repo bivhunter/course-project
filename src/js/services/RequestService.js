@@ -21,7 +21,6 @@ class RequestService{
     }
 
     post(task) {
-        console.log(task, 'task', this.token)
         return fetch(`${this.url}/todos`, {
             method: 'POST',
             body: JSON.stringify(task),
@@ -31,7 +30,6 @@ class RequestService{
             }
         })
             .then((response) => {
-                console.log(response, 'response');
                 if (!response.ok) {
                    throw response.json();
                 }
@@ -48,7 +46,6 @@ class RequestService{
             }
         })
             .then((response) => {
-                console.log(response);
                 if (!response.ok) {
                     throw new Error('error');
                 }

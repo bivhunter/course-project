@@ -10,7 +10,6 @@ class Store {
             todoList: [],
             todoView: []
         };
-
     }
 
     dispatch(actionType, payload, message) {
@@ -18,10 +17,8 @@ class Store {
         if (this.reducers[actionType]) {
             this.state = this.reducers[actionType](payload, this.state, message);
         }
-        console.log(this.state);
         eventService.publish('stateChanged', this.state);
     }
-
 }
 
 export const store = new Store();

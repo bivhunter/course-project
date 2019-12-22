@@ -84,7 +84,7 @@ class ActionService {
             .then(() => store.dispatch('DELETE_TODO', id, {
                 text: 'Task successfully deleted',
                 status: 'done'
-            }), (err) => console.log(err))
+            }))
             .catch(() => {
                 store.dispatch('ERROR', '', {
                     text: 'Server not response, wait please',

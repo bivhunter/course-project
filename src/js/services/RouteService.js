@@ -22,10 +22,8 @@ class RouteService {
 	}
 
     addListeners() {
-	console.log('route listeners');
         window.onpopstate = (event) => {
             actionService.dispatch('changeRoute', event.state );
-            console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
         };
 	}
 

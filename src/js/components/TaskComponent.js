@@ -40,7 +40,6 @@ export class TaskComponent extends Component {
 
     addButtonListeners() {
         this.deleteButton.addEventListener('click', (event) => {
-            console.log(this.props)
             actionService.dispatch(`deletedTask`, this.props.task._id);
         });
 
@@ -87,5 +86,6 @@ export class TaskComponent extends Component {
 
     }
 }
+//add com
 
 customElements.define("my-component-task", TaskComponent);
