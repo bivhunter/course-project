@@ -9,13 +9,11 @@ buttonTemplate.innerHTML = `
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-button:focus {
-    border: none;
-}
 .delete-button, .cancel-button, .not-done-filter-button{
     background-color: white;
     color: black;
     border: 2px solid red; 
+     box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .delete-button:hover, .cancel-button:hover, .not-done-filter-button:hover {
@@ -26,7 +24,8 @@ button:focus {
 .not-todo-button, .all-filter-button{
     background-color: white;
     color: black;
-    border: 2px solid blue; 
+    border: 2px solid blue;
+     box-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
 }
 
 .not-todo-button:hover, .all-filter-button:hover {
@@ -40,6 +39,7 @@ button:focus {
     background-color: white;
     color: black;
     border: 2px solid green; 
+     box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .todo-button:hover, .save-button:hover, .add-button:hover, .done-filter-button:hover {

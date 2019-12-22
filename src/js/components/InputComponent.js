@@ -3,19 +3,15 @@ import {ButtonComponent} from "./ButtonComponent.js";
 import {Component} from "./Component.js";
 import {inputTemplate} from "../templates/input-template.js";
 
-
 export class InputComponent extends Component{
     constructor(props) {
         super(props);
     }
 
     onInit() {
-        this.template = inputTemplate;
+       this.template = inputTemplate;
        this.render();
-    }
-
-    connectedCallback() {
-     //  this.addListeners();
+       this.addListeners();
     }
 
     addListeners() {
@@ -32,11 +28,7 @@ export class InputComponent extends Component{
     }
   
     addTask() {
-        if(!this.textarea.value) {
-            return;
-        }
         actionService.dispatch('addTask', this.textarea.value);
-        //eventBus.publish('addTask', this.textarea.value );
         this.textarea.value = '';
     }
 
@@ -45,8 +37,6 @@ export class InputComponent extends Component{
         this.textarea = this.shadowRoot.querySelector('textarea');
         const buttonWrapper = this.shadowRoot.querySelector('.right-column');
         this.button = new ButtonComponent({ title: 'Add task', anchor: buttonWrapper, classStyle: 'add-button' });
-
-        this.addListeners();
     }
 }
 

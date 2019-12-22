@@ -23,9 +23,6 @@ export class MainComponent extends Component {
 
 	onInit() {
 		this.template = mainTemplate;
-
-
-		//this.render();
 	}
 
 	addListeners() {

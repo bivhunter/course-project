@@ -14,14 +14,17 @@ counterTemplate.innerHTML = `
     .all-tasks {
         color: blue;
         font-size: 40px;
+        text-shadow: 3px 3px 4px rgba(0,0,0,0.5);
     }
     .completed-tasks{
         color: green;
         font-size: 40px;
+        text-shadow: 3px 3px 4px rgba(0,0,0,0.5);
     }
     .not-completed-tasks {
         color: red;
         font-size: 40px;
+        text-shadow: 3px 3px 4px rgba(0,0,0,0.5);
     }
     
 </style>

@@ -20,10 +20,6 @@ export class FilterComponent extends Component {
         this.applyChanges();
     }
 
-    get state() {
-        return this._state;
-    }
-
     render() {
         this.anchor.appendChild(this);
         this.allButtonWrapper = this.shadowRoot.querySelector('.all-wrapper');
@@ -80,10 +76,7 @@ export class FilterComponent extends Component {
         this.notDoneTasks.addEventListener('click', (event) => {
             actionService.dispatch(`notDoneFilter`, this.props);
         });
-
     }
-
-
 }
 
 customElements.define("my-component-filter", FilterComponent);

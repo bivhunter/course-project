@@ -1,6 +1,5 @@
 import { Component } from "./Component.js";
 import { tooltipTemplate } from "../templates/tooltip-template.js";
-import {MainComponent} from "./MainComponent";
 
 export class TooltipComponent extends Component{
 	constructor(props) {
@@ -18,7 +17,7 @@ export class TooltipComponent extends Component{
 	}
 
 	render() {
-		if(this.state.status === 'none') {
+		if(!this.state.status) {
 			return;
 		}
         this.tooltip.textContent = this.state.text;

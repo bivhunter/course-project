@@ -1,18 +1,11 @@
 import {actionService} from "../services/ActionService.js";
-import {
-    ButtonComponent
-} from "./ButtonComponent.js";
-import {
-    Component
-} from "./Component.js";
-import {
-    taskTemplate
-} from "../templates/task-template.js";
+import { ButtonComponent } from "./ButtonComponent.js";
+import { Component } from "./Component.js";
+import { taskTemplate } from "../templates/task-template.js";
 
 export class TaskComponent extends Component {
     constructor(props = {}) {
         super(props);
-
     }
 
     onInit() {
@@ -39,7 +32,6 @@ export class TaskComponent extends Component {
     }
 
     clickListener(event) {
-
         if(event.composedPath()[0].tagName === "BUTTON") {
             return;
         }
@@ -65,12 +57,8 @@ export class TaskComponent extends Component {
     render() {
         this.anchor.appendChild(this);
         this.shadowRoot.querySelector('p').textContent = this.props.task.text;
-
+        this.shadowRoot.querySelector('span').textContent = this.props.task.createDate;
         this.addListeners();
-
-        // this.leftColumn = this.shadowRoot.querySelector('.left-column');
-
-
     }
 
     renderButton() {

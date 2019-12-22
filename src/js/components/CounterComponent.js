@@ -1,10 +1,5 @@
-
-import {
-    Component
-} from "./Component.js";
-import {
-    counterTemplate
-} from "../templates/counter-template.js";
+import { Component } from "./Component.js";
+import { counterTemplate } from "../templates/counter-template.js";
 
 export class CounterComponent extends Component {
     constructor(props) {
@@ -18,11 +13,8 @@ export class CounterComponent extends Component {
     }
 
     set state(value) {
-        this.props = { ...this.props,
-            state: value
-        };
-        this._state = { ...value
-        };
+        this.props.state = { ...value };
+        this._state = { ...value };
         this.applyChanges();
     }
 
@@ -39,7 +31,6 @@ export class CounterComponent extends Component {
     }
 
     applyChanges() {
-        console.log(this.props)
         this.allTasks.textContent = this.props.state.countTasks.all;
         this.completedTasks.textContent = this.props.state.countTasks.completed;
         this.notCompletedTasks.textContent = this.props.state.countTasks.notCompleted;

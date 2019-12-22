@@ -1,7 +1,7 @@
 export function createReducers() {
     return {
         'CHANGE_ROUTE' : (route, state, message) => {
-            return { ...state, ...route, ...message }
+            return { ...state, ...route, message: message }
         },
         'INIT_TODO': (payLoad, state, message) => {
             return {
@@ -54,19 +54,6 @@ export function createReducers() {
                 filterMethod: method,
                 todoView: applyFilter(state.todoList, method),
                 message: message
-            }
-        },
-        'SIGN_IN': (token, state) => {
-            return {
-                ...state,
-                token: token,
-                route: 'todo'
-            }
-        },
-        'SIGN_OUT': (payload, state) => {
-            return {
-                ...state,
-                route: 'login'
             }
         },
         'ERROR' : (payload, state, message) => {

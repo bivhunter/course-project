@@ -9,12 +9,12 @@ tooltipTemplate.innerHTML = `
         font-size: 20px;
         box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        border-radius: 4px;
+        border-radius: 10px;
     }
     
     .done{
-        border: 3px #61C661 groove;
-        background-color: #A2FFA2;
+        border: 3px #0A885F groove;
+        background-color: #81FFD6;
     }
   
     .warn {
@@ -23,8 +23,8 @@ tooltipTemplate.innerHTML = `
     }  
     
      .error {
-        border: 3px #DE8181 groove;
-        background-color:#FFA2A2;
+        border: 3px #C44F38 groove;
+        background-color:#FFC0A9;
     }  
   
 </style>

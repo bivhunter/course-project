@@ -1,8 +1,8 @@
+const url = 'https://todo-app-back.herokuapp.com';
 class RequestService{
     constructor(url) {
         this.url = url;
         this.token = localStorage.getItem('token');
-        console.log('init requestService');
     }
 
     checkAuthorization() {
@@ -40,7 +40,6 @@ class RequestService{
     }
 
     get() {
-        //console.log(this.token);
         return fetch(`${this.url}/todos`, {
             method: 'GET',
             headers: {
@@ -123,5 +122,4 @@ class RequestService{
     }
 }
 
-const url = 'https://todo-app-back.herokuapp.com';
 export const requestService = new RequestService(url);

@@ -31,6 +31,8 @@ export class TextAreaComponent extends Component {
         this.anchor.appendChild(this);
         this.textarea = this.shadowRoot.querySelector('textarea');
         this.textarea.value = this.props.task.text;
+        const dateView = this.shadowRoot.querySelector('span');
+        dateView.textContent = this.props.task.createDate;
 
         setTimeout(() => {
             this.textarea.focus();

@@ -1,3 +1,5 @@
+//accepts actions, handles it and send result to store
+
 import { routeService } from "./RouteService.js";
 import { requestService } from "./RequestService.js";
 import { store } from "../store/Store.js";
@@ -17,42 +19,42 @@ class ActionService {
             'initTodoComponent': () => this.getTaskList(),
 
             'deletedTask': (id) => this.deleteTask(id),
-            'doneTask': (task) => this.changeTaskStatus(task),
-            'startEditTask': (task) => this.changeTaskEditing({ ...task,
+            'doneTask': (task) => this.changeTaskCompletedStatus(task),
+            'startEditTask': (task) => this.changeTaskEditingMode({ ...task,
                 editing: true
             }),
             'endEditTask': (task) => {
                 delete task.editing;
-                this.changeTaskEditing({ ...task
+                this.changeTaskEditingMode({ ...task
                 });
             },
 
-            'allFilter': () => this.tasksFilter('allTasks'),
-            'doneFilter': () => this.tasksFilter('doneTasks'),
-            'notDoneFilter': () => this.tasksFilter('notDoneTasks'),
+            'allFilter': () => this.filterTask('allTasks'),
+            'doneFilter': () => this.filterTask('doneTasks'),
+            'notDoneFilter': () => this.filterTask('notDoneTasks'),
 
             'signIn': (data) => this.signIn(data),
             'signOut': () => this.signOut(),
             'signUp': (data) => this.signUp(data),
+
+            'changeRoute': (routeName) => {
+                const route = routeService.changeRoute(routeName);
+                this.changeRoute(route, {});
+            }
+
         }
+
     }
 
     dispatch(action, payload) {
         if (this.handlers[action]) {
-            const start = performance.now();
-
-            // console.log('dispatch actionService', action, payload);
             this.handlers[action](payload);
-            console.log('handlers', performance.now() - start);
         }
     }
 
     getTaskList() {
         requestService.get()
-            .then(data => store.dispatch('INIT_TODO', data, {
-                text: 'Tasks successfully loaded',
-                status: 'done'
-            }))
+            .then(data => store.dispatch('INIT_TODO', data, { }))
             .catch(() => {
                 store.dispatch('ERROR', '', {
                    text: 'Server not response, try again',
@@ -91,7 +93,7 @@ class ActionService {
             });
     }
 
-    changeTaskStatus( task ) {
+    changeTaskCompletedStatus( task ) {
         requestService.put( { ...task, completed: !task.completed } )
             .then( ( task ) => {
                 let message;
@@ -116,7 +118,7 @@ class ActionService {
             });
     }
 
-    changeTaskEditing(task) {
+    changeTaskEditingMode(task) {
         if(task.editing) {
             store.dispatch( 'CHANGE_TODO', task, {
                 text: 'Start editing',
@@ -130,7 +132,7 @@ class ActionService {
         }
     }
 
-    tasksFilter(method) {
+    filterTask(method) {
         store.dispatch('FILTER', method, {
             text: 'Task list filtered out',
             status: 'done'
@@ -170,13 +172,11 @@ class ActionService {
             .then(res => {
                 localStorage.setItem('token', res.token);
                 requestService.token = res.token;
-                store.dispatch('SIGN_IN', res.token, {
+                const route = routeService.changeRoute('todo');
+                this.changeRoute(route, {
                     text: "Successfully registered",
                     status: 'done'
                 });
-
-                console.log(res.error)
-
             })
             .catch(error => error.then(res => {
                 store.dispatch('ERROR', '', {
@@ -205,7 +205,7 @@ class ActionService {
     }
 
     changeRoute(route, message) {
-        store.dispatch('CHANGE_ROUTE', { route } , { message });
+        store.dispatch('CHANGE_ROUTE', { route } , message);
     }
 }
 

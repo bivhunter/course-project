@@ -1,26 +1,15 @@
-import {
-	Component
-} from "./Component.js";
-import {
-	loginTemplate
-}
-from "../templates/login-template.js";
-import {
-	ButtonComponent
-} from "./ButtonComponent.js";
-import {
-	actionService
-} from "../services/ActionService.js";
+import { Component } from "./Component.js";
+import { loginTemplate } from "../templates/login-template.js";
+import { ButtonComponent } from "./ButtonComponent.js";
+import { actionService } from "../services/ActionService.js";
 
 export class LoginComponent extends Component {
 	constructor(props) {
 		super(props);
 	}
 
-
 	set state(value) {
-		this._state = { ...value
-		};
+		this._state = { ...value };
 		this.props.state = this._state;
 	}
 

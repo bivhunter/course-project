@@ -1,9 +1,6 @@
-import {
-	TodoComponent
-} from "../components/TodoComponent.js";
-import {
-	LoginComponent
-} from "../components/LoginComponent.js";
+import { TodoComponent } from "../components/TodoComponent.js";
+import { LoginComponent } from "../components/LoginComponent.js";
+import { actionService } from "./ActionService.js";
 
 const routerConfig = {
 	'login': {
@@ -18,45 +15,25 @@ const routerConfig = {
 	}
 };
 
-
 class RouteService {
 	constructor() {
 		this.routerConfig = routerConfig;
-		//this.onInit();
-
-		//this.addListeners();
+		this.addListeners();
 	}
 
-	/*onInit() {
-		this.requestService.checkAuthorization(localStorage.getItem('token'))
-			.then((res) => {
-				console.log(res);
-			})
-			.catch((error) => {
-				console.log(error);
-				this.changeRoute('login');
-			});
-	}*/
+    addListeners() {
+	console.log('route listeners');
+        window.onpopstate = (event) => {
+            actionService.dispatch('changeRoute', event.state );
+            console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+        };
+	}
 
 	changeRoute(route) {
 		this.currentRoute = this.routerConfig[route];
-		window.history.replaceState(this.currentRoute.route, '', this.currentRoute.url);
+		window.history.pushState(this.currentRoute.route, '', this.currentRoute.url);
 		return this.currentRoute;
 	}
-
-	/*addListeners() {
-		this.eventService.subscribe('stateChanged', (state) => {
-			this.state = state;
-			if (state.route === this.currentRoute.route) {
-				this.currentComponent.state = { ...state
-				};
-			} else {
-				this.changeRoute(state.route);
-			}
-		});
-	}*/
-
-
 }
 
 export const routeService = new RouteService();

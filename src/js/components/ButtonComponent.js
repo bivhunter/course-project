@@ -1,12 +1,5 @@
-
-import {
-    Component
-} from "./Component.js";
-import {
-    buttonTemplate
-} from "../templates/button-template.js";
-
-
+import { Component } from "./Component.js";
+import { buttonTemplate } from "../templates/button-template.js";
 
 export class ButtonComponent extends Component {
     constructor(props) {
@@ -19,8 +12,6 @@ export class ButtonComponent extends Component {
         this.setDataAttribute();
     }
 
-    addListeners() {}
-
     setDataAttribute() {
         this.dataset.text = this.props.title;
     }
@@ -28,11 +19,8 @@ export class ButtonComponent extends Component {
     render() {
         this.anchor.appendChild(this);
         const button = this.shadowRoot.querySelector('button');
-        //console.log(this.props)
         button.classList.add(this.props.classStyle);
         button.textContent = this.props.title;
-        //this.shadowRoot.appendChild(button);
-
     }
 }
 
