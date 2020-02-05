@@ -1,4 +1,5 @@
 import {loginService} from "./LoginService.js";
+import {todoService} from "./TodoService.js";
 
 class RequestService{
     constructor() {
@@ -6,7 +7,15 @@ class RequestService{
     }
 
     checkAuthorization() {
-        return new Promise()
+        return new Promise((resolve, reject) => {
+            if (loginService.checkAuthorization(this.token)) {
+                resolve(this.token);
+            } else {
+                reject("error");
+            }
+        });
+
+
     }
 
     post(task) {
@@ -14,7 +23,7 @@ class RequestService{
     }
 
     get() {
-
+       return todoService.get(this.token);
     }
 
     delete(id) {
@@ -29,15 +38,7 @@ class RequestService{
 
     }
 
-    generateToken() {
-        let arr = [];
-        for (let i = 0; i < 20; i++){
-            arr.push(Math.floor(Math.random() * 10));
-        }
-        let token = arr.join('');
-        console.log('geToken', token)
-        return token;
-    }
+
 
 
     async signUp(data) {
@@ -48,14 +49,14 @@ class RequestService{
             return Promise.reject("Enter email");
         }
         if(!data.password) {
-            return Promise.reject("Enter password");
+            console.log("Enter password");
+           throw Promise.resolve({error: "Enter password"});
         }
 
         try{
-            const response =  await loginService.addUser(data);
-            return { token: this.generateToken()};
+            await loginService.addUser(data);
         } catch {
-            return Promise.reject({error: "User with this username or email already exist"})
+            throw ({error: "User with this username or email already exist"});
         }
 
     }
