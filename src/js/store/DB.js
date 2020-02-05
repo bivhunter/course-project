@@ -22,5 +22,5 @@ async function initDB() {
     return db;
 }
 
-export const db = initDB();
+export const DB = initDB();
 

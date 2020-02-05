@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "403b391dc5eace626a31";
+/******/ 	var hotCurrentHash = "7a8e68896379a1846815";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -5901,139 +5901,6 @@ var actionService = new ActionService();
 
 /***/ }),
 
-/***/ "./src/js/services/DbService.js":
-/*!**************************************!*\
-  !*** ./src/js/services/DbService.js ***!
-  \**************************************/
-/*! exports provided: dbService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dbService", function() { return dbService; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var idb_build_esm_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! idb/build/esm/index */ "./node_modules/idb/build/esm/index.js");
-
-
-
-
-
-var DbService =
-/*#__PURE__*/
-function () {
-  function DbService(db) {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, DbService);
-
-    this.db = Object(idb_build_esm_index__WEBPACK_IMPORTED_MODULE_3__["openDB"])('DB', 1, {
-      upgrade: function upgrade(db) {
-        /*db.createObjectStore( 'todoList', {
-            keyPath: '_id',
-            autoIncrement: true
-        } );*/
-        this.loginStore = db.createObjectStore('loginStore', {
-          keyPath: 'username'
-        });
-        this.loginStore.createIndex('email', 'email');
-      }
-    });
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(DbService, [{
-    key: "checkInputData",
-    value: function checkInputData(data, prop) {}
-  }, {
-    key: "signUp",
-    value: function signUp(data) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function signUp$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              return _context.abrupt("return", new Promise(function (resolve) {// const usernameList = await this.db.getAll('loginStore');
-              }));
-
-            case 1:
-            case "end":
-              return _context.stop();
-          }
-        }
-      });
-    }
-  }, {
-    key: "add",
-    value: function add(data) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function add$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.db.add('loginStore', data));
-
-            case 2:
-              return _context2.abrupt("return", _context2.sent);
-
-            case 3:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, null, this);
-    }
-  }, {
-    key: "getAll",
-    value: function getAll() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getAll$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.db.getAll('loginStore'));
-
-            case 2:
-              return _context3.abrupt("return", _context3.sent);
-
-            case 3:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, null, this);
-    }
-  }, {
-    key: "delete",
-    value: function _delete(id) {
-      var tx = this.db.transaction('todoList', 'readwrite');
-      var index = tx.db.getAllFromIndex('todoList', '_creator');
-    }
-  }]);
-
-  return DbService;
-}();
-
-function onInit() {
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function onInit$(_context4) {
-    while (1) {
-      switch (_context4.prev = _context4.next) {
-        case 0:
-          return _context4.abrupt("return", db);
-
-        case 1:
-        case "end":
-          return _context4.stop();
-      }
-    }
-  });
-}
-
-;
-var dbService = new DbService(db);
-
-/***/ }),
-
 /***/ "./src/js/services/EventService.js":
 /*!*****************************************!*\
   !*** ./src/js/services/EventService.js ***!
@@ -6097,6 +5964,117 @@ function () {
 }();
 
 var eventService = new EventService();
+
+/***/ }),
+
+/***/ "./src/js/services/LoginService.js":
+/*!*****************************************!*\
+  !*** ./src/js/services/LoginService.js ***!
+  \*****************************************/
+/*! exports provided: LoginService, dbService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginService", function() { return LoginService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dbService", function() { return dbService; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var idb_build_esm_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! idb/build/esm/index */ "./node_modules/idb/build/esm/index.js");
+/* harmony import */ var _store_DB_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/DB.js */ "./src/js/store/DB.js");
+
+
+
+
+
+var LoginService =
+/*#__PURE__*/
+function () {
+  function LoginService() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, LoginService);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(LoginService, [{
+    key: "checkInputData",
+    value: function checkInputData(data, prop) {}
+  }, {
+    key: "signUp",
+    value: function signUp(data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function signUp$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              return _context.abrupt("return", new Promise(function (resolve) {// const usernameList = await this.db.getAll('loginStore');
+              }));
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    }
+  }, {
+    key: "addUser",
+    value: function addUser(data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function addUser$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["db"]);
+
+            case 2:
+              _store_DB_js__WEBPACK_IMPORTED_MODULE_4__["db"].add('loginStore', data).then(function (res) {
+                return console.log('res', res);
+              })["catch"](function (res) {
+                return console.log('error', res);
+              });
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      });
+    }
+  }, {
+    key: "getAll",
+    value: function getAll() {
+      var db;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getAll$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(this.openDB());
+
+            case 2:
+              db = _context3.sent;
+              return _context3.abrupt("return", db.getAllFromIndex('loginStore', 'email'));
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, null, this);
+    }
+  }, {
+    key: "delete",
+    value: function _delete(id) {
+      var tx = this.db.transaction('todoList', 'readwrite');
+      var index = tx.db.getAllFromIndex('todoList', '_creator');
+    }
+  }]);
+
+  return LoginService;
+}();
+var dbService = new LoginService();
 
 /***/ }),
 
@@ -6320,6 +6298,61 @@ function () {
 }();
 
 var routeService = new RouteService();
+
+/***/ }),
+
+/***/ "./src/js/store/DB.js":
+/*!****************************!*\
+  !*** ./src/js/store/DB.js ***!
+  \****************************/
+/*! exports provided: db */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "db", function() { return db; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var idb_build_esm_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! idb/build/esm/index */ "./node_modules/idb/build/esm/index.js");
+
+
+
+function initDB() {
+  var db;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function initDB$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(Object(idb_build_esm_index__WEBPACK_IMPORTED_MODULE_1__["openDB"])('DB', 1, {
+            upgrade: function upgrade(db) {
+              var loginStore = db.createObjectStore('loginStore', {
+                keyPath: 'username'
+              });
+              loginStore.createIndex('email', 'email', {
+                unique: true
+              });
+              var tasksStore = db.createObjectStore('tasksStore', {
+                keyPath: '_id',
+                autoIncrement: true
+              });
+              tasksStore.createIndex('_creator', '_creator');
+            }
+          }));
+
+        case 2:
+          db = _context.sent;
+          return _context.abrupt("return", db);
+
+        case 4:
+        case "end":
+          return _context.stop();
+      }
+    }
+  });
+}
+
+var db = initDB();
 
 /***/ }),
 
@@ -6681,8 +6714,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/style.css */ "./src/css/style.css");
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_style_css__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _js_components_MainComponent_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/components/MainComponent.js */ "./src/js/components/MainComponent.js");
-/* harmony import */ var idb__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! idb */ "./node_modules/idb/build/esm/index.js");
-/* harmony import */ var _js_services_DbService_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/services/DbService.js */ "./src/js/services/DbService.js");
+/* harmony import */ var _js_services_LoginService_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./js/services/LoginService.js */ "./src/js/services/LoginService.js");
+/* harmony import */ var _js_store_DB_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./js/store/DB.js */ "./src/js/store/DB.js");
 
 
 
@@ -6693,15 +6726,16 @@ if (true) {
 }
 
 console.log('init');
-_js_services_DbService_js__WEBPACK_IMPORTED_MODULE_3__["dbService"].add({
-  username: "User1",
+var loginService = new _js_services_LoginService_js__WEBPACK_IMPORTED_MODULE_2__["LoginService"]();
+loginService.addUser({
+  username: "user1",
   email: "email1",
   password: "1"
-}).then(function () {
-  _js_services_DbService_js__WEBPACK_IMPORTED_MODULE_3__["dbService"].getAll();
-}).then(function (res) {
-  return console.log(res);
-}); //let dbService;
+});
+/*  .
+  then(res => console.log('res', res)).
+  catch(res => console.log('error', res));*/
+//let dbService;
 //initDB().then(() => console.log('initDB'));
 
 /*async function initDB(  ) {

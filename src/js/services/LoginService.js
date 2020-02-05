@@ -1,5 +1,5 @@
 import {openDB} from "idb/build/esm/index";
-import {db} from "../store/DB.js";
+import {DB} from "../store/DB.js";
 
 
 export class LoginService {
@@ -20,14 +20,12 @@ export class LoginService {
     }
 
     async addUser(data) {
-        await db;
-        db.add('loginStore', data).
-        then(res => console.log('res', res)).
-        catch(res => console.log('error', res));
+        const db = await DB;
+        db.add('loginStore', data)
     }
 
     async getAll() {
-        const db = await this.openDB();
+        const db = await DB;
         return db.getAllFromIndex('loginStore', 'email');
     }
 
@@ -37,4 +35,4 @@ export class LoginService {
     }
 }
 
-export const dbService = new LoginService();
+export const loginService = new LoginService();

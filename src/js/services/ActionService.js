@@ -1,7 +1,7 @@
 //accepts actions, handles it and send result to store
 
 import { routeService } from "./RouteService.js";
-import { requestService } from "./RequestService.js";
+import { requestService } from "./RequestService_DB.js";
 import { store } from "../store/Store.js";
 
 class ActionService {
