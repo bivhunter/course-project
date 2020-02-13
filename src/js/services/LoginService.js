@@ -12,11 +12,22 @@ export class LoginService {
         return localStorage.getItem('currentToken') === token;
     }
 
-    checkInputData(data, prop) {
+    async signIn(data) {
+        const db = await DB;
+        const user = await db.getFromIndex('loginStore', 'email', data.email);
+        if(!user) {
+            throw Promise.resolve({error: "This email doesn't exist"});
+        }
 
+        if(user.password !== data.password) {
+            throw Promise.resolve({error: "Password error"});
+        }
+
+        localStorage.setItem('currentToken', user.token);
+        return {token: user.token};
     }
 
-    generateToken() {
+   generateToken() {
         let arr = [];
         for (let i = 0; i < 20; i++){
             arr.push(Math.floor(Math.random() * 10));
@@ -28,6 +39,7 @@ export class LoginService {
 
     async addUser(data) {
         const db = await DB;
+
         const token = this.generateToken();
 
         try {
@@ -35,15 +47,17 @@ export class LoginService {
                 ...data,
                 token
             });
-            console.log(await db.getAllFromIndex('loginStore', 'email'));
-            console.log(response);
+           // console.log(await db.getAllFromIndex('loginStore', 'email'));
+            //console.log(response);
             return { token };
         } catch  {
-            console.log('error');
+           // console.log('error');
             throw new Error('error');
         }
 
     }
+
+
 
     async getAll() {
         const db = await DB;

@@ -59,6 +59,8 @@ export function createReducers() {
         'ERROR' : (payload, state, message) => {
             return {
                 ...state,
+                todoView: payload,
+                countTasks: calculateTasks(payload),
                 message: message
             }
         }

@@ -56,7 +56,7 @@ class ActionService {
         requestService.get()
             .then(data => store.dispatch('INIT_TODO', data, { }))
             .catch(() => {
-                store.dispatch('ERROR', '', {
+                store.dispatch('ERROR', [], {
                    text: 'Server not response, try again',
                    status: 'error'
                 });
@@ -72,7 +72,7 @@ class ActionService {
                 });
             })
             .catch(error => error.then(res => {
-                store.dispatch('ERROR', '', {
+                store.dispatch('ERROR', [], {
                     text: res.error,
                     status: 'error'
                 });
@@ -111,7 +111,7 @@ class ActionService {
                 store.dispatch( 'CHANGE_TODO', task, message);
             } )
             .catch(() => {
-                store.dispatch('ERROR', '', {
+                store.dispatch('ERROR', [], {
                     text: 'Server not response, wait please',
                     status: 'error'
                 });
@@ -151,7 +151,7 @@ class ActionService {
                 });
             })
             .catch(error => error.then(res => {
-                store.dispatch('ERROR', '', {
+                store.dispatch('ERROR', [], {
                     text: res.error,
                     status: 'error'
                 });
@@ -179,7 +179,7 @@ class ActionService {
                 });
             })
             .catch(error => error.then(res => {
-                store.dispatch('ERROR', '', {
+                store.dispatch('ERROR', [], {
                     text: res.error,
                     status: 'error'
                 });

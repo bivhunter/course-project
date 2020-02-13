@@ -18,24 +18,29 @@ class RequestService{
 
     }
 
-    post(task) {
+    async post(task) {
+        if(task.text.length < 5) {
+            throw Promise.resolve({error: "Enter more than 5 characters"});
+        }
 
+        return todoService.post(task);
     }
 
     get() {
+
        return todoService.get(this.token);
     }
 
-    delete(id) {
-
+    async delete(id) {
+        return todoService.delete(id);
     }
 
-    put(task) {
-
+    async put(task) {
+        return loginService.put(task)
     }
 
-    signIn(data) {
-
+    async signIn(data) {
+        return loginService.signIn(data);
     }
 
 
@@ -43,20 +48,20 @@ class RequestService{
 
     async signUp(data) {
         if(!data.username) {
-            return Promise.reject("Enter username");
+            throw Promise.resolve({error: "Enter username"});
         }
         if(!data.email) {
-            return Promise.reject("Enter email");
+            throw Promise.resolve({error: "Enter email"});
         }
         if(!data.password) {
-            console.log("Enter password");
            throw Promise.resolve({error: "Enter password"});
         }
 
         try{
-            await loginService.addUser(data);
+            const response = await loginService.addUser(data);
+            return response;
         } catch {
-            throw ({error: "User with this username or email already exist"});
+            throw Promise.resolve({error: "User with this username or email already exist"});
         }
 
     }
