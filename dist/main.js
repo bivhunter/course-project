@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "ef9feae09c2c29395b1a";
+/******/ 	var hotCurrentHash = "d88e8b7be67052f944bf";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -5719,7 +5719,7 @@ function () {
       _RequestService_DB_js__WEBPACK_IMPORTED_MODULE_4__["requestService"].get().then(function (data) {
         return _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('INIT_TODO', data, {});
       })["catch"](function () {
-        _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', '', {
+        _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', [], {
           text: 'Server not response, try again',
           status: 'error'
         });
@@ -5735,7 +5735,7 @@ function () {
         });
       })["catch"](function (error) {
         return error.then(function (res) {
-          _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', '', {
+          _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', [], {
             text: res.error,
             status: 'error'
           });
@@ -5779,7 +5779,7 @@ function () {
 
         _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('CHANGE_TODO', task, message);
       })["catch"](function () {
-        _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', '', {
+        _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', [], {
           text: 'Server not response, wait please',
           status: 'error'
         });
@@ -5824,7 +5824,7 @@ function () {
         });
       })["catch"](function (error) {
         return error.then(function (res) {
-          _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', '', {
+          _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', [], {
             text: res.error,
             status: 'error'
           });
@@ -5858,7 +5858,7 @@ function () {
         });
       })["catch"](function (error) {
         return error.then(function (res) {
-          _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', '', {
+          _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', [], {
             text: res.error,
             status: 'error'
           });
@@ -5978,10 +5978,10 @@ var eventService = new EventService();
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginService", function() { return LoginService; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loginService", function() { return loginService; });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
@@ -5994,7 +5994,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 var LoginService =
@@ -6014,8 +6014,56 @@ function () {
       return localStorage.getItem('currentToken') === token;
     }
   }, {
-    key: "checkInputData",
-    value: function checkInputData(data, prop) {}
+    key: "signIn",
+    value: function signIn(data) {
+      var db, user;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.async(function signIn$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
+
+            case 2:
+              db = _context.sent;
+              _context.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.awrap(db.getFromIndex('loginStore', 'email', data.email));
+
+            case 5:
+              user = _context.sent;
+
+              if (user) {
+                _context.next = 8;
+                break;
+              }
+
+              throw Promise.resolve({
+                error: "This email doesn't exist"
+              });
+
+            case 8:
+              if (!(user.password !== data.password)) {
+                _context.next = 10;
+                break;
+              }
+
+              throw Promise.resolve({
+                error: "Password error"
+              });
+
+            case 10:
+              localStorage.setItem('currentToken', user.token);
+              return _context.abrupt("return", {
+                token: user.token
+              });
+
+            case 12:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    }
   }, {
     key: "generateToken",
     value: function generateToken() {
@@ -6033,69 +6081,58 @@ function () {
     key: "addUser",
     value: function addUser(data) {
       var db, token, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function addUser$(_context) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.async(function addUser$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              _context.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
 
             case 2:
-              db = _context.sent;
+              db = _context2.sent;
               token = this.generateToken();
-              _context.prev = 4;
-              _context.next = 7;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.add('loginStore', _objectSpread({}, data, {
+              _context2.prev = 4;
+              _context2.next = 7;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.awrap(db.add('loginStore', _objectSpread({}, data, {
                 token: token
               })));
 
             case 7:
-              response = _context.sent;
-              _context.t0 = console;
-              _context.next = 11;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.getAllFromIndex('loginStore', 'email'));
-
-            case 11:
-              _context.t1 = _context.sent;
-
-              _context.t0.log.call(_context.t0, _context.t1);
-
-              console.log(response);
-              return _context.abrupt("return", {
+              response = _context2.sent;
+              return _context2.abrupt("return", {
                 token: token
               });
 
-            case 17:
-              _context.prev = 17;
-              _context.t2 = _context["catch"](4);
-              console.log('error');
+            case 11:
+              _context2.prev = 11;
+              _context2.t0 = _context2["catch"](4);
               throw new Error('error');
 
-            case 21:
+            case 14:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, null, this, [[4, 17]]);
+      }, null, this, [[4, 11]]);
     }
   }, {
     key: "getAll",
     value: function getAll() {
       var db;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function getAll$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.async(function getAll$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context2.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
+              _context3.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
 
             case 2:
-              db = _context2.sent;
-              return _context2.abrupt("return", db.getAllFromIndex('loginStore', 'email'));
+              db = _context3.sent;
+              return _context3.abrupt("return", db.getAllFromIndex('loginStore', 'email'));
 
             case 4:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
       });
@@ -6162,31 +6199,93 @@ function () {
     }
   }, {
     key: "post",
-    value: function post(task) {}
-  }, {
-    key: "get",
-    value: function get() {
-      console.log('get');
-      return _TodoService_js__WEBPACK_IMPORTED_MODULE_4__["todoService"].get(this.token) || [];
-    }
-  }, {
-    key: "delete",
-    value: function _delete(id) {}
-  }, {
-    key: "put",
-    value: function put(task) {}
-  }, {
-    key: "signIn",
-    value: function signIn(data) {}
-  }, {
-    key: "signUp",
-    value: function signUp(data) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function signUp$(_context) {
+    value: function post(task) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function post$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (data.username) {
+              if (!(task.text.length < 5)) {
                 _context.next = 2;
+                break;
+              }
+
+              throw Promise.resolve({
+                error: "Enter more than 5 characters"
+              });
+
+            case 2:
+              return _context.abrupt("return", _TodoService_js__WEBPACK_IMPORTED_MODULE_4__["todoService"].post(task));
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      });
+    }
+  }, {
+    key: "get",
+    value: function get() {
+      return _TodoService_js__WEBPACK_IMPORTED_MODULE_4__["todoService"].get(this.token);
+    }
+  }, {
+    key: "delete",
+    value: function _delete(id) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _delete$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              return _context2.abrupt("return", _TodoService_js__WEBPACK_IMPORTED_MODULE_4__["todoService"]["delete"](id));
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      });
+    }
+  }, {
+    key: "put",
+    value: function put(task) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function put$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              return _context3.abrupt("return", _LoginService_js__WEBPACK_IMPORTED_MODULE_3__["loginService"].put(task));
+
+            case 1:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      });
+    }
+  }, {
+    key: "signIn",
+    value: function signIn(data) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function signIn$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              return _context4.abrupt("return", _LoginService_js__WEBPACK_IMPORTED_MODULE_3__["loginService"].signIn(data));
+
+            case 1:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      });
+    }
+  }, {
+    key: "signUp",
+    value: function signUp(data) {
+      var response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function signUp$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              if (data.username) {
+                _context5.next = 2;
                 break;
               }
 
@@ -6196,7 +6295,7 @@ function () {
 
             case 2:
               if (data.email) {
-                _context.next = 4;
+                _context5.next = 4;
                 break;
               }
 
@@ -6206,7 +6305,7 @@ function () {
 
             case 4:
               if (data.password) {
-                _context.next = 6;
+                _context5.next = 6;
                 break;
               }
 
@@ -6215,26 +6314,27 @@ function () {
               });
 
             case 6:
-              _context.prev = 6;
-              _context.next = 9;
+              _context5.prev = 6;
+              _context5.next = 9;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_LoginService_js__WEBPACK_IMPORTED_MODULE_3__["loginService"].addUser(data));
 
             case 9:
-              return _context.abrupt("return", _context.sent);
+              response = _context5.sent;
+              return _context5.abrupt("return", response);
 
-            case 12:
-              _context.prev = 12;
-              _context.t0 = _context["catch"](6);
+            case 13:
+              _context5.prev = 13;
+              _context5.t0 = _context5["catch"](6);
               throw Promise.resolve({
                 error: "User with this username or email already exist"
               });
 
-            case 15:
+            case 16:
             case "end":
-              return _context.stop();
+              return _context5.stop();
           }
         }
-      }, null, null, [[6, 12]]);
+      }, null, null, [[6, 13]]);
     }
   }]);
 
@@ -6326,49 +6426,162 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "todoService", function() { return todoService; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _store_DB_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/DB.js */ "./src/js/store/DB.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _store_DB_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/DB.js */ "./src/js/store/DB.js");
 
 
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 var TodoService =
 /*#__PURE__*/
 function () {
   function TodoService() {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, TodoService);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, TodoService);
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default()(TodoService, [{
-    key: "get",
-    value: function get(token) {
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(TodoService, [{
+    key: "put",
+    value: function put(task) {
       var db, response;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function get$(_context) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function put$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_3__["DB"]);
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
 
             case 2:
               db = _context.sent;
-              _context.next = 5;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.getAllFromIndex('tasksStore', token));
+              _context.prev = 3;
+              _context.next = 6;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.put('tasksStore', task, '_id'));
 
-            case 5:
+            case 6:
               response = _context.sent;
-              console.log(response, token);
-              return _context.abrupt("return", response);
+              console.log('put', response);
+              _context.next = 13;
+              break;
 
-            case 8:
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](3);
+              console.log('error');
+
+            case 13:
+              return _context.abrupt("return", _objectSpread({}, task));
+
+            case 14:
             case "end":
               return _context.stop();
           }
         }
+      }, null, null, [[3, 10]]);
+    }
+  }, {
+    key: "get",
+    value: function get(token) {
+      var db, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function get$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
+
+            case 2:
+              db = _context2.sent;
+              _context2.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.getAllFromIndex('tasksStore', '_creator', token));
+
+            case 5:
+              response = _context2.sent;
+              return _context2.abrupt("return", response.reverse());
+
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }
       });
+    }
+  }, {
+    key: "delete",
+    value: function _delete(id) {
+      var db, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _delete$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
+
+            case 2:
+              db = _context3.sent;
+              _context3.next = 5;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db["delete"]('tasksStore', id, '_id'));
+
+            case 5:
+              response = _context3.sent;
+              return _context3.abrupt("return", response);
+
+            case 7:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      });
+    }
+  }, {
+    key: "getDate",
+    value: function getDate() {
+      var date = new Date();
+      return "".concat(('0' + date.getDate()).slice(-2), ".").concat(('0' + (date.getMonth() + 1)).slice(-2), ".").concat(date.getFullYear());
+    }
+  }, {
+    key: "post",
+    value: function post(task) {
+      var db, data, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function post$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
+
+            case 2:
+              db = _context4.sent;
+              data = {
+                text: task.text,
+                completed: false,
+                createDate: this.getDate(),
+                _creator: localStorage.getItem('currentToken')
+              };
+              _context4.next = 6;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.add('tasksStore', data));
+
+            case 6:
+              response = _context4.sent;
+              return _context4.abrupt("return", _objectSpread({}, data, {
+                _id: response
+              }));
+
+            case 8:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, null, this);
     }
   }]);
 
@@ -6392,7 +6605,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var idb_build_esm_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! idb/build/esm/index */ "./node_modules/idb/build/esm/index.js");
 
-
+ //https://github.com/jakearchibald/idb
 
 function initDB() {
   var db;
@@ -6568,6 +6781,8 @@ function createReducers() {
     },
     'ERROR': function ERROR(payload, state, message) {
       return _objectSpread({}, state, {
+        todoView: payload,
+        countTasks: calculateTasks(payload),
         message: message
       });
     }

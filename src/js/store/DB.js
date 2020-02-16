@@ -1,4 +1,4 @@
-import {openDB} from "idb/build/esm/index"; //https://github.com/jakearchibald/idb
+import {openDB} from 'idb'; //https://github.com/jakearchibald/idb
 
 
 async function initDB() {

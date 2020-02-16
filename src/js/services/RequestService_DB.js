@@ -20,14 +20,13 @@ class RequestService{
 
     async post(task) {
         if(task.text.length < 5) {
-            throw Promise.resolve({error: "Enter more than 5 characters"});
+            return Promise.reject( Promise.resolve({error: "Enter more than 5 characters"}) );
         }
 
         return todoService.post(task);
     }
 
     get() {
-
        return todoService.get(this.token);
     }
 
@@ -36,7 +35,7 @@ class RequestService{
     }
 
     async put(task) {
-        return loginService.put(task)
+        return todoService.put(task)
     }
 
     async signIn(data) {
@@ -47,14 +46,14 @@ class RequestService{
 
 
     async signUp(data) {
-        if(!data.username) {
-            throw Promise.resolve({error: "Enter username"});
+        if(!data.username || data.username.length < 5) {
+            return Promise.reject( Promise.resolve({error: "Enter username longer than 5 characters"}) );
         }
-        if(!data.email) {
-            throw Promise.resolve({error: "Enter email"});
+        if(!data.email || !data.email.includes('@')) {
+            return Promise.reject( Promise.resolve({error: "Enter correct email"} ));
         }
-        if(!data.password) {
-           throw Promise.resolve({error: "Enter password"});
+        if(!data.password || data.password.length < 6) {
+           return Promise.reject( Promise.resolve({error: "Enter username longer than 6 characters"}) );
         }
 
         try{

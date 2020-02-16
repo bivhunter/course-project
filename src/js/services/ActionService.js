@@ -119,17 +119,27 @@ class ActionService {
     }
 
     changeTaskEditingMode(task) {
-        if(task.editing) {
-            store.dispatch( 'CHANGE_TODO', task, {
-                text: 'Start editing',
-                status: 'warn'
-            } );
-        } else {
-            store.dispatch( 'CHANGE_TODO', task, {
-                text: 'End editing',
-                status: 'done'
-            } );
-        }
+        requestService.put( { ...task} )
+            .then( ( task ) => {
+                if(task.editing) {
+                    store.dispatch( 'CHANGE_TODO', task, {
+                        text: 'Start editing',
+                        status: 'warn'
+                    } );
+                } else {
+                    store.dispatch( 'CHANGE_TODO', task, {
+                        text: 'End editing',
+                        status: 'done'
+                    } );
+                }
+            } )
+            .catch(() => {
+                store.dispatch('ERROR', [], {
+                    text: 'Server not response, wait please',
+                    status: 'error'
+                });
+            });
+
     }
 
     filterTask(method) {

@@ -6,27 +6,34 @@ export class TodoService {
     }
 
     async put(task) {
-        const db = await DB;
-        try {
-            const response = await db.put('tasksStore', task, '_id');
-            console.log('put', response);
-        } catch {
-            console.log('error');
-        }
 
-        return {...task};
+        try {
+            const db = await DB;
+            const response = await db.put( 'tasksStore', task );
+            return { ...task };
+        } catch ( e ) {
+            return Promise.reject( Promise.resolve({error: "DataBase error"}) );
+        }
     }
 
     async get(token) {
-        const db = await DB;
-        const response = await db.getAllFromIndex('tasksStore', '_creator', token);
-        return response.reverse();
+        try {
+            const db = await DB;
+            const response = await db.getAllFromIndex( 'tasksStore', '_creator', token );
+            return response.reverse();
+        } catch ( e ) {
+            return Promise.reject( Promise.resolve({error: "DataBase error"}) );
+        }
     }
 
     async delete(id) {
-        const db = await DB;
-        const response = await db.delete('tasksStore', id, '_id');
-        return response;
+        try {
+            const db = await DB;
+            const response = await db.delete( 'tasksStore', id, '_id' );
+            return response;
+        } catch ( e ) {
+            return Promise.reject( Promise.resolve({error: "DataBase error"}) );
+        }
     }
 
     getDate() {
@@ -35,17 +42,20 @@ export class TodoService {
     }
 
     async post(task) {
-        const db = await DB;
-        const data = {
-            text: task.text,
-            completed: false,
-            createDate: this.getDate(),
-            _creator: localStorage.getItem('currentToken')
-        };
+        try {
+            const db = await DB;
+            const data = {
+                text: task.text,
+                completed: false,
+                createDate: this.getDate(),
+                _creator: localStorage.getItem( 'currentToken' )
+            };
 
-        const response = await db.add('tasksStore', data);
-
-        return {...data, _id: response};
+            const response = await db.add( 'tasksStore', data );
+            return { ...data, _id: response };
+        } catch ( e ) {
+            return Promise.reject( Promise.resolve( { error: "DataBase error" } ) );
+        }
     }
 
 

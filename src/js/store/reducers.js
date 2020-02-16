@@ -59,8 +59,7 @@ export function createReducers() {
         'ERROR' : (payload, state, message) => {
             return {
                 ...state,
-                todoView: payload,
-                countTasks: calculateTasks(payload),
+                countTasks: calculateTasks(state.taskList),
                 message: message
             }
         }
@@ -83,7 +82,8 @@ function applyFilter(todoList, method) {
     }
 }
 
-function calculateTasks(taskList) {
+function calculateTasks(tasks) {
+    const taskList = tasks || [];
     const allTasksNumber = taskList.length;
     let doneTasksNumber = 0;
     let notDoneTasksNumber = 0;
