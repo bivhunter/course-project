@@ -47,6 +47,7 @@ export class LoginService {
                 ...data,
                 token
             });
+            localStorage.setItem('currentToken', token);
            // console.log(await db.getAllFromIndex('loginStore', 'email'));
             //console.log(response);
             return { token };

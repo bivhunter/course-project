@@ -99,12 +99,12 @@ class ActionService {
                 let message;
                 if ( task.completed ) {
                     message = {
-                        text: 'Task not completed',
+                        text: 'Task completed',
                         status: 'done'
                     }
                 } else {
                     message = {
-                        text: 'Task completed',
+                        text: 'Task not completed',
                         status: 'done'
                     }
                 }

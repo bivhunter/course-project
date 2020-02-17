@@ -53,7 +53,7 @@ class RequestService{
             return Promise.reject( Promise.resolve({error: "Enter correct email"} ));
         }
         if(!data.password || data.password.length < 6) {
-           return Promise.reject( Promise.resolve({error: "Enter username longer than 6 characters"}) );
+           return Promise.reject( Promise.resolve({error: "Enter password longer than 6 characters"}) );
         }
 
         try{
