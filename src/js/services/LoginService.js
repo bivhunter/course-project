@@ -28,7 +28,6 @@ export class LoginService {
             localStorage.setItem('currentToken', user.token);
             return {token: user.token};
         } catch (error) {
-            console.dir(error);
             if(error.name === "NotFoundError") {
                 throw new Error ("DataBase error, try again");
             }
@@ -43,7 +42,6 @@ export class LoginService {
             arr.push(Math.floor(Math.random() * 10));
         }
         let token = arr.join('');
-        console.log('geToken', token);
         return token;
     }
 
@@ -77,8 +75,6 @@ export class LoginService {
             localStorage.setItem('currentToken', token);
             return { token };
         } catch (error) {
-
-            console.log(error);
 
             errorMessage = "DataBase error, try again";
             if(error.message === "AbortError") {

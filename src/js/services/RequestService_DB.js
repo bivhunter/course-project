@@ -14,8 +14,6 @@ class RequestService{
                 reject("error");
             }
         });
-
-
     }
 
     async post(task) {
@@ -47,14 +45,12 @@ class RequestService{
     }
 
     async signUp(data) {
-
         try{
             const response = await loginService.addUser(data);
             return response;
         } catch (error){
             throw Promise.resolve({ error });
         }
-
     }
 }
 
