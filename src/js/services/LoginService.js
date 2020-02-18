@@ -13,18 +13,28 @@ export class LoginService {
     }
 
     async signIn(data) {
-        const db = await DB;
-        const user = await db.getFromIndex('loginStore', 'email', data.email);
-        if(!user) {
-            throw Promise.resolve({error: "This email doesn't exist"});
-        }
+        try {
+            const db = await DB;
+            const user = await db.getFromIndex('loginStore', 'email', data.email);
 
-        if(user.password !== data.password) {
-            throw Promise.resolve({error: "Password error"});
-        }
+            if (!user) {
+                throw new Error ("This email doesn't exist");
+            }
 
-        localStorage.setItem('currentToken', user.token);
-        return {token: user.token};
+            if (user.password !== data.password) {
+                throw new Error("Password error");
+            }
+
+            localStorage.setItem('currentToken', user.token);
+            return {token: user.token};
+        } catch (error) {
+            console.dir(error);
+            if(error.name === "NotFoundError") {
+                throw new Error ("DataBase error, try again");
+            }
+
+            throw new Error(error.message);
+        }
     }
 
    generateToken() {
@@ -70,10 +80,10 @@ export class LoginService {
 
             console.log(error);
 
+            errorMessage = "DataBase error, try again";
             if(error.message === "AbortError") {
                 errorMessage = "User with this username or email already exist";
             }
-
             throw new Error(errorMessage);
         }
     }

@@ -39,11 +39,12 @@ class RequestService{
     }
 
     async signIn(data) {
-        return loginService.signIn(data);
+        try {
+            return await loginService.signIn(data);
+        } catch (error) {
+            throw Promise.resolve({ error });
+        }
     }
-
-
-
 
     async signUp(data) {
 
