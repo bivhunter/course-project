@@ -37,37 +37,45 @@ export class LoginService {
         return token;
     }
 
+    checkData(data) {
+        if(!data.username || data.username.length < 5) {
+            return "Enter username longer than 5 characters";
+        }
+        if(!data.email || !data.email.includes('@')) {
+            return "Enter correct email";
+        }
+        if(!data.password || data.password.length < 6) {
+            return "Enter password longer than 6 characters";
+        }
+    }
+
     async addUser(data) {
+        let errorMessage = this.checkData(data);
+
+        if(errorMessage) {
+            throw new Error(errorMessage);
+        }
+
+        try {
         const db = await DB;
 
         const token = this.generateToken();
-
-        try {
             const response = await db.add('loginStore', {
                 ...data,
                 token
             });
             localStorage.setItem('currentToken', token);
-           // console.log(await db.getAllFromIndex('loginStore', 'email'));
-            //console.log(response);
             return { token };
-        } catch  {
-           // console.log('error');
-            throw new Error('error');
+        } catch (error) {
+
+            console.log(error);
+
+            if(error.message === "AbortError") {
+                errorMessage = "User with this username or email already exist";
+            }
+
+            throw new Error(errorMessage);
         }
-
-    }
-
-
-
-    async getAll() {
-        const db = await DB;
-        return db.getAllFromIndex('loginStore', 'email');
-    }
-
-    delete(id) {
-        const tx = this.db.transaction('todoList', 'readwrite');
-        const index = tx.db.getAllFromIndex('todoList', '_creator');
     }
 }
 

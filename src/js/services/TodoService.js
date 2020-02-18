@@ -12,7 +12,7 @@ export class TodoService {
             const response = await db.put( 'tasksStore', task );
             return { ...task };
         } catch ( e ) {
-            return Promise.reject( Promise.resolve({error: "DataBase error"}) );
+            return Promise.reject( Promise.resolve({error: "DataBase error, try again"}) );
         }
     }
 
@@ -22,7 +22,7 @@ export class TodoService {
             const response = await db.getAllFromIndex( 'tasksStore', '_creator', token );
             return response.reverse();
         } catch ( e ) {
-            return Promise.reject( Promise.resolve({error: "DataBase error"}) );
+            return Promise.reject( Promise.resolve({error: "DataBase error, try again"}) );
         }
     }
 
@@ -32,7 +32,7 @@ export class TodoService {
             const response = await db.delete( 'tasksStore', id, '_id' );
             return response;
         } catch ( e ) {
-            return Promise.reject( Promise.resolve({error: "DataBase error"}) );
+            return Promise.reject( Promise.resolve({error: "DataBase error, try again"}) );
         }
     }
 
@@ -54,7 +54,7 @@ export class TodoService {
             const response = await db.add( 'tasksStore', data );
             return { ...data, _id: response };
         } catch ( e ) {
-            return Promise.reject( Promise.resolve( { error: "DataBase error" } ) );
+            return Promise.reject( Promise.resolve( { error: "DataBase error, try again" } ) );
         }
     }
 

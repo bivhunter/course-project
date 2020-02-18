@@ -46,21 +46,12 @@ class RequestService{
 
 
     async signUp(data) {
-        if(!data.username || data.username.length < 5) {
-            return Promise.reject( Promise.resolve({error: "Enter username longer than 5 characters"}) );
-        }
-        if(!data.email || !data.email.includes('@')) {
-            return Promise.reject( Promise.resolve({error: "Enter correct email"} ));
-        }
-        if(!data.password || data.password.length < 6) {
-           return Promise.reject( Promise.resolve({error: "Enter password longer than 6 characters"}) );
-        }
 
         try{
             const response = await loginService.addUser(data);
             return response;
-        } catch {
-            throw Promise.resolve({error: "User with this username or email already exist"});
+        } catch (error){
+            throw Promise.resolve({ error });
         }
 
     }

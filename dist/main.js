@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "d88e8b7be67052f944bf";
+/******/ 	var hotCurrentHash = "a88fe5a97bb4245f3665";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -5767,12 +5767,12 @@ function () {
 
         if (task.completed) {
           message = {
-            text: 'Task not completed',
+            text: 'Task completed',
             status: 'done'
           };
         } else {
           message = {
-            text: 'Task completed',
+            text: 'Task not completed',
             status: 'done'
           };
         }
@@ -5788,17 +5788,24 @@ function () {
   }, {
     key: "changeTaskEditingMode",
     value: function changeTaskEditingMode(task) {
-      if (task.editing) {
-        _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('CHANGE_TODO', task, {
-          text: 'Start editing',
-          status: 'warn'
+      _RequestService_DB_js__WEBPACK_IMPORTED_MODULE_4__["requestService"].put(_objectSpread({}, task)).then(function (task) {
+        if (task.editing) {
+          _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('CHANGE_TODO', task, {
+            text: 'Start editing',
+            status: 'warn'
+          });
+        } else {
+          _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('CHANGE_TODO', task, {
+            text: 'End editing',
+            status: 'done'
+          });
+        }
+      })["catch"](function () {
+        _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('ERROR', [], {
+          text: 'Server not response, wait please',
+          status: 'error'
         });
-      } else {
-        _store_Store_js__WEBPACK_IMPORTED_MODULE_5__["store"].dispatch('CHANGE_TODO', task, {
-          text: 'End editing',
-          status: 'done'
-        });
-      }
+      });
     }
   }, {
     key: "filterTask",
@@ -6099,49 +6106,24 @@ function () {
 
             case 7:
               response = _context2.sent;
+              localStorage.setItem('currentToken', token); // console.log(await db.getAllFromIndex('loginStore', 'email'));
+
+              console.log(response);
               return _context2.abrupt("return", {
                 token: token
               });
 
-            case 11:
-              _context2.prev = 11;
+            case 13:
+              _context2.prev = 13;
               _context2.t0 = _context2["catch"](4);
               throw new Error('error');
 
-            case 14:
+            case 16:
             case "end":
               return _context2.stop();
           }
         }
-      }, null, this, [[4, 11]]);
-    }
-  }, {
-    key: "getAll",
-    value: function getAll() {
-      var db;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.async(function getAll$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
-
-            case 2:
-              db = _context3.sent;
-              return _context3.abrupt("return", db.getAllFromIndex('loginStore', 'email'));
-
-            case 4:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      });
-    }
-  }, {
-    key: "delete",
-    value: function _delete(id) {
-      var tx = this.db.transaction('todoList', 'readwrite');
-      var index = tx.db.getAllFromIndex('todoList', '_creator');
+      }, null, this, [[4, 13]]);
     }
   }]);
 
@@ -6209,9 +6191,9 @@ function () {
                 break;
               }
 
-              throw Promise.resolve({
+              return _context.abrupt("return", Promise.reject(Promise.resolve({
                 error: "Enter more than 5 characters"
-              });
+              })));
 
             case 2:
               return _context.abrupt("return", _TodoService_js__WEBPACK_IMPORTED_MODULE_4__["todoService"].post(task));
@@ -6251,7 +6233,7 @@ function () {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              return _context3.abrupt("return", _LoginService_js__WEBPACK_IMPORTED_MODULE_3__["loginService"].put(task));
+              return _context3.abrupt("return", _TodoService_js__WEBPACK_IMPORTED_MODULE_4__["todoService"].put(task));
 
             case 1:
             case "end":
@@ -6284,34 +6266,34 @@ function () {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              if (data.username) {
+              if (!(!data.username || data.username.length < 5)) {
                 _context5.next = 2;
                 break;
               }
 
-              throw Promise.resolve({
-                error: "Enter username"
-              });
+              return _context5.abrupt("return", Promise.reject(Promise.resolve({
+                error: "Enter username longer than 5 characters"
+              })));
 
             case 2:
-              if (data.email) {
+              if (!(!data.email || !data.email.includes('@'))) {
                 _context5.next = 4;
                 break;
               }
 
-              throw Promise.resolve({
-                error: "Enter email"
-              });
+              return _context5.abrupt("return", Promise.reject(Promise.resolve({
+                error: "Enter correct email"
+              })));
 
             case 4:
-              if (data.password) {
+              if (!(!data.password || data.password.length < 6)) {
                 _context5.next = 6;
                 break;
               }
 
-              throw Promise.resolve({
-                error: "Enter password"
-              });
+              return _context5.abrupt("return", Promise.reject(Promise.resolve({
+                error: "Enter password longer than 6 characters"
+              })));
 
             case 6:
               _context5.prev = 6;
@@ -6458,35 +6440,32 @@ function () {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              _context.prev = 0;
+              _context.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
 
-            case 2:
+            case 3:
               db = _context.sent;
-              _context.prev = 3;
               _context.next = 6;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.put('tasksStore', task, '_id'));
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.put('tasksStore', task));
 
             case 6:
               response = _context.sent;
-              console.log('put', response);
-              _context.next = 13;
-              break;
+              return _context.abrupt("return", _objectSpread({}, task));
 
             case 10:
               _context.prev = 10;
-              _context.t0 = _context["catch"](3);
-              console.log('error');
+              _context.t0 = _context["catch"](0);
+              return _context.abrupt("return", Promise.reject(Promise.resolve({
+                error: "DataBase error, try again"
+              })));
 
             case 13:
-              return _context.abrupt("return", _objectSpread({}, task));
-
-            case 14:
             case "end":
               return _context.stop();
           }
         }
-      }, null, null, [[3, 10]]);
+      }, null, null, [[0, 10]]);
     }
   }, {
     key: "get",
@@ -6496,24 +6475,32 @@ function () {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
+              _context2.prev = 0;
+              _context2.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
 
-            case 2:
+            case 3:
               db = _context2.sent;
-              _context2.next = 5;
+              _context2.next = 6;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.getAllFromIndex('tasksStore', '_creator', token));
 
-            case 5:
+            case 6:
               response = _context2.sent;
               return _context2.abrupt("return", response.reverse());
 
-            case 7:
+            case 10:
+              _context2.prev = 10;
+              _context2.t0 = _context2["catch"](0);
+              return _context2.abrupt("return", Promise.reject(Promise.resolve({
+                error: "DataBase error, try again"
+              })));
+
+            case 13:
             case "end":
               return _context2.stop();
           }
         }
-      });
+      }, null, null, [[0, 10]]);
     }
   }, {
     key: "delete",
@@ -6523,24 +6510,32 @@ function () {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _context3.next = 2;
+              _context3.prev = 0;
+              _context3.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
 
-            case 2:
+            case 3:
               db = _context3.sent;
-              _context3.next = 5;
+              _context3.next = 6;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db["delete"]('tasksStore', id, '_id'));
 
-            case 5:
+            case 6:
               response = _context3.sent;
               return _context3.abrupt("return", response);
 
-            case 7:
+            case 10:
+              _context3.prev = 10;
+              _context3.t0 = _context3["catch"](0);
+              return _context3.abrupt("return", Promise.reject(Promise.resolve({
+                error: "DataBase error, try again"
+              })));
+
+            case 13:
             case "end":
               return _context3.stop();
           }
         }
-      });
+      }, null, null, [[0, 10]]);
     }
   }, {
     key: "getDate",
@@ -6556,10 +6551,11 @@ function () {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              _context4.next = 2;
+              _context4.prev = 0;
+              _context4.next = 3;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(_store_DB_js__WEBPACK_IMPORTED_MODULE_4__["DB"]);
 
-            case 2:
+            case 3:
               db = _context4.sent;
               data = {
                 text: task.text,
@@ -6567,21 +6563,28 @@ function () {
                 createDate: this.getDate(),
                 _creator: localStorage.getItem('currentToken')
               };
-              _context4.next = 6;
+              _context4.next = 7;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(db.add('tasksStore', data));
 
-            case 6:
+            case 7:
               response = _context4.sent;
               return _context4.abrupt("return", _objectSpread({}, data, {
                 _id: response
               }));
 
-            case 8:
+            case 11:
+              _context4.prev = 11;
+              _context4.t0 = _context4["catch"](0);
+              return _context4.abrupt("return", Promise.reject(Promise.resolve({
+                error: "DataBase error, try again"
+              })));
+
+            case 14:
             case "end":
               return _context4.stop();
           }
         }
-      }, null, this);
+      }, null, this, [[0, 11]]);
     }
   }]);
 
@@ -6603,7 +6606,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DB", function() { return DB; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var idb_build_esm_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! idb/build/esm/index */ "./node_modules/idb/build/esm/index.js");
+/* harmony import */ var idb__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! idb */ "./node_modules/idb/build/esm/index.js");
 
  //https://github.com/jakearchibald/idb
 
@@ -6614,7 +6617,7 @@ function initDB() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(Object(idb_build_esm_index__WEBPACK_IMPORTED_MODULE_1__["openDB"])('DB', 1, {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(Object(idb__WEBPACK_IMPORTED_MODULE_1__["openDB"])('DB', 1, {
             upgrade: function upgrade(db) {
               var loginStore = db.createObjectStore('loginStore', {
                 keyPath: 'username'
@@ -6781,8 +6784,7 @@ function createReducers() {
     },
     'ERROR': function ERROR(payload, state, message) {
       return _objectSpread({}, state, {
-        todoView: payload,
-        countTasks: calculateTasks(payload),
+        countTasks: calculateTasks(state.taskList),
         message: message
       });
     }
@@ -6809,7 +6811,8 @@ function applyFilter(todoList, method) {
   }
 }
 
-function calculateTasks(taskList) {
+function calculateTasks(tasks) {
+  var taskList = tasks || [];
   var allTasksNumber = taskList.length;
   var doneTasksNumber = 0;
   var notDoneTasksNumber = 0;
